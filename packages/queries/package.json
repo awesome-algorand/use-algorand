@@ -1,0 +1,38 @@
+{
+  "name": "@algofam/use-algorand-queries",
+  "version": "1.0.0",
+  "description": "",
+  "main": "./lib/cjs/index.js",
+  "module": "./lib/index.js",
+  "types": "./types/index.d.ts",
+  "type": "module",
+  "exports": {
+    ".": {
+      "types": "./types/index.d.ts",
+      "import": "./lib/index.js",
+      "require": "./lib/cjs/index.js"
+    }
+  },
+  "scripts": {
+    "tdoc": "typedoc --tsconfig ./tsconfig.json ",
+    "docs": "jsdoc -r ./lib -d ./docs",
+    "typecheck": "tsc && esbuild ./lib/index.js --outdir=lib/cjs --bundle",
+    "test": "c8 node --test ./tests"
+  },
+  "author": "",
+  "license": "MIT",
+  "peerDependencies": {
+    "@tanstack/query-core": "^4.33.0",
+    "algosdk": "^2.5.0"
+  },
+  "dependencies": {
+    "typescript": "^5.2.2"
+  },
+  "devDependencies": {
+    "@types/node": "^20.5.9",
+    "c8": "^8.0.1",
+    "dotenv": "^16.3.1",
+    "jsdoc": "^4.0.2",
+    "typedoc": "^0.25.1"
+  }
+}
