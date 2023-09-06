@@ -16,7 +16,7 @@
   "scripts": {
     "tdoc": "typedoc --tsconfig ./tsconfig.json ",
     "docs": "jsdoc -r ./lib -d ./docs",
-    "typecheck": "tsc && esbuild ./lib/index.js --outdir=lib/cjs --bundle",
+    "build": "tsc -p tsconfig.esm.json && tsc -p tsconfig.cjs.json",
     "test": "c8 node --test ./tests"
   },
   "author": "",
@@ -30,6 +30,7 @@
   },
   "devDependencies": {
     "@types/node": "^20.5.9",
+    "algosdk": "^2.5.0",
     "c8": "^8.0.1",
     "dotenv": "^16.3.1",
     "jsdoc": "^4.0.2",

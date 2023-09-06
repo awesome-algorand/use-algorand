@@ -1,3 +1,4 @@
+import algosdk from 'algosdk'
 /**
  * @typedef {import('@tanstack/query-core').QueryOptions} QueryOptions
  * ## Query Options
@@ -12,10 +13,10 @@
  * Algorand HTTP Client Options
  *
  * @typedef {object} ClientOptions
- * @property {object} client The client
+ * @property {algosdk.Algodv2} [client] The client
  * @property {string} [token] Algodv2 Token
  * @property {string} [server] Algodv2 Server
- * @property {number} [port] Algodv2 Port
+ * @property {string | number} [port] Algodv2 Port
  */
 
 /**

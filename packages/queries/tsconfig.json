@@ -2,13 +2,8 @@
   "include": ["lib/**/*.js"],
   "exclude": ["lib/**/*.spec.js", "lib/cjs/**/*"],
   "compilerOptions": {
-    "preserveValueImports": true,
-    "declarationDir": "types",
-    "emitDeclarationOnly": true,
-    "outDir": "./lib/cjs",
-    "module": "esnext",
-    "target": "esnext",
-    "declaration": true,
+
+
     "ignoreDeprecations": "5.0",
     "allowJs": true,
     "isolatedModules": true,
