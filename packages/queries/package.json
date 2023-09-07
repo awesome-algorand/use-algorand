@@ -21,7 +21,6 @@
       "import": "./lib/indexer.js",
       "require": "./dist/indexer.js"
     }
-
   },
   "main": "./dist/index.js",
   "module": "./lib/index.js",

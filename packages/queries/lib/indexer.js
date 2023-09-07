@@ -10,7 +10,7 @@ let indexer
 /**
  * Get Indexer Client Singleton
  *
- * @param {ClientOptions} [options]
+ * @param {IndexerOptions} [options]
  * @return {algosdk.Indexer} Indexer Client
  */
 export function getIndexer(options){
@@ -43,8 +43,8 @@ export function getIndexer(options){
  * Returns application local state about the given account.
  *
  * @param {string} address The address of the account to look up.
- * @param {AlgorandQueryOptions} [options] QueryOption overrides
- * @return {AlgorandQueryOptions} QueryOption for use with @tanstack
+ * @param {IndexerQueryOptions} [options] QueryOption overrides
+ * @return {IndexerQueryOptions} QueryOption for use with @tanstack
  * @see https://algorand.github.io/js-algorand-sdk/classes/Indexer.html#lookupAccountAppLocalStates
  */
 export function lookupAccountAppLocalStates(address, options){
@@ -59,8 +59,8 @@ export function lookupAccountAppLocalStates(address, options){
  * Lookup Account Assets
  *
  * @param {string} address The address of the account to look up.
- * @param {AlgorandQueryOptions} [options] QueryOption overrides
- * @return {AlgorandQueryOptions} QueryOption for use with @tanstack
+ * @param {IndexerQueryOptions} [options] QueryOption overrides
+ * @return {IndexerQueryOptions} QueryOption for use with @tanstack
  * @see https://algorand.github.io/js-algorand-sdk/classes/Indexer.html#lookupAccountAssets
  */
 export function lookupAccountAssets(address, options){
@@ -74,8 +74,8 @@ export function lookupAccountAssets(address, options){
  * Lookup Account By ID
  *
  * @param {string} address The address of the account to look up.
- * @param {AlgorandQueryOptions} [options] QueryOption overrides
- * @return {AlgorandQueryOptions} QueryOption for use with @tanstack
+ * @param {IndexerQueryOptions} [options] QueryOption overrides
+ * @return {IndexerQueryOptions} QueryOption for use with @tanstack
  * @see https://algorand.github.io/js-algorand-sdk/classes/Indexer.html#lookupAccountByID
  */
 export function lookupAccountByID(address, options){
@@ -89,8 +89,8 @@ export function lookupAccountByID(address, options){
  * Lookup Account Created Apps
  *
  * @param {string} address The address of the account to look up.
- * @param {AlgorandQueryOptions} [options] QueryOption overrides
- * @return {AlgorandQueryOptions} QueryOption for use with @tanstack
+ * @param {IndexerQueryOptions} [options] QueryOption overrides
+ * @return {IndexerQueryOptions} QueryOption for use with @tanstack
  * @see https://algorand.github.io/js-algorand-sdk/classes/Indexer.html#lookupAccountCreatedApplications
  */
 export function lookupAccountCreatedApplications(address, options){
@@ -104,8 +104,8 @@ export function lookupAccountCreatedApplications(address, options){
  * Lookup Account Created Assets
  *
  * @param {string} address The address of the account to look up.
- * @param {AlgorandQueryOptions} [options] QueryOption overrides
- * @return {AlgorandQueryOptions} QueryOption for use with @tanstack
+ * @param {IndexerQueryOptions} [options] QueryOption overrides
+ * @return {IndexerQueryOptions} QueryOption for use with @tanstack
  * @see https://algorand.github.io/js-algorand-sdk/classes/Indexer.html#lookupAccountCreatedAssets
  */
 export function lookupAccountCreatedAssets(address, options){
@@ -120,8 +120,8 @@ export function lookupAccountCreatedAssets(address, options){
  * Lookup Account Transactions
  *
  * @param {string} address The address of the account to look up.
- * @param {AlgorandQueryOptions} [options] QueryOption overrides
- * @return {AlgorandQueryOptions} QueryOption for use with @tanstack
+ * @param {IndexerQueryOptions} [options] QueryOption overrides
+ * @return {IndexerQueryOptions} QueryOption for use with @tanstack
  * @see https://algorand.github.io/js-algorand-sdk/classes/Indexer.html#lookupAccountTransactions
  */
 export function lookupAccountTransactions(address, options){
@@ -136,8 +136,8 @@ export function lookupAccountTransactions(address, options){
  *
  * @param {number} index The ID of the application with boxes.
  * @param {Uint8Array} name The name of the box
- * @param {AlgorandQueryOptions} [options] QueryOption overrides
- * @return {AlgorandQueryOptions} QueryOption for use with @tanstack
+ * @param {IndexerQueryOptions} [options] QueryOption overrides
+ * @return {IndexerQueryOptions} QueryOption for use with @tanstack
  * @see https://algorand.github.io/js-algorand-sdk/classes/Indexer.html#lookupApplicationBoxByIDandName
  */
 export function lookupApplicationBoxByIDandName(index, name, options){
@@ -152,8 +152,8 @@ export function lookupApplicationBoxByIDandName(index, name, options){
  * Lookup Application Logs
  *
  * @param {number} index The ID of the application which generated the logs.
- * @param {AlgorandQueryOptions} [options] QueryOption overrides
- * @return {AlgorandQueryOptions} QueryOption for use with @tanstack
+ * @param {IndexerQueryOptions} [options] QueryOption overrides
+ * @return {IndexerQueryOptions} QueryOption for use with @tanstack
  * @see https://algorand.github.io/js-algorand-sdk/classes/Indexer.html#lookupApplicationLogs
  */
 export function lookupApplicationLogs(index, options){
@@ -167,8 +167,8 @@ export function lookupApplicationLogs(index, options){
  *
  * @param {number} index The ID of the application to look up.
  * @param {{includeAll: boolean}} [query]
- * @param {AlgorandQueryOptions} [options] QueryOption overrides
- * @return {AlgorandQueryOptions} QueryOption for use with @tanstack
+ * @param {IndexerQueryOptions} [options] QueryOption overrides
+ * @return {IndexerQueryOptions} QueryOption for use with @tanstack
  * @see https://algorand.github.io/js-algorand-sdk/classes/Indexer.html#lookupApplications
  */
 export function lookupApplications(index, query, options){
@@ -182,8 +182,8 @@ export function lookupApplications(index, query, options){
 /**
  *
  * @param {number} index The asset ID to look up.
- * @param {AlgorandQueryOptions} [options] QueryOption overrides
- * @return {AlgorandQueryOptions} QueryOption for use with @tanstack
+ * @param {IndexerQueryOptions} [options] QueryOption overrides
+ * @return {IndexerQueryOptions} QueryOption for use with @tanstack
  * @see https://algorand.github.io/js-algorand-sdk/classes/Indexer.html#lookupApplications
  */
 export function lookupAssetBalances(index, options){
@@ -267,6 +267,6 @@ export function searchForTransactions(query, options){
 }
 
 /**
- * @typedef {import('./common').AlgorandQueryOptions} AlgorandQueryOptions
- * @typedef {import('./common').ClientOptions} ClientOptions
+ * @typedef {import('./common').AlgorandQueryOptions} IndexerQueryOptions
+ * @typedef {import('./common').ClientOptions} IndexerOptions
  */

@@ -1,5 +1,2 @@
-import * as algod from './algod.js'
-import * as indexer from './indexer.js'
-export default {
-    ...algod, ...indexer
-}
+export * as algod from './algod.js'
+export * as indexer from './indexer.js'

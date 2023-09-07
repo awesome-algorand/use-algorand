@@ -51,8 +51,8 @@ export function getClient(options){
  *
  * @param {string} address The address of the account to look up.
  * @param {number} index The application ID to look up.
- * @param {AlgorandQueryOptions} [options] QueryOption overrides
- * @return {AlgorandQueryOptions} QueryOption for use with @tanstack
+ * @param {AlgodQueryOptions} [options] QueryOption overrides
+ * @return {AlgodQueryOptions} QueryOption for use with @tanstack
  * @see https://algorand.github.io/js-algorand-sdk/classes/Algodv2.html#accountApplicationInformation
  */
 export function getAccountApplicationInformationQueryOptions(address, index, options){
@@ -67,8 +67,8 @@ export function getAccountApplicationInformationQueryOptions(address, index, opt
  *
  * @param {string} address The address of the account to look up.
  * @param {number} index The asset ID to look up.
- * @param {AlgorandQueryOptions} [options] QueryOption overrides
- * @return {AlgorandQueryOptions} QueryOption for use with @tanstack
+ * @param {AlgodQueryOptions} [options] QueryOption overrides
+ * @return {AlgodQueryOptions} QueryOption for use with @tanstack
  * @see https://algorand.github.io/js-algorand-sdk/classes/Algodv2.html#accountAssetInformation
  */
 export function getAccountAssetInformationQueryOptions(address, index, options){
@@ -83,8 +83,8 @@ export function getAccountAssetInformationQueryOptions(address, index, options){
  *
  * @param {string} address The address of the account to look up.
  * @param {{exclude?: string}} [query] Query parameters
- * @param {AlgorandQueryOptions} [options] QueryOption overrides
- * @return {AlgorandQueryOptions} QueryOption for use with @tanstack
+ * @param {AlgodQueryOptions} [options] QueryOption overrides
+ * @return {AlgodQueryOptions} QueryOption for use with @tanstack
  * @see https://algorand.github.io/js-algorand-sdk/classes/Algodv2.html#accountInformation
  */
 export function getAccountInformationQueryOptions(address, query, options){
@@ -99,8 +99,8 @@ export function getAccountInformationQueryOptions(address, query, options){
  * Get Block Query Options
  *
  * @param {number} round The round number of the block to get.
- * @param {AlgorandQueryOptions} [options] QueryOption overrides
- * @return {AlgorandQueryOptions} QueryOption for use with @tanstack
+ * @param {AlgodQueryOptions} [options] QueryOption overrides
+ * @return {AlgodQueryOptions} QueryOption for use with @tanstack
  * @see https://algorand.github.io/js-algorand-sdk/classes/Algodv2.html#block
  */
 export function getBlockQueryOptions(round, options){
@@ -115,8 +115,8 @@ export function getBlockQueryOptions(round, options){
 /**
  * Get Genesis Query Options
  *
- * @param {AlgorandQueryOptions} [options] QueryOption overrides
- * @return {AlgorandQueryOptions} QueryOption for use with @tanstack
+ * @param {AlgodQueryOptions} [options] QueryOption overrides
+ * @return {AlgodQueryOptions} QueryOption for use with @tanstack
  * @see https://algorand.github.io/js-algorand-sdk/classes/Algodv2.html#genesis
  */
 export function getGenesisQueryOptions(options){
@@ -132,8 +132,8 @@ export function getGenesisQueryOptions(options){
  *
  * @param {number} index The application ID to look up.
  * @param {Uint8Array} name The name of the application box to look up.
- * @param {AlgorandQueryOptions} [options] QueryOption overrides
- * @return {AlgorandQueryOptions} QueryOption for use with @tanstack
+ * @param {AlgodQueryOptions} [options] QueryOption overrides
+ * @return {AlgodQueryOptions} QueryOption for use with @tanstack
  * @see https://algorand.github.io/js-algorand-sdk/classes/Algodv2.html#getApplicationBoxByName
  */
 export function getApplicationBoxByNameQueryOptions(index, name, options){
@@ -147,8 +147,8 @@ export function getApplicationBoxByNameQueryOptions(index, name, options){
  * Get Application Boxes Query Options
  *
  * @param {number} index The application ID to look up.
- * @param {AlgorandQueryOptions} [options] QueryOption overrides
- * @return {AlgorandQueryOptions} QueryOption for use with @tanstack
+ * @param {AlgodQueryOptions} [options] QueryOption overrides
+ * @return {AlgodQueryOptions} QueryOption for use with @tanstack
  * @see https://algorand.github.io/js-algorand-sdk/classes/Algodv2.html#getApplicationBoxes
  */
 export function getApplicationBoxesQueryOptions(index, options){
@@ -163,8 +163,8 @@ export function getApplicationBoxesQueryOptions(index, options){
  * Get Application By ID Query Options
  *
  * @param index The application ID to look up.
- * @param {AlgorandQueryOptions} [options] QueryOption overrides
- * @return {AlgorandQueryOptions} QueryOption for use with @tanstack
+ * @param {AlgodQueryOptions} [options] QueryOption overrides
+ * @return {AlgodQueryOptions} QueryOption for use with @tanstack
  * @see https://algorand.github.io/js-algorand-sdk/classes/Algodv2.html#getApplicationByID
  */
 export function getApplicationByIDQueryOptions(index, options){
@@ -178,8 +178,8 @@ export function getApplicationByIDQueryOptions(index, options){
  * Get Asset By ID Query Options
  *
  * @param {number} index The asset ID to look up.
- * @param {AlgorandQueryOptions} [options] QueryOption overrides
- * @return {AlgorandQueryOptions} QueryOption for use with @tanstack
+ * @param {AlgodQueryOptions} [options] QueryOption overrides
+ * @return {AlgodQueryOptions} QueryOption for use with @tanstack
  * @see https://algorand.github.io/js-algorand-sdk/classes/Algodv2.html#getAssetByID
  */
 export function getAssetByIDQueryOptions(index, options){
@@ -193,8 +193,8 @@ export function getAssetByIDQueryOptions(index, options){
  * Get Block Hash Query Options
  *
  * @param {number} round The round number of the block to get.
- * @param {AlgorandQueryOptions} [options] QueryOption overrides
- * @return {AlgorandQueryOptions} QueryOption for use with @tanstack
+ * @param {AlgodQueryOptions} [options] QueryOption overrides
+ * @return {AlgodQueryOptions} QueryOption for use with @tanstack
  * @see https://algorand.github.io/js-algorand-sdk/classes/Algodv2.html#getBlockHash
  */
 export function getBlockHashQueryOptions(round, options){
@@ -208,8 +208,8 @@ export function getBlockHashQueryOptions(round, options){
 /**
  * Get Block Offset Timestamp Query Options
  *
- * @param {AlgorandQueryOptions} [options] QueryOption overrides
- * @return {AlgorandQueryOptions} QueryOption for use with @tanstack
+ * @param {AlgodQueryOptions} [options] QueryOption overrides
+ * @return {AlgodQueryOptions} QueryOption for use with @tanstack
  * @see https://algorand.github.io/js-algorand-sdk/classes/Algodv2.html#getBlockOffsetTimestamp
  */
 export function getBlockOffsetTimestampQueryOptions(options){
@@ -223,8 +223,8 @@ export function getBlockOffsetTimestampQueryOptions(options){
  * Get Ledger State Delta Query Options
  *
  * @param {bigint} round The round number to be searched for
- * @param {AlgorandQueryOptions} [options] QueryOption overrides
- * @return {AlgorandQueryOptions} QueryOption for use with @tanstack
+ * @param {AlgodQueryOptions} [options] QueryOption overrides
+ * @return {AlgodQueryOptions} QueryOption for use with @tanstack
  * @see https://algorand.github.io/js-algorand-sdk/classes/Algodv2.html#getLedgerStateDelta
  */
 export function getLedgerStateDeltaQueryOptions(round, options){
@@ -239,8 +239,8 @@ export function getLedgerStateDeltaQueryOptions(round, options){
  * Get Ledger State Delta For Transaction Group Query Options
  *
  * @param {string} id txn ID or group ID to be searched for
- * @param {AlgorandQueryOptions} [options] QueryOption overrides
- * @return {AlgorandQueryOptions} QueryOption for use with @tanstack
+ * @param {AlgodQueryOptions} [options] QueryOption overrides
+ * @return {AlgodQueryOptions} QueryOption for use with @tanstack
  * @see https://algorand.github.io/js-algorand-sdk/classes/Algodv2.html#getLedgerStateDeltaForTransactionGroup
  */
 export function getLedgerStateDeltaForTransactionGroupQueryOptions(id, options){
@@ -253,8 +253,8 @@ export function getLedgerStateDeltaForTransactionGroupQueryOptions(id, options){
 /**
  * Get Sync Round Query Options
  *
- * @param {AlgorandQueryOptions} [options] QueryOption overrides
- * @return {AlgorandQueryOptions} QueryOption for use with @tanstack
+ * @param {AlgodQueryOptions} [options] QueryOption overrides
+ * @return {AlgodQueryOptions} QueryOption for use with @tanstack
  * @see https://algorand.github.io/js-algorand-sdk/classes/Algodv2.html#getSyncRound
  */
 export function getSyncRoundQueryOptions(options){
@@ -268,8 +268,8 @@ export function getSyncRoundQueryOptions(options){
  * Get Transaction Group Ledger State Deltas For Round Query Options
  *
  * @param {bigint} round the round number to be searched for
- * @param {AlgorandQueryOptions} [options] QueryOption overrides
- * @return {AlgorandQueryOptions} QueryOption for use with @tanstack
+ * @param {AlgodQueryOptions} [options] QueryOption overrides
+ * @return {AlgodQueryOptions} QueryOption for use with @tanstack
  * @see https://algorand.github.io/js-algorand-sdk/classes/Algodv2.html#getTransactionGroupLedgerStateDeltasForRound
  */
 export function getTransactionGroupLedgerStateDeltasForRoundQueryOptions(round, options){
@@ -282,8 +282,8 @@ export function getTransactionGroupLedgerStateDeltasForRoundQueryOptions(round, 
 /**
  * Get Transaction Params Query Options
  *
- * @param {AlgorandQueryOptions} [options] QueryOption overrides
- * @return {AlgorandQueryOptions} QueryOption for use with @tanstack
+ * @param {AlgodQueryOptions} [options] QueryOption overrides
+ * @return {AlgodQueryOptions} QueryOption for use with @tanstack
  * @see https://algorand.github.io/js-algorand-sdk/classes/Algodv2.html#getTransactionParams
  */
 export function getTransactionParamsQueryOptions(options){
@@ -298,8 +298,8 @@ export function getTransactionParamsQueryOptions(options){
  *
  * @param {number} round The round in which the transaction appears.
  * @param {string} id The transaction ID for which to generate a proof.
- * @param {AlgorandQueryOptions} [options] QueryOption overrides
- * @return {AlgorandQueryOptions} QueryOption for use with @tanstack
+ * @param {AlgodQueryOptions} [options] QueryOption overrides
+ * @return {AlgodQueryOptions} QueryOption for use with @tanstack
  * @see https://algorand.github.io/js-algorand-sdk/classes/Algodv2.html#getTransactionProof
  */
 export function getTransactionProofQueryOptions(round, id, options){
@@ -313,8 +313,8 @@ export function getTransactionProofQueryOptions(round, id, options){
 /**
  * Get Health Check Query Options
  *
- * @param {AlgorandQueryOptions} [options] QueryOption overrides
- * @return {AlgorandQueryOptions} QueryOption for use with @tanstack
+ * @param {AlgodQueryOptions} [options] QueryOption overrides
+ * @return {AlgodQueryOptions} QueryOption for use with @tanstack
  * @see https://algorand.github.io/js-algorand-sdk/classes/Algodv2.html#healthCheck
  */
 export function getHealthCheckQueryOptions(options){
@@ -328,8 +328,8 @@ export function getHealthCheckQueryOptions(options){
  * Get Pending Transactions By Address Query Options
  *
  * @param {string} address The address of the sender.
- * @param {AlgorandQueryOptions} [options] QueryOption overrides
- * @return {AlgorandQueryOptions} QueryOption for use with @tanstack
+ * @param {AlgodQueryOptions} [options] QueryOption overrides
+ * @return {AlgodQueryOptions} QueryOption for use with @tanstack
  * @see https://algorand.github.io/js-algorand-sdk/classes/Algodv2.html#pendingTransactionByAddress
  */
 export function getPendingTransactionByAddressQueryOptions(address, options){
@@ -344,8 +344,8 @@ export function getPendingTransactionByAddressQueryOptions(address, options){
  * Get Pending Transaction Information Query Options
  *
  * @param {string} id The TxID string of the pending transaction to look up.
- * @param {AlgorandQueryOptions} [options] QueryOption overrides
- * @return {AlgorandQueryOptions} QueryOption for use with @tanstack
+ * @param {AlgodQueryOptions} [options] QueryOption overrides
+ * @return {AlgodQueryOptions} QueryOption for use with @tanstack
  * @see https://algorand.github.io/js-algorand-sdk/classes/Algodv2.html#pendingTransactionInformation
  */
 export function getPendingTransactionInformationQueryOptions(id, options){
@@ -358,8 +358,8 @@ export function getPendingTransactionInformationQueryOptions(id, options){
 /**
  * Get Pending Transactions Information Query Options
  *
- * @param {AlgorandQueryOptions} [options] QueryOption overrides
- * @return {AlgorandQueryOptions} QueryOption for use with @tanstack
+ * @param {AlgodQueryOptions} [options] QueryOption overrides
+ * @return {AlgodQueryOptions} QueryOption for use with @tanstack
  * @see https://algorand.github.io/js-algorand-sdk/classes/Algodv2.html#pendingTransactionsInformation
  */
 export function getPendingTransactionsInformationQueryOptions(options){
@@ -372,8 +372,8 @@ export function getPendingTransactionsInformationQueryOptions(options){
 /**
  * Get Ready Query Options
  *
- * @param {AlgorandQueryOptions} [options] QueryOption overrides
- * @return {AlgorandQueryOptions} QueryOption for use with @tanstack
+ * @param {AlgodQueryOptions} [options] QueryOption overrides
+ * @return {AlgodQueryOptions} QueryOption for use with @tanstack
  * @see https://algorand.github.io/js-algorand-sdk/classes/Algodv2.html#ready
  */
 export function getReadyQueryOptions(options){
@@ -386,8 +386,8 @@ export function getReadyQueryOptions(options){
 /**
  * Get Status Query Options
  *
- * @param {AlgorandQueryOptions} [options] QueryOption overrides
- * @return {AlgorandQueryOptions} QueryOption for use with @tanstack
+ * @param {AlgodQueryOptions} [options] QueryOption overrides
+ * @return {AlgodQueryOptions} QueryOption for use with @tanstack
  * @see https://algorand.github.io/js-algorand-sdk/classes/Algodv2.html#status
  */
 export function getStatusQueryOptions(options){
@@ -401,8 +401,8 @@ export function getStatusQueryOptions(options){
  * Get Status After Block Query Options
  *
  * @param {number} round
- * @param {AlgorandQueryOptions} [options] QueryOption overrides
- * @return {AlgorandQueryOptions} QueryOption for use with @tanstack
+ * @param {AlgodQueryOptions} [options] QueryOption overrides
+ * @return {AlgodQueryOptions} QueryOption for use with @tanstack
  * @see https://algorand.github.io/js-algorand-sdk/classes/Algodv2.html#statusAfterBlock
  */
 export function getStatusAfterBlockQueryOptions(round, options){
@@ -415,8 +415,8 @@ export function getStatusAfterBlockQueryOptions(round, options){
 /**
  * Get Supply Query Options
  *
- * @param {AlgorandQueryOptions} [options] QueryOption overrides
- * @return {AlgorandQueryOptions} QueryOption for use with @tanstack
+ * @param {AlgodQueryOptions} [options] QueryOption overrides
+ * @return {AlgodQueryOptions} QueryOption for use with @tanstack
  * @see https://algorand.github.io/js-algorand-sdk/classes/Algodv2.html#supply
  */
 export function getSupplyQueryOptions(options){
@@ -443,6 +443,6 @@ export function getVersionsCheckQueryOptions(options){
 
 
 /**
- * @typedef {import('./common').AlgorandQueryOptions} AlgorandQueryOptions
+ * @typedef {import('./common').AlgorandQueryOptions} AlgodQueryOptions
  * @typedef {import('./common').ClientOptions} ClientOptions
  */
