@@ -55,7 +55,7 @@ export function getClient(options){
  * @return {AlgodQueryOptions} QueryOption for use with @tanstack
  * @see https://algorand.github.io/js-algorand-sdk/classes/Algodv2.html#accountApplicationInformation
  */
-export function getAccountApplicationInformationQueryOptions(address, index, options){
+export function accountApplicationInformation(address, index, options){
     return {
         queryKey: ['accountApplicationInformation', address, index],
         queryFn: () => getClient(options).accountApplicationInformation(address, index).do(),
@@ -71,7 +71,7 @@ export function getAccountApplicationInformationQueryOptions(address, index, opt
  * @return {AlgodQueryOptions} QueryOption for use with @tanstack
  * @see https://algorand.github.io/js-algorand-sdk/classes/Algodv2.html#accountAssetInformation
  */
-export function getAccountAssetInformationQueryOptions(address, index, options){
+export function accountAssetInformation(address, index, options){
     return {
         queryKey: ['accountAssetInformation', address, index],
         queryFn: () => getClient(options).accountAssetInformation(address, index).do(),
@@ -87,7 +87,7 @@ export function getAccountAssetInformationQueryOptions(address, index, options){
  * @return {AlgodQueryOptions} QueryOption for use with @tanstack
  * @see https://algorand.github.io/js-algorand-sdk/classes/Algodv2.html#accountInformation
  */
-export function getAccountInformationQueryOptions(address, query, options){
+export function accountInformation(address, query, options){
     const jsonRequest = getClient(options).accountInformation(address)
     return {
         queryKey: ['accountInformation', address],
@@ -103,7 +103,7 @@ export function getAccountInformationQueryOptions(address, query, options){
  * @return {AlgodQueryOptions} QueryOption for use with @tanstack
  * @see https://algorand.github.io/js-algorand-sdk/classes/Algodv2.html#block
  */
-export function getBlockQueryOptions(round, options){
+export function block(round, options){
     return {
         queryKey: ['block', round],
         queryFn: () => getClient(options).block(round).do(),
@@ -119,7 +119,7 @@ export function getBlockQueryOptions(round, options){
  * @return {AlgodQueryOptions} QueryOption for use with @tanstack
  * @see https://algorand.github.io/js-algorand-sdk/classes/Algodv2.html#genesis
  */
-export function getGenesisQueryOptions(options){
+export function genesis(options){
     return {
         queryKey: ['genesis'],
         queryFn: () => getClient(options).genesis().do(),
@@ -136,7 +136,7 @@ export function getGenesisQueryOptions(options){
  * @return {AlgodQueryOptions} QueryOption for use with @tanstack
  * @see https://algorand.github.io/js-algorand-sdk/classes/Algodv2.html#getApplicationBoxByName
  */
-export function getApplicationBoxByNameQueryOptions(index, name, options){
+export function getApplicationBoxByName(index, name, options){
     return {
         queryKey: ['getApplicationBoxByName', index, name],
         queryFn: () => getClient(options).getApplicationBoxByName(index, name).do(),
@@ -151,7 +151,7 @@ export function getApplicationBoxByNameQueryOptions(index, name, options){
  * @return {AlgodQueryOptions} QueryOption for use with @tanstack
  * @see https://algorand.github.io/js-algorand-sdk/classes/Algodv2.html#getApplicationBoxes
  */
-export function getApplicationBoxesQueryOptions(index, options){
+export function getApplicationBoxes(index, options){
     // TODO: .max()
     return {
         queryKey: ['getApplicationBoxes', index],
@@ -167,7 +167,7 @@ export function getApplicationBoxesQueryOptions(index, options){
  * @return {AlgodQueryOptions} QueryOption for use with @tanstack
  * @see https://algorand.github.io/js-algorand-sdk/classes/Algodv2.html#getApplicationByID
  */
-export function getApplicationByIDQueryOptions(index, options){
+export function getApplicationByID(index, options){
     return {
         queryKey: ['getApplicationByID', index],
         queryFn: () => getClient(options).getApplicationByID(index).do(),
@@ -182,7 +182,7 @@ export function getApplicationByIDQueryOptions(index, options){
  * @return {AlgodQueryOptions} QueryOption for use with @tanstack
  * @see https://algorand.github.io/js-algorand-sdk/classes/Algodv2.html#getAssetByID
  */
-export function getAssetByIDQueryOptions(index, options){
+export function getAssetByID(index, options){
     return {
         queryKey: ['getAssetByID', index],
         queryFn: () => getClient(options).getAssetByID(index).do(),
@@ -197,7 +197,7 @@ export function getAssetByIDQueryOptions(index, options){
  * @return {AlgodQueryOptions} QueryOption for use with @tanstack
  * @see https://algorand.github.io/js-algorand-sdk/classes/Algodv2.html#getBlockHash
  */
-export function getBlockHashQueryOptions(round, options){
+export function getBlockHash(round, options){
     return {
         queryKey: ['getBlockHash', round],
         queryFn: () => getClient(options).getBlockHash(round).do(),
@@ -212,7 +212,7 @@ export function getBlockHashQueryOptions(round, options){
  * @return {AlgodQueryOptions} QueryOption for use with @tanstack
  * @see https://algorand.github.io/js-algorand-sdk/classes/Algodv2.html#getBlockOffsetTimestamp
  */
-export function getBlockOffsetTimestampQueryOptions(options){
+export function getBlockOffsetTimestamp(options){
     return {
         queryKey: ['getBlockOffsetTimestamp'],
         queryFn: () => getClient(options).getBlockOffsetTimestamp().do(),
@@ -227,7 +227,7 @@ export function getBlockOffsetTimestampQueryOptions(options){
  * @return {AlgodQueryOptions} QueryOption for use with @tanstack
  * @see https://algorand.github.io/js-algorand-sdk/classes/Algodv2.html#getLedgerStateDelta
  */
-export function getLedgerStateDeltaQueryOptions(round, options){
+export function getLedgerStateDelta(round, options){
     console.log(round)
     return {
         queryKey: ['getLedgerStateDelta', Number(round)],
@@ -243,7 +243,7 @@ export function getLedgerStateDeltaQueryOptions(round, options){
  * @return {AlgodQueryOptions} QueryOption for use with @tanstack
  * @see https://algorand.github.io/js-algorand-sdk/classes/Algodv2.html#getLedgerStateDeltaForTransactionGroup
  */
-export function getLedgerStateDeltaForTransactionGroupQueryOptions(id, options){
+export function getLedgerStateDeltaForTransactionGroup(id, options){
     return {
         queryKey: ['getLedgerStateDeltaForTransactionGroup', id],
         queryFn: () => getClient(options).getLedgerStateDeltaForTransactionGroup(id).do(),
@@ -257,7 +257,7 @@ export function getLedgerStateDeltaForTransactionGroupQueryOptions(id, options){
  * @return {AlgodQueryOptions} QueryOption for use with @tanstack
  * @see https://algorand.github.io/js-algorand-sdk/classes/Algodv2.html#getSyncRound
  */
-export function getSyncRoundQueryOptions(options){
+export function getSyncRound(options){
     return {
         queryKey: ['getSyncRound'],
         queryFn: () => getClient(options).getSyncRound().do(),
@@ -272,7 +272,7 @@ export function getSyncRoundQueryOptions(options){
  * @return {AlgodQueryOptions} QueryOption for use with @tanstack
  * @see https://algorand.github.io/js-algorand-sdk/classes/Algodv2.html#getTransactionGroupLedgerStateDeltasForRound
  */
-export function getTransactionGroupLedgerStateDeltasForRoundQueryOptions(round, options){
+export function getTransactionGroupLedgerStateDeltasForRound(round, options){
     return {
         queryKey: ['getTransactionGroupLedgerStateDeltasForRound', Number(round)],
         queryFn: () => getClient(options).getTransactionGroupLedgerStateDeltasForRound(Number(round)).do(),
@@ -286,7 +286,7 @@ export function getTransactionGroupLedgerStateDeltasForRoundQueryOptions(round, 
  * @return {AlgodQueryOptions} QueryOption for use with @tanstack
  * @see https://algorand.github.io/js-algorand-sdk/classes/Algodv2.html#getTransactionParams
  */
-export function getTransactionParamsQueryOptions(options){
+export function getTransactionParams(options){
     return {
         queryKey: ['getTransactionParams'],
         queryFn: () => getClient(options).getTransactionParams().do(),
@@ -302,7 +302,7 @@ export function getTransactionParamsQueryOptions(options){
  * @return {AlgodQueryOptions} QueryOption for use with @tanstack
  * @see https://algorand.github.io/js-algorand-sdk/classes/Algodv2.html#getTransactionProof
  */
-export function getTransactionProofQueryOptions(round, id, options){
+export function getTransactionProof(round, id, options){
     return {
         queryKey: ['getTransactionProof', round, id],
         queryFn: () => getClient(options).getTransactionProof(round, id).do(),
@@ -317,7 +317,7 @@ export function getTransactionProofQueryOptions(round, id, options){
  * @return {AlgodQueryOptions} QueryOption for use with @tanstack
  * @see https://algorand.github.io/js-algorand-sdk/classes/Algodv2.html#healthCheck
  */
-export function getHealthCheckQueryOptions(options){
+export function healthCheck(options){
     return {
         queryKey: ['healthCheck'],
         queryFn: () => getClient(options).healthCheck().do(),
@@ -332,7 +332,7 @@ export function getHealthCheckQueryOptions(options){
  * @return {AlgodQueryOptions} QueryOption for use with @tanstack
  * @see https://algorand.github.io/js-algorand-sdk/classes/Algodv2.html#pendingTransactionByAddress
  */
-export function getPendingTransactionByAddressQueryOptions(address, options){
+export function pendingTransactionByAddress(address, options){
     //TODO: Max params
     return {
         queryKey: ['pendingTransactionByAddress', address],
@@ -348,7 +348,7 @@ export function getPendingTransactionByAddressQueryOptions(address, options){
  * @return {AlgodQueryOptions} QueryOption for use with @tanstack
  * @see https://algorand.github.io/js-algorand-sdk/classes/Algodv2.html#pendingTransactionInformation
  */
-export function getPendingTransactionInformationQueryOptions(id, options){
+export function pendingTransactionInformation(id, options){
     return {
         queryKey: ['pendingTransactionInformation', id],
         queryFn: () => getClient(options).pendingTransactionInformation(id).do(),
@@ -362,7 +362,7 @@ export function getPendingTransactionInformationQueryOptions(id, options){
  * @return {AlgodQueryOptions} QueryOption for use with @tanstack
  * @see https://algorand.github.io/js-algorand-sdk/classes/Algodv2.html#pendingTransactionsInformation
  */
-export function getPendingTransactionsInformationQueryOptions(options){
+export function pendingTransactionsInformation(options){
     return {
         queryKey: ['pendingTransactionsInformation'],
         queryFn: () => getClient(options).pendingTransactionsInformation().do(),
@@ -376,7 +376,7 @@ export function getPendingTransactionsInformationQueryOptions(options){
  * @return {AlgodQueryOptions} QueryOption for use with @tanstack
  * @see https://algorand.github.io/js-algorand-sdk/classes/Algodv2.html#ready
  */
-export function getReadyQueryOptions(options){
+export function ready(options){
     return {
         queryKey: ['ready'],
         queryFn: () => getClient(options).ready().do(),
@@ -390,7 +390,7 @@ export function getReadyQueryOptions(options){
  * @return {AlgodQueryOptions} QueryOption for use with @tanstack
  * @see https://algorand.github.io/js-algorand-sdk/classes/Algodv2.html#status
  */
-export function getStatusQueryOptions(options){
+export function status(options){
     return {
         queryKey: ['status'],
         queryFn: () => getClient(options).status().do(),
@@ -405,7 +405,7 @@ export function getStatusQueryOptions(options){
  * @return {AlgodQueryOptions} QueryOption for use with @tanstack
  * @see https://algorand.github.io/js-algorand-sdk/classes/Algodv2.html#statusAfterBlock
  */
-export function getStatusAfterBlockQueryOptions(round, options){
+export function statusAfterBlock(round, options){
     return {
         queryKey: ['statusAfterBlock', round],
         queryFn: () => getClient(options).statusAfterBlock(round).do(),
@@ -419,7 +419,7 @@ export function getStatusAfterBlockQueryOptions(round, options){
  * @return {AlgodQueryOptions} QueryOption for use with @tanstack
  * @see https://algorand.github.io/js-algorand-sdk/classes/Algodv2.html#supply
  */
-export function getSupplyQueryOptions(options){
+export function supply(options){
     return {
         queryKey: ['supply'],
         queryFn: () => getClient(options).supply().do(),
@@ -433,7 +433,7 @@ export function getSupplyQueryOptions(options){
  * @return {AlgorandQueryOptions} QueryOption for use with @tanstack
  * @see https://algorand.github.io/js-algorand-sdk/classes/Algodv2.html#versionsCheck
  */
-export function getVersionsCheckQueryOptions(options){
+export function versionsCheck(options){
     return {
         queryKey: ['versionsCheck'],
         queryFn: () => getClient(options).versionsCheck().do(),

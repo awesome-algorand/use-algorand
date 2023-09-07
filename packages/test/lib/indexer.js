@@ -32,7 +32,7 @@ export function createIndexerOptions(address, appId, assetId, txnId, block, opti
         lookupAccountTransactions: lookupAccountTransactions(address, options),
         lookupApplicationBoxByIDandName: lookupApplicationBoxByIDandName(appId, new Uint8Array(1), options),
         lookupApplicationLogs: lookupApplicationLogs(appId, options),
-        lookupApplications: lookupApplications(appId, options),
+        lookupApplications: lookupApplications(appId, undefined, options),
         lookupAssetBalances: lookupAssetBalances(assetId, options),
         lookupAssetByID: lookupAssetByID(assetId, options),
         lookupAssetTransactions: lookupAssetTransactions(assetId, options),

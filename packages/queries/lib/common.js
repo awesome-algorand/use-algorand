@@ -35,7 +35,7 @@
  * @param {JSONRequest} jsonRequest The jsonRequest to apply the queries to
  * @param {{[k: string]: any}} [query] Queries to apply to the jsonRequest
  */
-export function applyQuery(jsonRequest, query){
+export function applyQuery(jsonRequest, query={}){
     Object.keys(query).forEach(key => {
         jsonRequest = jsonRequest[key](query[key]);
     })
