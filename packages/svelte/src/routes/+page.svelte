@@ -1,5 +1,7 @@
 <script>
+    import MarkdownIt from "markdown-it";
     import {createQueries} from "@tanstack/svelte-query";
+    import Readme from '../../README.md?raw'
     import QueryTableRow from "./QueryTableRow.svelte";
 
     import {createAlgodOptions, createIndexerOptions} from "@algofam/use-algorand-test";
@@ -14,6 +16,8 @@
         PUBLIC_ALGOD_PORT,
         PUBLIC_ALGOD_TOKEN, PUBLIC_INDEXER_SERVER, PUBLIC_INDEXER_PORT, PUBLIC_INDEXER_TOKEN
     } from "$env/static/public";
+
+    const md = new MarkdownIt();
 
     const algodOptions = createAlgodOptions(
         PUBLIC_TEST_ADDRESS,
@@ -49,6 +53,7 @@
 
 </script>
 <main class="container">
+    {@html md.render(Readme)}
     <h1>Algodv2</h1>
     <figure>
         <table>
