@@ -1,6 +1,6 @@
 import "dotenv/config";
 import algosdk from 'algosdk'
-import {getClient, getBlockQueryOptions} from '../lib/Algodv2.js';
+import {getClient, getBlockQueryOptions} from '../lib/use-algod.js';
 import {before, describe, it} from "node:test";
 import assert from "node:assert"
 

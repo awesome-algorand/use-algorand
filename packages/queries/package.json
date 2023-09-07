@@ -1,39 +1,48 @@
 {
   "name": "@algofam/use-algorand-queries",
   "version": "1.0.0",
-  "description": "",
-  "main": "./lib/cjs/index.js",
-  "module": "./lib/index.js",
-  "types": "./types/index.d.ts",
+  "description": "Reusable Tanstack Queries for Algorand",
+  "license": "MIT",
+  "author": "Michael J Feher <mike@telluric.guru>",
   "type": "module",
   "exports": {
     ".": {
       "types": "./types/index.d.ts",
       "import": "./lib/index.js",
       "require": "./lib/cjs/index.js"
+    },
+    "./algod": {
+      "types": "./types/algod.d.ts",
+      "import": "./lib/algod.js",
+      "require": "./lib/cjs/algod.js"
+    },
+    "./indexer": {
+      "types": "./types/indexer.d.ts",
+      "import": "./lib/indexer.js",
+      "require": "./lib/cjs/indexer.js"
     }
+
   },
+  "main": "./lib/cjs/index.js",
+  "module": "./lib/index.js",
+  "types": "./types/index.d.ts",
   "scripts": {
-    "tdoc": "typedoc --tsconfig ./tsconfig.json ",
-    "docs": "jsdoc -r ./lib -d ./docs",
     "build": "tsc -p tsconfig.esm.json && tsc -p tsconfig.cjs.json",
+    "docs": "typedoc --tsconfig ./tsconfig.json",
+    "sort": "sort-package-json *.json",
     "test": "c8 node --test ./tests"
-  },
-  "author": "",
-  "license": "MIT",
-  "peerDependencies": {
-    "@tanstack/query-core": "^4.33.0",
-    "algosdk": "^2.5.0"
-  },
-  "dependencies": {
-    "typescript": "^5.2.2"
   },
   "devDependencies": {
     "@types/node": "^20.5.9",
     "algosdk": "^2.5.0",
     "c8": "^8.0.1",
     "dotenv": "^16.3.1",
-    "jsdoc": "^4.0.2",
-    "typedoc": "^0.25.1"
+    "sort-package-json": "^2.5.1",
+    "typedoc": "^0.25.1",
+    "typescript": "^5.2.2"
+  },
+  "peerDependencies": {
+    "@tanstack/query-core": "^4.33.0",
+    "algosdk": "^2.5.0"
   }
 }

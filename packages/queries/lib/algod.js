@@ -1,10 +1,11 @@
+/**
+ * Algodv2 Queries
+ */
+
+
 // TODO: Convince algosdk to migrate to ESM
 import algosdk from "algosdk";
-
-/**
- * @typedef {import('./index').AlgorandQueryOptions} AlgorandQueryOptions
- * @typedef {import('./index').ClientOptions} ClientOptions
- */
+import {applyQuery} from "./common.js";
 
 /**
  * Algorand Client
@@ -55,10 +56,9 @@ export function getClient(options){
  * @see https://algorand.github.io/js-algorand-sdk/classes/Algodv2.html#accountApplicationInformation
  */
 export function getAccountApplicationInformationQueryOptions(address, index, options){
-    const client = getClient(options);
     return {
         queryKey: ['accountApplicationInformation', address, index],
-        queryFn: () => client.accountApplicationInformation(address, index).do(),
+        queryFn: () => getClient(options).accountApplicationInformation(address, index).do(),
         ...options
     }
 }
@@ -72,10 +72,9 @@ export function getAccountApplicationInformationQueryOptions(address, index, opt
  * @see https://algorand.github.io/js-algorand-sdk/classes/Algodv2.html#accountAssetInformation
  */
 export function getAccountAssetInformationQueryOptions(address, index, options){
-    const client = getClient(options);
     return {
         queryKey: ['accountAssetInformation', address, index],
-        queryFn: () => client.accountAssetInformation(address, index).do(),
+        queryFn: () => getClient(options).accountAssetInformation(address, index).do(),
         ...options
     }
 }
@@ -83,15 +82,16 @@ export function getAccountAssetInformationQueryOptions(address, index, options){
  * Get Account Information Query Options
  *
  * @param {string} address The address of the account to look up.
+ * @param {{exclude?: string}} [query] Query parameters
  * @param {AlgorandQueryOptions} [options] QueryOption overrides
  * @return {AlgorandQueryOptions} QueryOption for use with @tanstack
  * @see https://algorand.github.io/js-algorand-sdk/classes/Algodv2.html#accountInformation
  */
-export function getAccountInformationQueryOptions(address, options){
-    const client = getClient(options);
+export function getAccountInformationQueryOptions(address, query, options){
+    const jsonRequest = getClient(options).accountInformation(address)
     return {
         queryKey: ['accountInformation', address],
-        queryFn: () => client.accountInformation(address).do(),
+        queryFn: () => applyQuery(jsonRequest, query).do(),
         ...options
     }
 }
@@ -104,10 +104,9 @@ export function getAccountInformationQueryOptions(address, options){
  * @see https://algorand.github.io/js-algorand-sdk/classes/Algodv2.html#block
  */
 export function getBlockQueryOptions(round, options){
-    const client = getClient(options);
     return {
         queryKey: ['block', round],
-        queryFn: () => client.block(round).do(),
+        queryFn: () => getClient(options).block(round).do(),
         staleTime: Infinity,
         cachetime: Infinity,
         ...options
@@ -121,10 +120,9 @@ export function getBlockQueryOptions(round, options){
  * @see https://algorand.github.io/js-algorand-sdk/classes/Algodv2.html#genesis
  */
 export function getGenesisQueryOptions(options){
-    const client = getClient(options);
     return {
         queryKey: ['genesis'],
-        queryFn: () => client.genesis().do(),
+        queryFn: () => getClient(options).genesis().do(),
         staleTime: Infinity,
         ...options
     }
@@ -139,10 +137,9 @@ export function getGenesisQueryOptions(options){
  * @see https://algorand.github.io/js-algorand-sdk/classes/Algodv2.html#getApplicationBoxByName
  */
 export function getApplicationBoxByNameQueryOptions(index, name, options){
-    const client = getClient(options);
     return {
         queryKey: ['getApplicationBoxByName', index, name],
-        queryFn: () => client.getApplicationBoxByName(index, name).do(),
+        queryFn: () => getClient(options).getApplicationBoxByName(index, name).do(),
         ...options
     }
 }
@@ -156,10 +153,9 @@ export function getApplicationBoxByNameQueryOptions(index, name, options){
  */
 export function getApplicationBoxesQueryOptions(index, options){
     // TODO: .max()
-    const client = getClient(options);
     return {
         queryKey: ['getApplicationBoxes', index],
-        queryFn: () => client.getApplicationBoxes(index).do(),
+        queryFn: () => getClient(options).getApplicationBoxes(index).do(),
         ...options
     }
 }
@@ -232,6 +228,7 @@ export function getBlockOffsetTimestampQueryOptions(options){
  * @see https://algorand.github.io/js-algorand-sdk/classes/Algodv2.html#getLedgerStateDelta
  */
 export function getLedgerStateDeltaQueryOptions(round, options){
+    console.log(round)
     return {
         queryKey: ['getLedgerStateDelta', Number(round)],
         queryFn: () => getClient(options).getLedgerStateDelta(round).do(),
@@ -278,7 +275,7 @@ export function getSyncRoundQueryOptions(options){
 export function getTransactionGroupLedgerStateDeltasForRoundQueryOptions(round, options){
     return {
         queryKey: ['getTransactionGroupLedgerStateDeltasForRound', Number(round)],
-        queryFn: () => getClient(options).getTransactionGroupLedgerStateDeltasForRound(round).do(),
+        queryFn: () => getClient(options).getTransactionGroupLedgerStateDeltasForRound(Number(round)).do(),
         ...options
     }
 }
@@ -339,7 +336,7 @@ export function getPendingTransactionByAddressQueryOptions(address, options){
     //TODO: Max params
     return {
         queryKey: ['pendingTransactionByAddress', address],
-        queryFn: () => getClient().pendingTransactionByAddress(address).do(),
+        queryFn: () => getClient(options).pendingTransactionByAddress(address).do(),
         ...options
     }
 }
@@ -354,7 +351,7 @@ export function getPendingTransactionByAddressQueryOptions(address, options){
 export function getPendingTransactionInformationQueryOptions(id, options){
     return {
         queryKey: ['pendingTransactionInformation', id],
-        queryFn: () => getClient().pendingTransactionInformation(id).do(),
+        queryFn: () => getClient(options).pendingTransactionInformation(id).do(),
         ...options
     }
 }
@@ -368,7 +365,7 @@ export function getPendingTransactionInformationQueryOptions(id, options){
 export function getPendingTransactionsInformationQueryOptions(options){
     return {
         queryKey: ['pendingTransactionsInformation'],
-        queryFn: () => getClient().pendingTransactionsInformation().do(),
+        queryFn: () => getClient(options).pendingTransactionsInformation().do(),
         ...options
     }
 }
@@ -382,7 +379,7 @@ export function getPendingTransactionsInformationQueryOptions(options){
 export function getReadyQueryOptions(options){
     return {
         queryKey: ['ready'],
-        queryFn: () => getClient().ready().do(),
+        queryFn: () => getClient(options).ready().do(),
         ...options
     }
 }
@@ -396,7 +393,7 @@ export function getReadyQueryOptions(options){
 export function getStatusQueryOptions(options){
     return {
         queryKey: ['status'],
-        queryFn: () => getClient().status().do(),
+        queryFn: () => getClient(options).status().do(),
         ...options
     }
 }
@@ -411,7 +408,7 @@ export function getStatusQueryOptions(options){
 export function getStatusAfterBlockQueryOptions(round, options){
     return {
         queryKey: ['statusAfterBlock', round],
-        queryFn: () => getClient().statusAfterBlock(round).do(),
+        queryFn: () => getClient(options).statusAfterBlock(round).do(),
         ...options
     }
 }
@@ -425,7 +422,7 @@ export function getStatusAfterBlockQueryOptions(round, options){
 export function getSupplyQueryOptions(options){
     return {
         queryKey: ['supply'],
-        queryFn: () => getClient().supply().do(),
+        queryFn: () => getClient(options).supply().do(),
         ...options
     }
 }
@@ -439,8 +436,13 @@ export function getSupplyQueryOptions(options){
 export function getVersionsCheckQueryOptions(options){
     return {
         queryKey: ['versionsCheck'],
-        queryFn: () => getClient().versionsCheck().do(),
+        queryFn: () => getClient(options).versionsCheck().do(),
         ...options
     }
 }
 
+
+/**
+ * @typedef {import('./common').AlgorandQueryOptions} AlgorandQueryOptions
+ * @typedef {import('./common').ClientOptions} ClientOptions
+ */

@@ -1,5 +1,4 @@
 {
-  "extends": "./tsconfig.json",
   "compilerOptions": {
     "preserveValueImports": true,
     "declarationDir": "types",
@@ -7,5 +6,6 @@
     "module": "esnext",
     "target": "esnext",
     "declaration": true
-  }
+  },
+  "extends": "./tsconfig.json"
 }
