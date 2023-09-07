@@ -3,22 +3,27 @@
   "version": "1.0.0",
   "description": "",
   "type": "module",
-  "main": "index.js",
-  "module": "index.js",
+  "main": "dist/index.js",
+  "module": "lib/index.js",
+  "types": "types/index.d.ts",
   "exports": {
     ".": {
-      "import": "./index.js"
+      "import": "./lib/index.js",
+      "require": "./dist/index.js",
+      "types": "./types/index.d.ts"
     }
   },
   "scripts": {
+    "build": "tsc -p tsconfig.esm.json && tsc -p tsconfig.cjs.json",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
-  "author": "",
+  "author": "Michael J Feher <mike@telluric.guru>",
   "license": "MIT",
   "peerDependencies": {
     "@algofam/use-algorand-queries": "^1.0.0"
   },
   "devDependencies": {
-    "@algofam/use-algorand-queries": "^1.0.0"
+    "@algofam/use-algorand-queries": "^1.0.0",
+    "typescript": "^5.2.2"
   }
 }

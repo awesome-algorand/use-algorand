@@ -9,21 +9,21 @@
     ".": {
       "types": "./types/index.d.ts",
       "import": "./lib/index.js",
-      "require": "./lib/cjs/index.js"
+      "require": "./dist/index.js"
     },
     "./algod": {
       "types": "./types/algod.d.ts",
       "import": "./lib/algod.js",
-      "require": "./lib/cjs/algod.js"
+      "require": "./dist/algod.js"
     },
     "./indexer": {
       "types": "./types/indexer.d.ts",
       "import": "./lib/indexer.js",
-      "require": "./lib/cjs/indexer.js"
+      "require": "./dist/indexer.js"
     }
 
   },
-  "main": "./lib/cjs/index.js",
+  "main": "./dist/index.js",
   "module": "./lib/index.js",
   "types": "./types/index.d.ts",
   "scripts": {
