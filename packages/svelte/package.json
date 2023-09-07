@@ -33,6 +33,7 @@
 		"@sveltejs/package": "^2.0.0",
 		"@tanstack/svelte-query": "^4.33.0",
 		"@types/markdown-it": "^13.0.1",
+		"markdown-it": "^13.0.1",
 		"publint": "^0.1.9",
 		"svelte": "^4.0.5",
 		"svelte-check": "^3.4.3",
@@ -43,8 +44,5 @@
 	"peerDependencies": {
 		"@tanstack/svelte-query": "^4.33.0",
 		"svelte": "^4.0.0"
-	},
-	"dependencies": {
-		"markdown-it": "^13.0.1"
 	}
 }

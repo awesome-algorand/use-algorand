@@ -24,7 +24,7 @@
         PUBLIC_TEST_APPLICATION,
         PUBLIC_TEST_ASSET,
         PUBLIC_TEST_TRANSACTION,
-        32_000_000,
+        1,
         {
             server: PUBLIC_ALGOD_SERVER || "http://localhost",
             port: PUBLIC_ALGOD_PORT || 4001,
@@ -40,7 +40,7 @@
         PUBLIC_TEST_APPLICATION,
         PUBLIC_TEST_ASSET,
         PUBLIC_TEST_TRANSACTION,
-        32_000_000,
+        1,
         {
             server: PUBLIC_INDEXER_SERVER || "http://localhost",
             port: PUBLIC_INDEXER_PORT || 8980,
