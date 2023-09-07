@@ -1,6 +1,7 @@
 <script>
     export let name;
     export let query;
+    export let path;
 
     let loadingColor = "inherit"
     let errorColor = "inherit"
@@ -11,7 +12,7 @@
     }
 </script>
 <tr>
-    <td>{name}</td>
+    <td><a href="/{path}/{name}">{name}</a></td>
     <td style="color: {loadingColor}">{query.isLoading}</td>
     <td style="color: {errorColor}">{query.isError}</td>
 </tr>

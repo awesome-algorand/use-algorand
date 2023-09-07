@@ -6,7 +6,7 @@ import {
     lookupAccountCreatedApplications,
     lookupAccountCreatedAssets,
     lookupAccountTransactions,
-    lookupApplicationBoxByIDandName,
+    // lookupApplicationBoxByIDandName,
     lookupApplicationLogs,
     lookupApplications,
     lookupAssetBalances,
@@ -30,7 +30,7 @@ export function createIndexerOptions(address, appId, assetId, txnId, block, opti
         lookupAccountCreatedApplications: lookupAccountCreatedApplications(address, options),
         lookupAccountCreatedAssets: lookupAccountCreatedAssets(address, options),
         lookupAccountTransactions: lookupAccountTransactions(address, options),
-        lookupApplicationBoxByIDandName: lookupApplicationBoxByIDandName(appId, new Uint8Array(1), options),
+        // lookupApplicationBoxByIDandName: lookupApplicationBoxByIDandName(appId, new Uint8Array(1), options), // Todo: Needs box
         lookupApplicationLogs: lookupApplicationLogs(appId, options),
         lookupApplications: lookupApplications(appId, undefined, options),
         lookupAssetBalances: lookupAssetBalances(assetId, options),

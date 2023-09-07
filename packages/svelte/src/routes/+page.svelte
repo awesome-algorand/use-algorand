@@ -64,7 +64,7 @@
             </tr>
             <tbody>
             {#each $algodQueries as query, i}
-                <QueryTableRow name={algodKeys[i]} query={query}/>
+                <QueryTableRow path="Algodv2" name={algodKeys[i]} query={query}/>
             {/each}
             </tbody>
         </table>
@@ -79,7 +79,7 @@
             </tr>
             <tbody>
             {#each $indexerQueries as query, i}
-               <QueryTableRow name={indexerKeys[i]} query={query}/>
+               <QueryTableRow path="Indexer" name={indexerKeys[i]} query={query}/>
             {/each}
             </tbody>
         </table>
