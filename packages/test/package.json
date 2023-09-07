@@ -2,10 +2,23 @@
   "name": "@algofam/use-algorand-test",
   "version": "1.0.0",
   "description": "",
+  "type": "module",
   "main": "index.js",
+  "module": "index.js",
+  "exports": {
+    ".": {
+      "import": "./index.js"
+    }
+  },
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "",
-  "license": "MIT"
+  "license": "MIT",
+  "peerDependencies": {
+    "@algofam/use-algorand-queries": "^1.0.0"
+  },
+  "devDependencies": {
+    "@algofam/use-algorand-queries": "^1.0.0"
+  }
 }
