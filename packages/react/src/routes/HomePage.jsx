@@ -1,8 +1,8 @@
 import {useQueries} from "@tanstack/react-query";
 import {createAlgodOptions, createIndexerOptions} from "@algofam/use-algorand-test";
-import QueryTableRow from "./components/QueryTableRow.jsx";
+import QueryTableRow from "./QueryTableRow.jsx";
 
-export default function App() {
+export default function HomePage() {
     const algodOptions = createAlgodOptions(
         import.meta.env.VITE_TEST_ADDRESS,
         import.meta.env.VITE_TEST_APPLICATION,
@@ -37,26 +37,32 @@ export default function App() {
             <h1>Algodv2</h1>
             <figure>
                 <table>
+                    <thead>
                     <tr>
                         <th>SDK Method</th>
                         <th>Loading</th>
                         <th>Error</th>
                     </tr>
+                    </thead>
                     <tbody>
-                    {algodQueries.map((query, i) => (<QueryTableRow name={algodKeys[i]} query={query}/>))}
+                    {algodQueries.map((query, i) => (
+                        <QueryTableRow key={i} name={algodKeys[i]} type="algod" query={query}/>))}
                     </tbody>
                 </table>
             </figure>
             <h1>Indexer</h1>
             <figure>
                 <table>
+                    <thead>
                     <tr>
                         <th>SDK Method</th>
                         <th>Loading</th>
                         <th>Error</th>
                     </tr>
+                    </thead>
                     <tbody>
-                    {indexerQueries.map((query, i) => (<QueryTableRow name={indexerKeys[i]} query={query}/>))}
+                    {indexerQueries.map((query, i) => (
+                        <QueryTableRow key={i} name={indexerKeys[i]} type="indexer" query={query}/>))}
                     </tbody>
                 </table>
             </figure>
