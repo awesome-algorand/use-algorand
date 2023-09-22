@@ -25,6 +25,13 @@
   "main": "./dist/index.js",
   "module": "./lib/index.js",
   "types": "./types/index.d.ts",
+  "typesVersions": {
+    "*": {
+      "*": [
+        "./types/*"
+      ]
+    }
+  },
   "scripts": {
     "build": "tsc -p tsconfig.esm.json && tsc -p tsconfig.cjs.json",
     "docs": "typedoc --tsconfig ./tsconfig.json",

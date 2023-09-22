@@ -429,8 +429,8 @@ export function supply(options){
 /**
  * Get Versions Check Query Options
  *
- * @param {AlgorandQueryOptions} [options] QueryOption overrides
- * @return {AlgorandQueryOptions} QueryOption for use with @tanstack
+ * @param {AlgodQueryOptions} [options] QueryOption overrides
+ * @return {AlgodQueryOptions} QueryOption for use with @tanstack
  * @see https://algorand.github.io/js-algorand-sdk/classes/Algodv2.html#versionsCheck
  */
 export function versionsCheck(options){

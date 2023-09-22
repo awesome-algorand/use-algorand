@@ -16,8 +16,8 @@
   "typedocOptions": {
     "entryPoints": [
       "lib/common.js",
-      "lib/use-algod.js",
-      "lib/use-indexer.js"
+      "lib/algod.js",
+      "lib/indexer.js"
     ],
     "out": "./docs"
   }
