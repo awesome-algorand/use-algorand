@@ -1,6 +1,6 @@
 require('dotenv').config()
 const algosdk = require('algosdk')
-const {getClient} = require('@algofam/use-algorand-queries')
+const {getClient} = require('@algofam/use-algorand-queries/algod')
 const assert = require('node:assert')
 const client = getClient({
     server: process.env.ALGOD_SERVER,

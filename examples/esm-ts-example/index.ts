@@ -1,7 +1,7 @@
 import "dotenv/config";
 import chalk from 'chalk'
 import algosdk from 'algosdk'
-import {getClient} from "@algofam/use-algorand-queries";
+import {getClient} from "@algofam/use-algorand-queries/algod";
 import assert from "node:assert";
 import {resolve} from 'import-meta-resolve'
 const client = getClient({
