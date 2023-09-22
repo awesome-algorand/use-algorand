@@ -1,15 +1,17 @@
 {
 	"name": "@algofam/use-algorand-svelte",
-	"version": "0.0.1",
+	"version": "v2.0.0",
 	"type": "module",
 	"exports": {
-		".": {
-			"types": "./dist/index.d.ts",
-			"svelte": "./dist/index.js"
+		"./algod": {
+			"types": "./dist/algod.d.ts",
+			"svelte": "./dist/algod.js"
+		},
+		"./indexer": {
+			"types": "./dist/indexer.d.ts",
+			"svelte": "./dist/indexer.js"
 		}
 	},
-	"svelte": "./dist/index.js",
-	"types": "./dist/index.d.ts",
 	"files": [
 		"dist",
 		"!dist/**/*.test.*",

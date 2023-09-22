@@ -1,25 +1,36 @@
 import {createQuery} from "@tanstack/svelte-query";
 import {
-    getAccountApplicationInformationQueryOptions,
-    getBlockQueryOptions
-} from "@algofam/use-algorand-queries";
-
-/**
- * @typedef {import('@tanstack/svelte-query').CreateQueryResult} CreateQueryResult
- */
+    accountApplicationInformation,
+    accountAssetInformation,
+    accountInformation, genesis, block,
+    getApplicationBoxes,
+    getApplicationByID,
+    getAssetByID, getBlockHash,
+    getClient, getTransactionParams, healthCheck, pendingTransactionByAddress, pendingTransactionsInformation,
+    status,
+    statusAfterBlock, supply, versionsCheck
+} from "@algofam/use-algorand-queries/algod";
 
 /**
  * Use Account Application Information
  *
  * @param {string} address The address of the account to look up.
  * @param {number} index The application ID to look up.
- * @param {AlgorandQueryOptions} [options] QueryOption overrides
- * @return {CreateQueryResult<unknown, unknown>}
+ * @param {AlgorandQueryOptions} [options] QueryOption overrides}
  */
 export function useAccountApplicationInformation(address, index, options){
-    return createQuery(getAccountApplicationInformationQueryOptions(address, index, options))
+    return createQuery(accountApplicationInformation(address, index, options))
 }
-// accountAssetInformation
+
+/**
+ *
+ * @param address
+ * @param index
+ * @param options
+ */
+export function useAccountAssetInformation(address, index, options){
+    return createQuery(accountAssetInformation(address, index, options))
+}
 // accountInformation
 /**
  * Use Block
@@ -29,7 +40,7 @@ export function useAccountApplicationInformation(address, index, options){
  * @return {CreateQueryResult<unknown, unknown>}
  */
 export function useBlock(round, options){
-    return createQuery(getBlockQueryOptions(round, options))
+    return createQuery(block(round, options))
 }
 // genesis
 // getApplicationBoxByName
@@ -53,3 +64,4 @@ export function useBlock(round, options){
 // statusAfterBlock
 // supply
 // versionsCheck
+
