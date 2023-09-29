@@ -40,7 +40,6 @@
   },
   "devDependencies": {
     "@types/node": "^20.5.9",
-    "algosdk": "^2.5.0",
     "c8": "^8.0.1",
     "dotenv": "^16.3.1",
     "sort-package-json": "^2.5.1",
@@ -49,6 +48,6 @@
   },
   "peerDependencies": {
     "@tanstack/query-core": "^4.33.0",
-    "algosdk": "^2.5.0"
+    "algosdk": "github:PhearZero/js-algorand-sdk#fix/cross-fetch"
   }
 }

@@ -10,17 +10,22 @@
     "preview": "vite preview",
     "sort": "sort-package-json"
   },
-  "dependencies": {
+  "peerDependencies": {
     "@tanstack/react-query": "^4.33.0",
-    "@tanstack/react-query-devtools": "^4.33.0",
     "react": "^18.2.0",
     "react-dom": "^18.2.0"
   },
+  "dependencies": {
+    "@algofam/use-algorand-queries": "^1.0.0"
+  },
   "devDependencies": {
     "@algofam/use-algorand-test": "^1.0.0",
+    "@tanstack/react-query": "^4.33.0",
+    "@tanstack/react-query-devtools": "^4.33.0",
     "@types/react": "^18.2.15",
     "@types/react-dom": "^18.2.7",
     "@vitejs/plugin-react-swc": "^3.3.2",
+    "algosdk": "github:PhearZero/js-algorand-sdk#fix/cross-fetch",
     "eslint": "^8.45.0",
     "eslint-plugin-react": "^7.32.2",
     "eslint-plugin-react-hooks": "^4.6.0",
