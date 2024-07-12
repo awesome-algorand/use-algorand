@@ -1,0 +1,11 @@
+{
+  "compilerOptions": {
+    "preserveValueImports": true,
+    "declarationDir": "types",
+    "emitDeclarationOnly": true,
+    "module": "esnext",
+    "target": "esnext",
+    "declaration": true
+  },
+  "extends": "./tsconfig.json"
+}

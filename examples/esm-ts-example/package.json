@@ -1,0 +1,24 @@
+{
+  "name": "esm-ts-example",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "type": "module",
+  "scripts": {
+    "dev": "tsx ./index.ts",
+    "build": "tsc",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "MIT",
+  "dependencies": {
+    "@algofam/use-algorand-queries": "^1.0.0",
+    "chalk": "^5.3.0",
+    "dotenv": "^16.3.1",
+    "import-meta-resolve": "^3.0.0"
+  },
+  "devDependencies": {
+    "tsx": "^3.12.8",
+    "typescript": "^5.2.2"
+  }
+}

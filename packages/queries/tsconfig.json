@@ -1,0 +1,24 @@
+{
+  "compilerOptions": {
+    "strict": true,
+    "ignoreDeprecations": "5.0",
+    "allowJs": true,
+    "isolatedModules": true,
+    "moduleResolution": "node"
+  },
+  "exclude": [
+    "lib/**/*.spec.js",
+    "lib/cjs/**/*"
+  ],
+  "include": [
+    "lib/**/*.js"
+  ],
+  "typedocOptions": {
+    "entryPoints": [
+      "lib/common.js",
+      "lib/algod.js",
+      "lib/indexer.js"
+    ],
+    "out": "./docs"
+  }
+}
