@@ -1,13 +1,18 @@
 {
-  "name": "use-algorand",
+  "name": "awesome-algo-hooks-workspace",
   "description": "Collection of React Hooks for Algorand DApps",
   "workspaces": [
-    "packages/*",
-    "examples/*"
+    "packages/*"
   ],
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "npm run test -ws --if-present",
+    "build": "npm run build -ws --if-present",
+    "clean": "npm run clean -ws --if-present",
+    "lint": "npm run lint -ws --if-present",
+    "coverage": "npm run coverage -ws --if-present"
   },
-  "author": "@aorumbayev",
-  "license": "Unlicense"
+  "license": "Unlicense",
+  "devDependencies": {
+    "rimraf": "^6.0.1"
+  }
 }

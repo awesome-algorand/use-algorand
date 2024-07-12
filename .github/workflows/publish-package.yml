@@ -1,0 +1,52 @@
+name: Publish Package
+on:
+  push:
+    branches: ['main', 'next', 'release/*']
+jobs:
+  npm-publish:
+    runs-on: ubuntu-latest
+    permissions:
+      issues: write
+      contents: write
+      packages: write
+      pull-requests: write
+      id-token: write
+    steps:
+      - uses: actions/create-github-app-token@v1
+        id: app-token
+        with:
+          app-id: ${{ secrets.BOT_ID }}
+          private-key: ${{ secrets.BOT_SK }}
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+          token: ${{ steps.app-token.outputs.token }}
+      - run: |
+          git config user.name github-actions
+          git config user.email github-actions@github.com
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '20.x'
+          registry-url: 'https://npm.pkg.github.com'
+          cache: 'npm'
+      - run: npm install
+      - run: npm run build
+      - name: Publish code coverage
+        uses: paambaati/codeclimate-action@v8.0.0
+        env:
+          CC_TEST_REPORTER_ID: ${{secrets.CODE_CLIMATE_REPORTER_ID}}
+        with:
+          coverageCommand: npm run coverage
+      - run: npm run release
+        env:
+          NPM_CONFIG_REGISTRY: 'https://npm.pkg.github.com'
+          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
+          GITHUB_TOKEN: ${{ steps.app-token.outputs.token }}
+      - name: Merge Release into Trunk
+        uses: devmasx/merge-branch@854d3ac71ed1e9deb668e0074781b81fdd6e771f
+        if: github.ref == 'refs/heads/release/1.x'
+        with:
+          type: now
+          from_branch: release/1.x
+          target_branch: main
+          github_token: ${{ steps.app-token.outputs.token }}

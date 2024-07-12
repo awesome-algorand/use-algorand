@@ -1,6 +1,6 @@
 import "dotenv/config";
 import algosdk from 'algosdk'
-import {getClient, getBlockQueryOptions} from '../lib/algod.js';
+import {getClient, block} from '../lib/algod.js';
 import {before, describe, it} from "node:test";
 import assert from "node:assert"
 
@@ -21,7 +21,7 @@ describe('Algodv2', () => {
     });
     describe('Queries', () => {
         it('should get block query options', () => {
-            const blockQueryOptions = getBlockQueryOptions(1234);
+            const blockQueryOptions = block(1234);
             assert(blockQueryOptions.queryKey[0] === 'block')
             assert(blockQueryOptions.queryKey[1] === 1234)
         })

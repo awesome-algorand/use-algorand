@@ -1,6 +1,6 @@
 import {useParams} from "react-router-dom";
 import {createAlgodOptions, createIndexerOptions} from "@algofam/use-algorand-test";
-import {useQueries, useQuery} from "@tanstack/react-query";
+import {useQuery} from "@tanstack/react-query";
 
 export default function MethodPage() {
     const params = useParams()

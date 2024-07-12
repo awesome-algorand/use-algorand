@@ -1,6 +1,5 @@
-import { Renderer, renderHook, RenderHookResult } from '@testing-library/react-hooks';
+import { renderHook } from '@testing-library/react';
 import { act } from 'react-test-renderer';
-import { NFD } from '../src/misc/interfaces';
 import { useNfdLookup } from '../src';
 
 describe('useNfdLookup', () => {
@@ -10,12 +9,7 @@ describe('useNfdLookup', () => {
 
   it('should be defined 2', () => {
     act(() => {
-      let hook: RenderHookResult<
-        string,
-        [NFD | null, NFD[] | null, any, () => void],
-        Renderer<string>
-      > | null = null;
-      hook = renderHook((props) => useNfdLookup(props), {
+      let hook = renderHook((props) => useNfdLookup(props), {
         initialProps: 'NRLA7VZ2YV6WOS2LBS3UK25DB463XRSNG63BYNQI6CSGGROFWVQ2EKBQSI',
       });
 

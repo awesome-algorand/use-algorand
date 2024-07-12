@@ -1,14 +1,16 @@
 {
-  "name": "react",
+  "name": "@algofam/use-algorand-react",
   "version": "0.0.0",
   "private": true,
   "type": "module",
   "scripts": {
     "build": "vite build",
+    "clean": "rimraf dist",
     "dev": "vite",
     "lint": "eslint . --ext js,jsx --report-unused-disable-directives --max-warnings 0",
     "preview": "vite preview",
-    "sort": "sort-package-json"
+    "sort": "sort-package-json",
+    "release": "semantic-release --dry-run"
   },
   "peerDependencies": {
     "@tanstack/react-query": "^4.33.0",

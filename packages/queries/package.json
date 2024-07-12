@@ -8,18 +8,16 @@
   "exports": {
     ".": {
       "types": "./types/index.d.ts",
-      "import": "./lib/index.js",
-      "require": "./dist/index.js"
+      "default": "./lib/index.js"
     },
     "./algod": {
       "types": "./types/algod.d.ts",
-      "import": "./lib/algod.js",
+      "default": "./lib/algod.js",
       "require": "./dist/algod.js"
     },
     "./indexer": {
       "types": "./types/indexer.d.ts",
-      "import": "./lib/indexer.js",
-      "require": "./dist/indexer.js"
+      "default": "./lib/indexer.js"
     }
   },
   "main": "./dist/index.js",
@@ -35,10 +33,18 @@
   "scripts": {
     "build": "tsc -p tsconfig.esm.json && tsc -p tsconfig.cjs.json",
     "docs": "typedoc --tsconfig ./tsconfig.json",
+    "clean": "rimraf ./dist/*.js ./types coverage",
     "sort": "sort-package-json *.json",
-    "test": "c8 node --test ./tests"
+    "test": "cp .env.example .env && c8 node --test ./tests/algod.test.js",
+    "release": "semantic-release --dry-run"
   },
   "devDependencies": {
+    "@semantic-release/changelog": "^6.0.3",
+    "@semantic-release/commit-analyzer": "^13.0.0",
+    "@semantic-release/git": "^10.0.1",
+    "@semantic-release/github": "^10.0.6",
+    "@semantic-release/npm": "^12.0.1",
+    "@semantic-release/release-notes-generator": "^14.0.1",
     "@types/node": "^20.5.9",
     "c8": "^8.0.1",
     "dotenv": "^16.3.1",
@@ -49,5 +55,38 @@
   "peerDependencies": {
     "@tanstack/query-core": "^4.33.0",
     "algosdk": "github:PhearZero/js-algorand-sdk#fix/cross-fetch"
+  },
+  "release": {
+    "extends": "semantic-release-monorepo",
+    "branches": [
+      "release/*",
+      "next",
+      {
+        "name": "main",
+        "prerelease": "canary"
+      }
+    ],
+    "plugins": [
+      "@semantic-release/commit-analyzer",
+      "@semantic-release/release-notes-generator",
+      "@semantic-release/changelog",
+      "@semantic-release/npm",
+      [
+        "@semantic-release/git",
+        {
+          "assets": [
+            "CHANGELOG.md",
+            "package.json"
+          ],
+          "message": "chore(release): aweseomealgo-hooks \n\n${nextRelease.notes}"
+        }
+      ],
+      [
+        "@semantic-release/github",
+        {
+          "successComment": false
+        }
+      ]
+    ]
   }
 }

@@ -26,8 +26,9 @@
 		"package": "svelte-kit sync && svelte-package && publint",
 		"prepublishOnly": "npm run package",
 		"preview": "vite preview",
-		"sort": "sort-package-json *.json"
-	},
+		"sort": "sort-package-json *.json",
+    "release": "semantic-release --dry-run"
+  },
 	"dependencies": {
 		"@algofam/use-algorand-queries": "^1.0.0"
 	},
