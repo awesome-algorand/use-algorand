@@ -1,4 +1,4 @@
-import {block} from "@algofam/use-algorand-queries/algod";
+import {block} from "@algofam/use-algorand-queries/algosdk/algod";
 import { useQuery } from "@tanstack/react-query";
 
 /**

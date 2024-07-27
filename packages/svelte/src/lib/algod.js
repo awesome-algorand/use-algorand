@@ -9,7 +9,7 @@ import {
     getClient, getTransactionParams, healthCheck, pendingTransactionByAddress, pendingTransactionsInformation,
     status,
     statusAfterBlock, supply, versionsCheck
-} from "@algofam/use-algorand-queries/algod";
+} from "@algofam/use-algorand-queries/algosdk/algod";
 
 /**
  * Use Account Application Information
