@@ -1,5 +1,5 @@
 import { error } from '@sveltejs/kit';
-import {createAlgodOptions, createIndexerOptions} from "@algofam/use-algorand-test";
+import {createAlgodOptions, createIndexerOptions} from "@awesome-algorand/use-algorand-test";
 import * as algosdk from "algosdk";
 import {
     PUBLIC_ALGOD_PORT,

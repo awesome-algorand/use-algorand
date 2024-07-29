@@ -1,5 +1,5 @@
 {
-  "name": "@algofam/use-algorand-queries",
+  "name": "@awesome-algorand/use-algorand-queries",
   "version": "1.0.0",
   "description": "Reusable Tanstack Queries for Algorand",
   "license": "MIT",

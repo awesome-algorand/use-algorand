@@ -1,4 +1,4 @@
-import * as algod from "@algofam/use-algorand-queries/algosdk/algod";
+import * as algod from "@awesome-algorand/use-algorand-queries/algosdk/algod";
 
 /**
  * Create a Dictionary of Arguments

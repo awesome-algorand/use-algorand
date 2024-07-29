@@ -1,4 +1,4 @@
-import * as indexer from '@algofam/use-algorand-queries/algosdk/indexer'
+import * as indexer from '@awesome-algorand/use-algorand-queries/algosdk/indexer'
 
 const getArguments = (client, address, appId, assetId, txnId, block, options) => ( {
     lookupAccountAppLocalStates: [client, address, options],

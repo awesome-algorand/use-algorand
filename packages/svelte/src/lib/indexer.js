@@ -20,7 +20,7 @@ import {
     searchForApplications,
     searchForAssets,
     searchForTransactions
-} from "@algofam/use-algorand-queries/algosdk/indexer";
+} from "@awesome-algorand/use-algorand-queries/algosdk/indexer";
 
 /**
  * Lookup Account App LocalStates

@@ -1,11 +1,9 @@
 {
   "name": "use-algorand",
-  "version": "1.0.0",
+  "private": true,
   "description": "",
-  "main": "index.js",
   "workspaces": [
-    "packages/*",
-    "examples/*"
+    "packages/*"
   ],
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"

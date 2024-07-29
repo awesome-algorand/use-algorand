@@ -1,5 +1,5 @@
 import {useQueries} from "@tanstack/react-query";
-import {createAlgodOptions, createIndexerOptions} from "@algofam/use-algorand-test";
+import {createAlgodOptions, createIndexerOptions} from "@awesome-algorand/use-algorand-test";
 import QueryTableRow from "./QueryTableRow.jsx";
 import * as algosdk from "algosdk";
 

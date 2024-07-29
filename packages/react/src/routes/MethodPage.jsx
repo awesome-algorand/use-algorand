@@ -1,5 +1,5 @@
 import {useParams} from "react-router-dom";
-import {createAlgodOptions, createIndexerOptions} from "@algofam/use-algorand-test";
+import {createAlgodOptions, createIndexerOptions} from "@awesome-algorand/use-algorand-test";
 import {useQuery} from "@tanstack/react-query";
 import * as algosdk from "algosdk";
 

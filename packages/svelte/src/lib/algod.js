@@ -9,7 +9,7 @@ import {
     getClient, getTransactionParams, healthCheck, pendingTransactionByAddress, pendingTransactionsInformation,
     status,
     statusAfterBlock, supply, versionsCheck
-} from "@algofam/use-algorand-queries/algosdk/algod";
+} from "@awesome-algorand/use-algorand-queries/algosdk/algod";
 
 /**
  * Use Account Application Information
@@ -36,7 +36,7 @@ export function useAccountAssetInformation(address, index, options){
  * Use Block
  *
  * @param {number} round
- * @param {import('@algofam/use-algorand-queries').AlgorandQueryOptions} [options]
+ * @param {import('@awesome-algorand/use-algorand-queries').AlgorandQueryOptions} [options]
  * @return {CreateQueryResult<unknown, unknown>}
  */
 export function useBlock(round, options){
