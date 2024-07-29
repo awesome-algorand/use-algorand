@@ -12,3 +12,4 @@ node_modules
 !.env.mainnet
 vite.config.js.timestamp-*
 vite.config.ts.timestamp-*
+.vercel

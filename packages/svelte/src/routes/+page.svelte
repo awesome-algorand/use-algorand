@@ -3,7 +3,7 @@
     import {createQueries} from "@tanstack/svelte-query";
     import Readme from '../../README.md?raw'
     import QueryTableRow from "./QueryTableRow.svelte";
-    import * as algosdk from "algosdk";
+    import algosdk from "algosdk";
     import {createAlgodOptions, createIndexerOptions} from "@awesome-algorand/use-algorand-test";
 
     // TODO: Better test fixtures
