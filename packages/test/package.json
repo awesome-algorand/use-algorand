@@ -1,5 +1,5 @@
 {
-  "name": "@algofam/use-algorand-test",
+  "name": "@awesome-algorand/use-algorand-test",
   "version": "1.0.0",
   "description": "",
   "type": "module",
@@ -20,10 +20,10 @@
   "author": "Michael J Feher <mike@telluric.guru>",
   "license": "MIT",
   "peerDependencies": {
-    "@algofam/use-algorand-queries": "^1.0.0"
+    "@awesome-algorand/use-algorand-queries": "^1.0.0"
   },
   "devDependencies": {
-    "@algofam/use-algorand-queries": "^1.0.0",
+    "@awesome-algorand/use-algorand-queries": "^1.0.0",
     "typescript": "^5.2.2"
   }
 }

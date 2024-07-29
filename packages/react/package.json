@@ -6,7 +6,6 @@
   "scripts": {
     "build": "vite build",
     "dev": "vite",
-    "lint": "eslint . --ext js,jsx --report-unused-disable-directives --max-warnings 0",
     "preview": "vite preview",
     "sort": "sort-package-json"
   },
@@ -16,22 +15,20 @@
     "react-dom": "^18.2.0"
   },
   "dependencies": {
-    "@algofam/use-algorand-queries": "^1.0.0"
+    "@awesome-algorand/use-algorand-queries": "^1.0.0"
   },
   "devDependencies": {
-    "@algofam/use-algorand-test": "^1.0.0",
+    "@awesome-algorand/use-algorand-test": "^1.0.0",
     "@tanstack/react-query": "^4.33.0",
     "@tanstack/react-query-devtools": "^4.33.0",
     "@types/react": "^18.2.15",
     "@types/react-dom": "^18.2.7",
     "@vitejs/plugin-react-swc": "^3.3.2",
-    "algosdk": "github:PhearZero/js-algorand-sdk#fix/cross-fetch",
-    "eslint": "^8.45.0",
-    "eslint-plugin-react": "^7.32.2",
-    "eslint-plugin-react-hooks": "^4.6.0",
-    "eslint-plugin-react-refresh": "^0.4.3",
+    "algosdk": "^2.8.0",
     "react-router-dom": "^6.16.0",
     "sort-package-json": "^2.5.1",
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0",
     "vite": "^4.4.5"
   }
 }

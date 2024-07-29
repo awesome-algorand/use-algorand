@@ -1,30 +1,29 @@
-import * as indexer from '@algofam/use-algorand-queries/indexer'
+import * as indexer from '@awesome-algorand/use-algorand-queries/algosdk/indexer'
 
-const getArguments = (address, appId, assetId, txnId, block, options) => ( {
-    lookupAccountAppLocalStates: [address, options],
-    lookupAccountAssets: [address, options],
-    lookupAccountByID: [address, options],
-    lookupAccountCreatedApplications: [address, options],
-    lookupAccountCreatedAssets: [address, options],
-    lookupAccountTransactions: [address, options],
-    // lookupApplicationBoxByIDandName: [appId, new Uint8Array(1), options], // Todo: Needs box
-    lookupApplicationLogs: [appId, options],
-    lookupApplications: [appId, undefined, options],
-    lookupAssetBalances: [assetId, options],
-    lookupAssetByID: [assetId, options],
-    lookupAssetTransactions: [assetId, options],
-    lookupBlock: [block, options],
-    lookupTransactionByID: [txnId, options],
-    makeHealthCheck: [options],
-    searchAccounts: [undefined, options],
-    searchForApplicationBoxes: [appId, undefined, options],
-    searchForApplications: [undefined, options],
-    searchForAssets: [undefined, options],
-    searchForTransactions: [undefined, options],
+const getArguments = (client, address, appId, assetId, txnId, block, options) => ( {
+    lookupAccountAppLocalStates: [client, address, options],
+    lookupAccountAssets: [client, address, options],
+    lookupAccountByID: [client, address, options],
+    lookupAccountCreatedApplications: [client, address, options],
+    lookupAccountCreatedAssets: [client, address, options],
+    lookupAccountTransactions: [client, address, options],
+    // lookupApplicationBoxByIDandName: [client, appId, new Uint8Array(1), options], // Todo: Needs box
+    lookupApplicationLogs: [client, appId, options],
+    lookupApplications: [client, appId, undefined, options],
+    lookupAssetBalances: [client, assetId, options],
+    lookupAssetByID: [client, assetId, options],
+    lookupAssetTransactions: [client, assetId, options],
+    lookupBlock: [client, block, options],
+    lookupTransactionByID: [client, txnId, options],
+    makeHealthCheck: [client, options],
+    searchAccounts: [client, undefined, options],
+    searchForApplicationBoxes: [client, appId, undefined, options],
+    searchForApplications: [client, undefined, options],
+    searchForAssets: [client, undefined, options],
+    searchForTransactions: [client, undefined, options],
 })
-export function createIndexerOptions(address, appId, assetId, txnId, block, options){
-    indexer.getIndexer(options)
-    const ARGUMENTS = getArguments(address, appId, assetId, txnId, block, options);
+export function createIndexerOptions(client, address, appId, assetId, txnId, block, options){
+    const ARGUMENTS = getArguments(client, address, appId, assetId, txnId, block, options);
     return Object.keys(ARGUMENTS)
         .reduce((prev, curr) => {
             // Call the method with the arguments

@@ -1,6 +1,7 @@
 <script>
     import {page} from '$app/stores';
-    import {createAlgodOptions, createIndexerOptions} from "@algofam/use-algorand-test";
+    import {createAlgodOptions, createIndexerOptions} from "@awesome-algorand/use-algorand-test";
+    import algosdk from "algosdk";
     import {
         PUBLIC_ALGOD_PORT,
         PUBLIC_ALGOD_SERVER, PUBLIC_ALGOD_TOKEN,
@@ -13,30 +14,34 @@
     } from "$env/static/public";
     import {createQuery} from "@tanstack/svelte-query";
 
+
+    const algodClient = new algosdk.Algodv2(
+        PUBLIC_ALGOD_TOKEN || "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+        PUBLIC_ALGOD_SERVER || "http://localhost",
+        PUBLIC_ALGOD_PORT || 4001,
+    )
+    const indexerClient = new algosdk.Indexer(
+        PUBLIC_INDEXER_TOKEN || "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+        PUBLIC_INDEXER_SERVER || "http://localhost",
+        PUBLIC_INDEXER_PORT || 8980,
+    )
+
     const indexerOpitons = createIndexerOptions(
+        indexerClient,
         PUBLIC_TEST_ADDRESS,
         PUBLIC_TEST_APPLICATION,
         PUBLIC_TEST_ASSET,
         PUBLIC_TEST_TRANSACTION,
         1,
-        {
-            server: PUBLIC_INDEXER_SERVER || "http://localhost",
-            port: PUBLIC_INDEXER_PORT || 8980,
-            token: PUBLIC_INDEXER_TOKEN || "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
-        }
-    )
+        {})
     const algodOptions = createAlgodOptions(
+        algodClient,
         PUBLIC_TEST_ADDRESS,
         PUBLIC_TEST_APPLICATION,
         PUBLIC_TEST_ASSET,
         PUBLIC_TEST_TRANSACTION,
         1,
-        {
-            server: PUBLIC_ALGOD_SERVER || "http://localhost",
-            port: PUBLIC_ALGOD_PORT || 4001,
-            token: PUBLIC_ALGOD_TOKEN || "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
-        }
-    )
+        {})
 
     const query = createQuery($page.params.interface === 'Algodv2' ? algodOptions[$page.params.method] : indexerOpitons[$page.params.method])
 </script>

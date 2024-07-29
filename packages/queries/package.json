@@ -1,5 +1,5 @@
 {
-  "name": "@algofam/use-algorand-queries",
+  "name": "@awesome-algorand/use-algorand-queries",
   "version": "1.0.0",
   "description": "Reusable Tanstack Queries for Algorand",
   "license": "MIT",
@@ -7,47 +7,47 @@
   "type": "module",
   "exports": {
     ".": {
-      "types": "./types/index.d.ts",
-      "import": "./lib/index.js",
-      "require": "./dist/index.js"
+      "types": "./dist/index.d.ts",
+      "import": "./dist/index.js"
     },
-    "./algod": {
-      "types": "./types/algod.d.ts",
-      "import": "./lib/algod.js",
-      "require": "./dist/algod.js"
+    "./algosdk/algod": {
+      "types": "./dist/algosdk/algod.d.ts",
+      "default": "./dist/algosdk/algod.js"
     },
-    "./indexer": {
-      "types": "./types/indexer.d.ts",
-      "import": "./lib/indexer.js",
-      "require": "./dist/indexer.js"
-    }
-  },
-  "main": "./dist/index.js",
-  "module": "./lib/index.js",
-  "types": "./types/index.d.ts",
-  "typesVersions": {
-    "*": {
-      "*": [
-        "./types/*"
-      ]
+    "./algosdk/indexer": {
+      "types": "./dist/algosdk/indexer.d.ts",
+      "default": "./dist/algosdk/indexer.js"
     }
   },
   "scripts": {
-    "build": "tsc -p tsconfig.esm.json && tsc -p tsconfig.cjs.json",
+    "build": "tsc",
+    "lint": "eslint .",
     "docs": "typedoc --tsconfig ./tsconfig.json",
     "sort": "sort-package-json *.json",
-    "test": "c8 node --test ./tests"
+    "test": "c8 node --test ./tests",
+    "postinstall": "npm run build"
   },
   "devDependencies": {
+    "@awesome-algorand/algod-fetch": "^3.25.0",
+    "@awesome-algorand/indexer-fetch": "^3.5.0",
+    "@eslint/js": "^9.8.0",
+    "@tanstack/query-core": "^4.33.0",
+    "@types/json-bigint": "^1.0.4",
     "@types/node": "^20.5.9",
     "c8": "^8.0.1",
     "dotenv": "^16.3.1",
+    "eslint": "^9.8.0",
+    "eslint-config-prettier": "^9.1.0",
+    "globals": "^15.8.0",
+    "prettier": "^3.3.3",
     "sort-package-json": "^2.5.1",
     "typedoc": "^0.25.1",
-    "typescript": "^5.2.2"
+    "typescript": "^5.2.2",
+    "typescript-eslint": "^7.17.0"
   },
-  "peerDependencies": {
-    "@tanstack/query-core": "^4.33.0",
-    "algosdk": "github:PhearZero/js-algorand-sdk#fix/cross-fetch"
+  "optionalDependencies": {
+    "@awesome-algorand/algod-fetch": "^3.25.0",
+    "@awesome-algorand/indexer-fetch": "^3.5.0",
+    "algosdk": "^v2.8.0"
   }
 }

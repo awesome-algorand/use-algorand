@@ -1,33 +1,39 @@
 import {useParams} from "react-router-dom";
-import {createAlgodOptions, createIndexerOptions} from "@algofam/use-algorand-test";
-import {useQueries, useQuery} from "@tanstack/react-query";
+import {createAlgodOptions, createIndexerOptions} from "@awesome-algorand/use-algorand-test";
+import {useQuery} from "@tanstack/react-query";
+import * as algosdk from "algosdk";
+
+
+const algodClient = new algosdk.Algodv2(
+    import.meta.env.VITE_ALGOD_TOKEN,
+    import.meta.env.VITE_ALGOD_SERVER,
+    import.meta.env.VITE_ALGOD_PORT
+)
+const indexerClient = new algosdk.Indexer(
+    import.meta.env.VITE_INDEXER_TOKEN,
+    import.meta.env.VITE_INDEXER_SERVER,
+    import.meta.env.VITE_INDEXER_PORT
+)
 
 export default function MethodPage() {
     const params = useParams()
     const algodOptions = createAlgodOptions(
+        algodClient,
         import.meta.env.VITE_TEST_ADDRESS,
         import.meta.env.VITE_TEST_APPLICATION,
         import.meta.env.VITE_TEST_ASSET,
         import.meta.env.VITE_TEST_TRANSACTION,
         1,
-        {
-            server: import.meta.env.VITE_ALGOD_SERVER || "http://localhost",
-            port: import.meta.env.VITE_ALGOD_PORT || 4001,
-            token: import.meta.env.VITE_ALGOD_TOKEN || "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
-        })
+        {})
 
     const indexerOptions = createIndexerOptions(
+        indexerClient,
         import.meta.env.VITE_TEST_ADDRESS,
         import.meta.env.VITE_TEST_APPLICATION,
         import.meta.env.VITE_TEST_ASSET,
         import.meta.env.VITE_TEST_TRANSACTION,
         1,
-        {
-            server: import.meta.env.VITE_INDEXER_SERVER || "http://localhost",
-            port: import.meta.env.VITE_INDEXER_PORT || 8980,
-            token: import.meta.env.VITE_INDEXER_TOKEN || "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
-        }
-    )
+        {})
 
     const query = useQuery(
         params.interface === 'indexer' ?

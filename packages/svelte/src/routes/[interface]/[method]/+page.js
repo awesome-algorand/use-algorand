@@ -1,6 +1,6 @@
 import { error } from '@sveltejs/kit';
-import {createAlgodOptions, createIndexerOptions} from "@algofam/use-algorand-test";
-
+import {createAlgodOptions, createIndexerOptions} from "@awesome-algorand/use-algorand-test";
+import algosdk from "algosdk";
 import {
     PUBLIC_ALGOD_PORT,
     PUBLIC_ALGOD_SERVER, PUBLIC_ALGOD_TOKEN,
@@ -12,33 +12,36 @@ import {
     PUBLIC_TEST_TRANSACTION
 } from "$env/static/public";
 
+const algodClient = new algosdk.Algodv2(
+    PUBLIC_ALGOD_TOKEN || "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+    PUBLIC_ALGOD_SERVER || "http://localhost",
+    PUBLIC_ALGOD_PORT || 4001,
+)
+const indexerClient = new algosdk.Indexer(
+    PUBLIC_INDEXER_TOKEN || "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+    PUBLIC_INDEXER_SERVER || "http://localhost",
+    PUBLIC_INDEXER_PORT || 8980,
+)
 const INTERFACES = ['Algodv2', 'Indexer', 'Kmd'];
 /** @type {import('./$types').PageLoad} */
 
 const indexerOpitons = createIndexerOptions(
+    indexerClient,
     PUBLIC_TEST_ADDRESS,
     PUBLIC_TEST_APPLICATION,
     PUBLIC_TEST_ASSET,
     PUBLIC_TEST_TRANSACTION,
     1,
-    {
-        server: PUBLIC_INDEXER_SERVER || "http://localhost",
-        port: PUBLIC_INDEXER_PORT || 8980,
-        token: PUBLIC_INDEXER_TOKEN || "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
-    }
-)
+    {})
 const algodOptions = createAlgodOptions(
+    algodClient,
     PUBLIC_TEST_ADDRESS,
     PUBLIC_TEST_APPLICATION,
     PUBLIC_TEST_ASSET,
     PUBLIC_TEST_TRANSACTION,
     1,
-    {
-        server: PUBLIC_ALGOD_SERVER || "http://localhost",
-        port: PUBLIC_ALGOD_PORT || 4001,
-        token: PUBLIC_ALGOD_TOKEN || "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
-    }
-)
+    {})
+
 export function load({ params }) {
     if (
         !INTERFACES.includes(params.interface) ||

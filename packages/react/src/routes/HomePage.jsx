@@ -1,34 +1,38 @@
 import {useQueries} from "@tanstack/react-query";
-import {createAlgodOptions, createIndexerOptions} from "@algofam/use-algorand-test";
+import {createAlgodOptions, createIndexerOptions} from "@awesome-algorand/use-algorand-test";
 import QueryTableRow from "./QueryTableRow.jsx";
+import * as algosdk from "algosdk";
 
+const algodClient = new algosdk.Algodv2(
+    import.meta.env.VITE_ALGOD_TOKEN,
+    import.meta.env.VITE_ALGOD_SERVER,
+    import.meta.env.VITE_ALGOD_PORT
+)
+const indexerClient = new algosdk.Indexer(
+    import.meta.env.VITE_INDEXER_TOKEN,
+    import.meta.env.VITE_INDEXER_SERVER,
+    import.meta.env.VITE_INDEXER_PORT
+)
 export default function HomePage() {
     const algodOptions = createAlgodOptions(
+        algodClient,
         import.meta.env.VITE_TEST_ADDRESS,
         import.meta.env.VITE_TEST_APPLICATION,
         import.meta.env.VITE_TEST_ASSET,
         import.meta.env.VITE_TEST_TRANSACTION,
         1,
-        {
-            server: import.meta.env.VITE_ALGOD_SERVER || "http://localhost",
-            port: import.meta.env.VITE_ALGOD_PORT || 4001,
-            token: import.meta.env.VITE_ALGOD_TOKEN || "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
-        })
+        {})
     const algodKeys = Object.keys(algodOptions)
     const algodQueries = useQueries({queries: algodKeys.map(key => algodOptions[key])})
 
     const indexerOptions = createIndexerOptions(
+        indexerClient,
         import.meta.env.VITE_TEST_ADDRESS,
         import.meta.env.VITE_TEST_APPLICATION,
         import.meta.env.VITE_TEST_ASSET,
         import.meta.env.VITE_TEST_TRANSACTION,
         1,
-        {
-            server: import.meta.env.VITE_INDEXER_SERVER || "http://localhost",
-            port: import.meta.env.VITE_INDEXER_PORT || 8980,
-            token: import.meta.env.VITE_INDEXER_TOKEN || "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
-        }
-    )
+        {})
     const indexerKeys = Object.keys(indexerOptions)
     const indexerQueries = useQueries({queries: indexerKeys.map(key => indexerOptions[key])})
 

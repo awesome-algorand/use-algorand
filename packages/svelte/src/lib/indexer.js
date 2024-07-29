@@ -20,7 +20,7 @@ import {
     searchForApplications,
     searchForAssets,
     searchForTransactions
-} from "@algofam/use-algorand-queries/indexer";
+} from "@awesome-algorand/use-algorand-queries/algosdk/indexer";
 
 /**
  * Lookup Account App LocalStates
@@ -28,7 +28,7 @@ import {
  * Returns application local state about the given account.
  *
  * @param {string} address The address of the account to look up.
- * @param {IndexerQueryOptions} [options] QueryOption overrides
+ * @param {QueryOptions} [options] QueryOption overrides
  * @see https://algorand.github.io/js-algorand-sdk/classes/Indexer.html#lookupAccountAppLocalStates
  */
 export function useLookupAccountAppLocalStates(address, options){
@@ -39,7 +39,7 @@ export function useLookupAccountAppLocalStates(address, options){
  * Lookup Account Assets
  *
  * @param {string} address The address of the account to look up.
- * @param {IndexerQueryOptions} [options] QueryOption overrides
+ * @param {QueryOptions} [options] QueryOption overrides
  * @see https://algorand.github.io/js-algorand-sdk/classes/Indexer.html#lookupAccountAssets
  */
 export function useLookupAccountAssets(address, options){
@@ -50,7 +50,7 @@ export function useLookupAccountAssets(address, options){
  * Lookup Account By ID
  *
  * @param {string} address The address of the account to look up.
- * @param {IndexerQueryOptions} [options] QueryOption overrides
+ * @param {QueryOptions} [options] QueryOption overrides
  * @see https://algorand.github.io/js-algorand-sdk/classes/Indexer.html#lookupAccountByID
  */
 export function useLookupAccountByID(address, options){
@@ -60,7 +60,7 @@ export function useLookupAccountByID(address, options){
  * Lookup Account Created Apps
  *
  * @param {string} address The address of the account to look up.
- * @param {IndexerQueryOptions} [options] QueryOption overrides
+ * @param {QueryOptions} [options] QueryOption overrides
  * @see https://algorand.github.io/js-algorand-sdk/classes/Indexer.html#lookupAccountCreatedApplications
  */
 export function useLookupAccountCreatedApplications(address, options){
@@ -70,7 +70,7 @@ export function useLookupAccountCreatedApplications(address, options){
  * Lookup Account Created Assets
  *
  * @param {string} address The address of the account to look up.
- * @param {IndexerQueryOptions} [options] QueryOption overrides
+ * @param {QueryOptions} [options] QueryOption overrides
  * @see https://algorand.github.io/js-algorand-sdk/classes/Indexer.html#lookupAccountCreatedAssets
  */
 export function useLookupAccountCreatedAssets(address, options){
@@ -81,7 +81,7 @@ export function useLookupAccountCreatedAssets(address, options){
  * Lookup Account Transactions
  *
  * @param {string} address The address of the account to look up.
- * @param {IndexerQueryOptions} [options] QueryOption overrides
+ * @param {QueryOptions} [options] QueryOption overrides
  * @see https://algorand.github.io/js-algorand-sdk/classes/Indexer.html#lookupAccountTransactions
  */
 export function useLookupAccountTransactions(address, options){
@@ -92,7 +92,7 @@ export function useLookupAccountTransactions(address, options){
  *
  * @param {number} index The ID of the application with boxes.
  * @param {Uint8Array} name The name of the box
- * @param {IndexerQueryOptions} [options] QueryOption overrides
+ * @param {QueryOptions} [options] QueryOption overrides
  * @see https://algorand.github.io/js-algorand-sdk/classes/Indexer.html#lookupApplicationBoxByIDandName
  */
 export function useLookupApplicationBoxByIDandName(index, name, options){
@@ -103,7 +103,7 @@ export function useLookupApplicationBoxByIDandName(index, name, options){
  * Lookup Application Logs
  *
  * @param {number} index The ID of the application which generated the logs.
- * @param {IndexerQueryOptions} [options] QueryOption overrides
+ * @param {QueryOptions} [options] QueryOption overrides
  * @see https://algorand.github.io/js-algorand-sdk/classes/Indexer.html#lookupApplicationLogs
  */
 export function useLookupApplicationLogs(index, options){
@@ -113,7 +113,7 @@ export function useLookupApplicationLogs(index, options){
  *
  * @param {number} index The ID of the application to look up.
  * @param {{includeAll: boolean}} [query]
- * @param {IndexerQueryOptions} [options] QueryOption overrides
+ * @param {QueryOptions} [options] QueryOption overrides
  * @see https://algorand.github.io/js-algorand-sdk/classes/Indexer.html#lookupApplications
  */
 export function useLookupApplications(index, query, options){
@@ -122,7 +122,7 @@ export function useLookupApplications(index, query, options){
 /**
  *
  * @param {number} index The asset ID to look up.
- * @param {IndexerQueryOptions} [options] QueryOption overrides
+ * @param {QueryOptions} [options] QueryOption overrides
  * @see https://algorand.github.io/js-algorand-sdk/classes/Indexer.html#lookupApplications
  */
 export function useLookupAssetBalances(index, options){

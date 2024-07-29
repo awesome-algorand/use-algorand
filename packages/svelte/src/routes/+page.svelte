@@ -3,8 +3,8 @@
     import {createQueries} from "@tanstack/svelte-query";
     import Readme from '../../README.md?raw'
     import QueryTableRow from "./QueryTableRow.svelte";
-
-    import {createAlgodOptions, createIndexerOptions} from "@algofam/use-algorand-test";
+    import algosdk from "algosdk";
+    import {createAlgodOptions, createIndexerOptions} from "@awesome-algorand/use-algorand-test";
 
     // TODO: Better test fixtures
     import {
@@ -18,35 +18,38 @@
     } from "$env/static/public";
 
     const md = new MarkdownIt();
+    console.log(PUBLIC_ALGOD_SERVER, PUBLIC_ALGOD_PORT)
+    const algodClient = new algosdk.Algodv2(
+        PUBLIC_ALGOD_TOKEN || "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+        PUBLIC_ALGOD_SERVER || "http://localhost",
+        PUBLIC_ALGOD_PORT || 4001,
+    )
+    const indexerClient = new algosdk.Indexer(
+        PUBLIC_INDEXER_TOKEN || "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+        PUBLIC_INDEXER_SERVER || "http://localhost",
+        PUBLIC_INDEXER_PORT || 8980,
+    )
 
     const algodOptions = createAlgodOptions(
+        algodClient,
         PUBLIC_TEST_ADDRESS,
         PUBLIC_TEST_APPLICATION,
         PUBLIC_TEST_ASSET,
         PUBLIC_TEST_TRANSACTION,
         1,
-        {
-            server: PUBLIC_ALGOD_SERVER || "http://localhost",
-            port: PUBLIC_ALGOD_PORT || 4001,
-            token: PUBLIC_ALGOD_TOKEN || "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
-        }
-    )
+        {})
 
     const algodKeys = Object.keys(algodOptions)
     const algodQueries = createQueries(algodKeys.map(key => algodOptions[key]))
 
     const indexerOptions = createIndexerOptions(
+        indexerClient,
         PUBLIC_TEST_ADDRESS,
         PUBLIC_TEST_APPLICATION,
         PUBLIC_TEST_ASSET,
         PUBLIC_TEST_TRANSACTION,
         1,
-        {
-            server: PUBLIC_INDEXER_SERVER || "http://localhost",
-            port: PUBLIC_INDEXER_PORT || 8980,
-            token: PUBLIC_INDEXER_TOKEN || "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
-        }
-    )
+        {})
 
     const indexerKeys = Object.keys(indexerOptions)
     const indexerQueries = createQueries(indexerKeys.map(key => indexerOptions[key]))
