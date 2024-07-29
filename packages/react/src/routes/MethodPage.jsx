@@ -1,30 +1,14 @@
 import {useParams} from "react-router-dom";
-import {createAlgodOptions, createIndexerOptions} from "@awesome-algorand/use-algorand-test";
+import {createIndexerOptions} from "@awesome-algorand/use-algorand-test";
 import {useQuery} from "@tanstack/react-query";
-import * as algosdk from "algosdk";
+import {useState} from "react";
+import {indexerClient, useAlgodTestOptions} from "./useAlgodTestOptions.js";
 
-
-const algodClient = new algosdk.Algodv2(
-    import.meta.env.VITE_ALGOD_TOKEN,
-    import.meta.env.VITE_ALGOD_SERVER,
-    import.meta.env.VITE_ALGOD_PORT
-)
-const indexerClient = new algosdk.Indexer(
-    import.meta.env.VITE_INDEXER_TOKEN,
-    import.meta.env.VITE_INDEXER_SERVER,
-    import.meta.env.VITE_INDEXER_PORT
-)
 
 export default function MethodPage() {
     const params = useParams()
-    const algodOptions = createAlgodOptions(
-        algodClient,
-        import.meta.env.VITE_TEST_ADDRESS,
-        import.meta.env.VITE_TEST_APPLICATION,
-        import.meta.env.VITE_TEST_ASSET,
-        import.meta.env.VITE_TEST_TRANSACTION,
-        1,
-        {})
+    const [clientType, setClientType] = useState("official")
+    const algodOptions = useAlgodTestOptions(clientType)
 
     const indexerOptions = createIndexerOptions(
         indexerClient,
@@ -40,15 +24,25 @@ export default function MethodPage() {
             indexerOptions[params.method] :
             algodOptions[params.method]
     )
-    console.log(query)
+
+    const title = clientType === 'official' ?
+        `Official ${params.interface === 'indexer' ? 'Indexer' : 'Algodv2'}` :
+        `Experimental: ${params.interface === 'indexer' ? 'indexer-fetch' : 'algod-fetch'}`
     return (
         <main className="container">
             <hgroup>
-                <h1>{params.interface}</h1>
+                <h1>{title}</h1>
                 <h2>
                     {params.method}
                 </h2>
             </hgroup>
+            <fieldset>
+                <label>
+                    <input name="switch" type="checkbox" role="switch"
+                           onChange={(e) => setClientType(e.target.checked ? "experimental" : "official")}/>
+                    Enable experimental fetch library
+                </label>
+            </fieldset>
             <figure>
                 <table>
                     <thead>
@@ -68,7 +62,7 @@ export default function MethodPage() {
                             {query.isLoading ? "true" : "false"}
                         </td>
                         <td>
-                            {query.isError  ? "true" : "false"}
+                            {query.isError ? "true" : "false"}
                         </td>
                         <td>
                             {new Date(query.dataUpdatedAt).toString()}
@@ -81,6 +75,7 @@ export default function MethodPage() {
             {query.isLoading && <p>Loading...</p>}
             {query.isError && <p>Error: {query.error.message}</p>}
             {query.isSuccess && <pre>{JSON.stringify(query.data, null, 2)}</pre>}
+            {query.isSuccess && <button onClick={()=>query.refetch()}>Refetch</button>}
         </main>
     )
 }

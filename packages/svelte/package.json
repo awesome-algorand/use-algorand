@@ -29,6 +29,7 @@
 		"sort": "sort-package-json *.json"
 	},
 	"dependencies": {
+		"@awesome-algorand/algod-fetch": "^3.25.0",
 		"@awesome-algorand/use-algorand-queries": "^1.0.0"
 	},
 	"devDependencies": {

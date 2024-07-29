@@ -17,9 +17,10 @@ import {applyQuery} from "./common";
 export function lookupAccountAppLocalStates(
     client: Indexer,
     address: string,
-    options?: QueryOptions ): QueryOptions {
+    options?: QueryOptions): QueryOptions {
     return {
-        queryKey: ['lookupAccountAppLocalStates', address],
+        //@ts-expect-error, access private baseURL
+        queryKey: [client.c.bc.baseURL.origin, 'lookupAccountAppLocalStates', address],
         queryFn: () => client.lookupAccountAppLocalStates(address).do(),
         ...options
     }
@@ -37,13 +38,15 @@ export function lookupAccountAppLocalStates(
 export function lookupAccountAssets(
     client: Indexer,
     address: string,
-    options?: QueryOptions ): QueryOptions {
+    options?: QueryOptions): QueryOptions {
     return {
-        queryKey: ['lookupAccountAssets', address],
+        //@ts-expect-error, access private baseURL
+        queryKey: [client.c.bc.baseURL.origin, 'lookupAccountAssets', address],
         queryFn: () => client.lookupAccountAssets(address).do(),
         ...options
     }
 }
+
 /**
  * Lookup Account By ID
  *
@@ -58,12 +61,14 @@ export function lookupAccountByID(
     address: string,
     options?: QueryOptions,
 ): QueryOptions {
- return {
-    queryKey: ['lookupAccountByID', address],
-    queryFn: () => client.lookupAccountByID(address).do(),
-    ...options
- }
+    return {
+        //@ts-expect-error, access private baseURL
+        queryKey: [client.c.bc.baseURL.origin, 'lookupAccountByID', address],
+        queryFn: () => client.lookupAccountByID(address).do(),
+        ...options
+    }
 }
+
 /**
  * Lookup Account Created Apps
  *
@@ -79,11 +84,13 @@ export function lookupAccountCreatedApplications(
     options?: QueryOptions
 ): QueryOptions {
     return {
-        queryKey: ['lookupAccountCreatedApplications', address],
+        //@ts-expect-error, access private baseURL
+        queryKey: [client.c.bc.baseURL.origin, 'lookupAccountCreatedApplications', address],
         queryFn: () => client.lookupAccountCreatedApplications(address).do(),
         ...options
     }
 }
+
 /**
  * Lookup Account Created Assets
  *
@@ -99,7 +106,8 @@ export function lookupAccountCreatedAssets(
     options?: QueryOptions
 ): QueryOptions {
     return {
-        queryKey: ['lookupAccountCreatedAssets', address],
+        //@ts-expect-error, access private baseURL
+        queryKey: [client.c.bc.baseURL.origin, 'lookupAccountCreatedAssets', address],
         queryFn: () => client.lookupAccountCreatedAssets(address).do(),
         ...options
     }
@@ -120,11 +128,13 @@ export function lookupAccountTransactions(
     options?: QueryOptions
 ): QueryOptions {
     return {
-        queryKey: ['lookupAccountTransactions', address],
+        //@ts-expect-error, access private baseURL
+        queryKey: [client.c.bc.baseURL.origin, 'lookupAccountTransactions', address],
         queryFn: () => client.lookupAccountTransactions(address).do(),
         ...options
     }
 }
+
 /**
  * Lookup Application Box By ID and Name
  *
@@ -142,7 +152,8 @@ export function lookupApplicationBoxByIDandName(
     options?: QueryOptions
 ): QueryOptions {
     return {
-        queryKey: ['lookupApplicationBoxByIDandName', index, name],
+        //@ts-expect-error, access private baseURL
+        queryKey: [client.c.bc.baseURL.origin, 'lookupApplicationBoxByIDandName', index, name],
         queryFn: () => client.lookupApplicationBoxByIDandName(index, name).do(),
         ...options
     }
@@ -163,11 +174,13 @@ export function lookupApplicationLogs(
     options?: QueryOptions
 ): QueryOptions {
     return {
-        queryKey: ['lookupApplicationLogs', index],
+        //@ts-expect-error, access private baseURL
+        queryKey: [client.c.bc.baseURL.origin, 'lookupApplicationLogs', index],
         queryFn: () => client.lookupApplicationLogs(index).do(),
         ...options
     }
 }
+
 /**
  *
  * @param {Indexer} client The Indexer client to use
@@ -179,17 +192,19 @@ export function lookupApplicationLogs(
  */
 export function lookupApplications(
     client: Indexer,
-    index:number,
-    query: {includeAll: boolean},
+    index: number,
+    query: { includeAll: boolean },
     options?: QueryOptions
 ): QueryOptions {
     const jsonRequest = client.lookupApplications(index)
     return {
-        queryKey: ['lookupApplications', index, query],
+        //@ts-expect-error, access private baseURL
+        queryKey: [client.c.bc.baseURL.origin, 'lookupApplications', index, query],
         queryFn: () => applyQuery<typeof jsonRequest>(jsonRequest, query).do(),
         ...options
     }
 }
+
 /**
  *
  * @param {Indexer} client The Indexer client to use
@@ -204,29 +219,34 @@ export function lookupAssetBalances(
     options?: QueryOptions
 ): QueryOptions {
     return {
-        queryKey: ['lookupAssetBalances', index],
+        //@ts-expect-error, access private baseURL
+        queryKey: [client.c.bc.baseURL.origin, 'lookupAssetBalances', index],
         queryFn: () => client.lookupAssetBalances(index).do(),
         ...options
     }
 }
+
 export function lookupAssetByID(
     client: Indexer,
     index: number,
     options?: QueryOptions
 ): QueryOptions {
     return {
-        queryKey: ['lookupAssetByID', index],
+        //@ts-expect-error, access private baseURL
+        queryKey: [client.c.bc.baseURL.origin, 'lookupAssetByID', index],
         queryFn: () => client.lookupAssetByID(index).do(),
         ...options
     }
 }
+
 export function lookupAssetTransactions(
     client: Indexer,
     index: number,
     options?: QueryOptions
 ): QueryOptions {
     return {
-        queryKey: ['lookupAssetTransactions', index],
+        //@ts-expect-error, access private baseURL
+        queryKey: [client.c.bc.baseURL.origin, 'lookupAssetTransactions', index],
         queryFn: () => client.lookupAssetTransactions(index).do(),
         ...options
     }
@@ -238,32 +258,38 @@ export function lookupBlock(
     options?: QueryOptions
 ): QueryOptions {
     return {
-        queryKey: ['lookupBlock', round],
+        //@ts-expect-error, access private baseURL
+        queryKey: [client.c.bc.baseURL.origin, 'lookupBlock', round],
         queryFn: () => client.lookupBlock(round).do(),
         ...options
     }
 }
+
 export function lookupTransactionByID(
     client: Indexer,
     txId: string,
     options?: QueryOptions
 ): QueryOptions {
     return {
-        queryKey: ['lookupTransactionByID', txId],
+        //@ts-expect-error, access private baseURL
+        queryKey: [client.c.bc.baseURL.origin, 'lookupTransactionByID', txId],
         queryFn: () => client.lookupTransactionByID(txId).do(),
         ...options
     }
 }
+
 export function makeHealthCheck(
     client: Indexer,
     options?: QueryOptions
 ): QueryOptions {
     return {
-        queryKey: ['makeHealthCheck'],
+        //@ts-expect-error, access private baseURL
+        queryKey: [client.c.bc.baseURL.origin, 'makeHealthCheck'],
         queryFn: () => client.makeHealthCheck().do(),
         ...options
     }
 }
+
 export function searchAccounts(
     client: Indexer,
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
@@ -271,11 +297,13 @@ export function searchAccounts(
     options?: QueryOptions
 ): QueryOptions {
     return {
-        queryKey: ['searchAccounts', query],
+        //@ts-expect-error, access private baseURL
+        queryKey: [client.c.bc.baseURL.origin, 'searchAccounts', query],
         queryFn: () => applyQuery(client.searchAccounts(), query).do(),
         ...options
     }
 }
+
 export function searchForApplicationBoxes(
     client: Indexer,
     index: number,
@@ -284,11 +312,13 @@ export function searchForApplicationBoxes(
     options?: QueryOptions
 ): QueryOptions {
     return {
-        queryKey: ['searchForApplicationBoxes', index, query],
+        //@ts-expect-error, access private baseURL
+        queryKey: [client.c.bc.baseURL.origin, 'searchForApplicationBoxes', index, query],
         queryFn: () => applyQuery(client.searchForApplicationBoxes(index), query).do(),
         ...options
     }
 }
+
 export function searchForApplications(
     client: Indexer,
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
@@ -296,7 +326,8 @@ export function searchForApplications(
     options?: QueryOptions
 ): QueryOptions {
     return {
-        queryKey: ['searchForApplications', query],
+        //@ts-expect-error, access private baseURL
+        queryKey: [client.c.bc.baseURL.origin, 'searchForApplications', query],
         queryFn: () => applyQuery(client.searchForApplications(), query).do(),
         ...options
     }
@@ -309,7 +340,8 @@ export function searchForAssets(
     options?: QueryOptions
 ): QueryOptions {
     return {
-        queryKey: ['searchForAssets', query],
+        //@ts-expect-error, access private baseURL
+        queryKey: [client.c.bc.baseURL.origin, 'searchForAssets', query],
         queryFn: () => applyQuery(client.searchForAssets(), query).do(),
         ...options
     }
@@ -322,7 +354,8 @@ export function searchForTransactions(
     options?: QueryOptions
 ): QueryOptions {
     return {
-        queryKey: ['searchForTransactions', query],
+        //@ts-expect-error, access private baseURL
+        queryKey: [client.c.bc.baseURL.origin, 'searchForTransactions', query],
         queryFn: () => applyQuery(client.searchForTransactions(), query).do(),
         ...options
     }

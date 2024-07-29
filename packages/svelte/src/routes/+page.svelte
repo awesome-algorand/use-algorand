@@ -1,11 +1,14 @@
 <script>
+    import * as algofetchQueries from "@awesome-algorand/use-algorand-queries/algo-fetch/algod";
+    import * as algosdkQueries from "@awesome-algorand/use-algorand-queries/algosdk/algod";
+
     import MarkdownIt from "markdown-it";
     import {createQueries} from "@tanstack/svelte-query";
     import Readme from '../../README.md?raw'
     import QueryTableRow from "./QueryTableRow.svelte";
     import algosdk from "algosdk";
     import {createAlgodOptions, createIndexerOptions} from "@awesome-algorand/use-algorand-test";
-
+    import {AlgodClient} from "@awesome-algorand/algod-fetch"
     // TODO: Better test fixtures
     import {
         PUBLIC_TEST_ADDRESS,
@@ -29,18 +32,11 @@
         PUBLIC_INDEXER_SERVER || "http://localhost",
         PUBLIC_INDEXER_PORT || 8980,
     )
+    const algoFetch = new AlgodClient({
+        BASE: PUBLIC_ALGOD_SERVER || "http://localhost",
+    })
 
-    const algodOptions = createAlgodOptions(
-        algodClient,
-        PUBLIC_TEST_ADDRESS,
-        PUBLIC_TEST_APPLICATION,
-        PUBLIC_TEST_ASSET,
-        PUBLIC_TEST_TRANSACTION,
-        1,
-        {})
 
-    const algodKeys = Object.keys(algodOptions)
-    const algodQueries = createQueries(algodKeys.map(key => algodOptions[key]))
 
     const indexerOptions = createIndexerOptions(
         indexerClient,
@@ -53,11 +49,33 @@
 
     const indexerKeys = Object.keys(indexerOptions)
     const indexerQueries = createQueries(indexerKeys.map(key => indexerOptions[key]))
+    let clientType = "official"
+    let algodOptions = []
+
+     $: algodOptions = createAlgodOptions(
+         clientType === 'official' ? algosdkQueries : algofetchQueries,
+         clientType === 'official' ? algodClient: algoFetch,
+         PUBLIC_TEST_ADDRESS,
+         PUBLIC_TEST_APPLICATION,
+         PUBLIC_TEST_ASSET,
+         PUBLIC_TEST_TRANSACTION,
+         1,
+         {})
+    let algoKeys = []
+    $: algodKeys = Object.keys(algodOptions)
+    let algodQueries
+    $: algodQueries = createQueries(algodKeys.map(key => algodOptions[key]))
 
 </script>
 <main class="container">
     {@html md.render(Readme)}
-    <h1>Algodv2</h1>
+    <h1>{clientType === 'official'? "Algodv2" : "@awesome-algorand/algod-fetch"}</h1>
+    <fieldset>
+    <label>
+        <input name="switch" type="checkbox" role="switch" on:change={(e)=>clientType = e.target.checked ? "experimental" : "official"}/>
+        Enable experimental fetch library
+    </label>
+    </fieldset>
     <figure>
         <table>
             <tr>

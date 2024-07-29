@@ -1,27 +1,13 @@
 import {useQueries} from "@tanstack/react-query";
-import {createAlgodOptions, createIndexerOptions} from "@awesome-algorand/use-algorand-test";
+import {createIndexerOptions} from "@awesome-algorand/use-algorand-test";
 import QueryTableRow from "./QueryTableRow.jsx";
-import * as algosdk from "algosdk";
+import {useState} from "react";
+import {indexerClient, useAlgodTestOptions} from "./useAlgodTestOptions.js";
 
-const algodClient = new algosdk.Algodv2(
-    import.meta.env.VITE_ALGOD_TOKEN,
-    import.meta.env.VITE_ALGOD_SERVER,
-    import.meta.env.VITE_ALGOD_PORT
-)
-const indexerClient = new algosdk.Indexer(
-    import.meta.env.VITE_INDEXER_TOKEN,
-    import.meta.env.VITE_INDEXER_SERVER,
-    import.meta.env.VITE_INDEXER_PORT
-)
 export default function HomePage() {
-    const algodOptions = createAlgodOptions(
-        algodClient,
-        import.meta.env.VITE_TEST_ADDRESS,
-        import.meta.env.VITE_TEST_APPLICATION,
-        import.meta.env.VITE_TEST_ASSET,
-        import.meta.env.VITE_TEST_TRANSACTION,
-        1,
-        {})
+    const [clientType, setClientType] = useState("official")
+    // Algod
+    const algodOptions = useAlgodTestOptions(clientType)
     const algodKeys = Object.keys(algodOptions)
     const algodQueries = useQueries({queries: algodKeys.map(key => algodOptions[key])})
 
@@ -38,7 +24,13 @@ export default function HomePage() {
 
     return (
         <main className="container">
-            <h1>Algodv2</h1>
+            <h1>{clientType === 'official' ? "Official Algodv2" : "@awesome-algorand/algod-fetch"}</h1>
+            <fieldset>
+                <label>
+                    <input name="switch" type="checkbox" role="switch" onChange={(e)=>setClientType(e.target.checked ? "experimental" : "official")}/>
+                    Enable experimental fetch library
+                </label>
+            </fieldset>
             <figure>
                 <table>
                     <thead>
@@ -54,7 +46,7 @@ export default function HomePage() {
                     </tbody>
                 </table>
             </figure>
-            <h1>Indexer</h1>
+            <h1>Official Indexer</h1>
             <figure>
                 <table>
                     <thead>

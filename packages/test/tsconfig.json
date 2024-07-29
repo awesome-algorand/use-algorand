@@ -4,6 +4,8 @@
     "ignoreDeprecations": "5.0",
     "allowJs": true,
     "isolatedModules": true,
+    "module": "esnext",
+    "target": "esnext",
     "moduleResolution": "node"
   },
   "exclude": [

@@ -39,7 +39,7 @@ export function lookupAccountAppLocalStates(
     options?: QueryOptions,
 ): QueryOptions {
     return {
-        queryKey: ['lookupAccountAppLocalStates', data],
+        queryKey: [client.request.config.BASE, 'lookupAccountAppLocalStates', data],
         queryFn: () => client.lookup.lookupAccountAppLocalStates(data),
         ...options
     }
@@ -60,11 +60,12 @@ export function lookupAccountAssets(
     options?: QueryOptions,
 ): QueryOptions {
     return {
-        queryKey: ['lookupAccountAssets', data],
+        queryKey: [client.request.config.BASE, 'lookupAccountAssets', data],
         queryFn: () => client.lookup.lookupAccountAssets(data),
         ...options
     }
 }
+
 /**
  * Lookup Account By ID
  *
@@ -74,17 +75,18 @@ export function lookupAccountAssets(
  * @return {QueryOptions} QueryOption for use with @tanstack
  * @see https://awesome-algorand.github.io/algo-fetch/packages/awesome-algorand/indexer-fetch/classes/lookupservice/#lookupaccountbyid
  */
-export function lookupAccountByID(
+export function lookupAccountById(
     client: IndexerClient,
     data: LookupAccountByIdData,
     options?: QueryOptions,
-): QueryOptions{
- return {
-    queryKey: ['lookupAccountByID', data],
-    queryFn: () => client.lookup.lookupAccountById(data),
-    ...options
- }
+): QueryOptions {
+    return {
+        queryKey: [client.request.config.BASE, 'lookupAccountByID', data],
+        queryFn: () => client.lookup.lookupAccountById(data),
+        ...options
+    }
 }
+
 /**
  * Lookup Account Created Apps
  *
@@ -100,11 +102,12 @@ export function lookupAccountCreatedApplications(
     options?: QueryOptions,
 ): QueryOptions {
     return {
-        queryKey: ['lookupAccountCreatedApplications', data],
+        queryKey: [client.request.config.BASE, 'lookupAccountCreatedApplications', data],
         queryFn: () => client.lookup.lookupAccountCreatedApplications(data),
         ...options
     }
 }
+
 /**
  * Lookup Account Created Assets
  *
@@ -120,7 +123,7 @@ export function lookupAccountCreatedAssets(
     options?: QueryOptions,
 ): QueryOptions {
     return {
-        queryKey: ['lookupAccountCreatedAssets', data],
+        queryKey: [client.request.config.BASE, 'lookupAccountCreatedAssets', data],
         queryFn: () => client.lookup.lookupAccountCreatedAssets(data),
         ...options
     }
@@ -141,11 +144,12 @@ export function lookupAccountTransactions(
     options?: QueryOptions,
 ): QueryOptions {
     return {
-        queryKey: ['lookupAccountTransactions', data],
+        queryKey: [client.request.config.BASE, 'lookupAccountTransactions', data],
         queryFn: () => client.lookup.lookupAccountTransactions(data),
         ...options
     }
 }
+
 /**
  * Lookup Application Box By ID and Name
  *
@@ -155,13 +159,13 @@ export function lookupAccountTransactions(
  * @return {QueryOptions} QueryOption for use with @tanstack
  * @see https://awesome-algorand.github.io/algo-fetch/packages/awesome-algorand/indexer-fetch/classes/lookupservice/#lookupapplicationboxbyidandname
  */
-export function lookupApplicationBoxByIDandName(
+export function lookupApplicationBoxByIdAndName(
     client: IndexerClient,
     data: LookupApplicationBoxByIdAndNameData,
     options?: QueryOptions,
 ): QueryOptions {
     return {
-        queryKey: ['lookupApplicationBoxByIDandName', data],
+        queryKey: [client.request.config.BASE, 'lookupApplicationBoxByIDandName', data],
         queryFn: () => client.lookup.lookupApplicationBoxByIdAndName(data),
         ...options
     }
@@ -176,17 +180,18 @@ export function lookupApplicationBoxByIDandName(
  * @return {QueryOptions} QueryOption for use with @tanstack
  * @see https://awesome-algorand.github.io/algo-fetch/packages/awesome-algorand/indexer-fetch/classes/lookupservice/#lookupapplicationlogsbyid
  */
-export function lookupApplicationLogs(
+export function lookupApplicationLogsById(
     client: IndexerClient,
     data: LookupApplicationLogsByIdData,
     options?: QueryOptions,
 ): QueryOptions {
     return {
-        queryKey: ['lookupApplicationLogs', data],
+        queryKey: [client.request.config.BASE, 'lookupApplicationLogs', data],
         queryFn: () => client.lookup.lookupApplicationLogsById(data),
         ...options
     }
 }
+
 /**
  *
  * @TODO: Make singular to match specification
@@ -197,17 +202,18 @@ export function lookupApplicationLogs(
  * @return {QueryOptions} QueryOption for use with @tanstack
  * @see https://awesome-algorand.github.io/algo-fetch/packages/awesome-algorand/indexer-fetch/classes/lookupservice/#lookupapplicationbyid
  */
-export function lookupApplications(
+export function lookupApplicationById(
     client: IndexerClient,
     data: LookupApplicationByIdData,
     options?: QueryOptions,
 ): QueryOptions {
     return {
-        queryKey: ['lookupApplications', data],
-        queryFn: () =>client.lookup.lookupApplicationById(data),
+        queryKey: [client.request.config.BASE, 'lookupApplications', data],
+        queryFn: () => client.lookup.lookupApplicationById(data),
         ...options
     }
 }
+
 /**
  *
  * @param {IndexerClient} client IndexerClient
@@ -222,7 +228,7 @@ export function lookupAssetBalances(
     options?: QueryOptions,
 ): QueryOptions {
     return {
-        queryKey: ['lookupAssetBalances', data],
+        queryKey: [client.request.config.BASE, 'lookupAssetBalances', data],
         queryFn: () => client.lookup.lookupAssetBalances(data),
         ...options
     }
@@ -236,13 +242,13 @@ export function lookupAssetBalances(
  * @return {QueryOptions} QueryOption for use with @tanstack
  * @see https://awesome-algorand.github.io/algo-fetch/packages/awesome-algorand/indexer-fetch/classes/lookupservice/#lookupassetbyid
  */
-export function lookupAssetByID(
+export function lookupAssetById(
     client: IndexerClient,
     data: LookupAssetByIdData,
     options?: QueryOptions,
 ): QueryOptions {
     return {
-        queryKey: ['lookupAssetByID', data],
+        queryKey: [client.request.config.BASE, 'lookupAssetByID', data],
         queryFn: () => client.lookup.lookupAssetById(data),
         ...options
     }
@@ -262,7 +268,7 @@ export function lookupAssetTransactions(
     options?: QueryOptions,
 ): QueryOptions {
     return {
-        queryKey: ['lookupAssetTransactions', data],
+        queryKey: [client.request.config.BASE, 'lookupAssetTransactions', data],
         queryFn: () => client.lookup.lookupAssetTransactions(data),
         ...options
     }
@@ -280,9 +286,9 @@ export function lookupBlock(
     client: IndexerClient,
     data: LookupBlockData,
     options?: QueryOptions,
-): QueryOptions{
+): QueryOptions {
     return {
-        queryKey: ['lookupBlock', data],
+        queryKey: [client.request.config.BASE, 'lookupBlock', data],
         queryFn: () => client.lookup.lookupBlock(data),
         ...options
     }
@@ -296,13 +302,13 @@ export function lookupBlock(
  * @return {QueryOptions} QueryOption for use with @tanstack
  * @see https://awesome-algorand.github.io/algo-fetch/packages/awesome-algorand/indexer-fetch/classes/lookupservice/#lookuptransaction
  */
-export function lookupTransactionByID(
+export function lookupTransaction(
     client: IndexerClient,
     data: LookupTransactionData,
     options?: QueryOptions
 ): QueryOptions {
     return {
-        queryKey: ['lookupTransactionByID', data],
+        queryKey: [client.request.config.BASE, 'lookupTransactionByID', data],
         queryFn: () => client.lookup.lookupTransaction(data),
         ...options
     }
@@ -320,7 +326,7 @@ export function makeHealthCheck(
     options?: QueryOptions
 ): QueryOptions {
     return {
-        queryKey: ['makeHealthCheck'],
+        queryKey: [client.request.config.BASE, 'makeHealthCheck'],
         queryFn: () => client.common.makeHealthCheck(),
         ...options
     }
@@ -334,13 +340,13 @@ export function makeHealthCheck(
  * @return {QueryOptions} QueryOption for use with @tanstack
  * @see https://awesome-algorand.github.io/algo-fetch/packages/awesome-algorand/indexer-fetch/classes/searchservice/#searchforaccounts
  */
-export function searchAccounts(
+export function searchForAccounts(
     client: IndexerClient,
     data: SearchForAccountsData,
     options?: QueryOptions
 ): QueryOptions {
     return {
-        queryKey: ['searchAccounts', data],
+        queryKey: [client.request.config.BASE, 'searchAccounts', data],
         queryFn: () => client.search.searchForAccounts(data),
         ...options
     }
@@ -360,7 +366,7 @@ export function searchForApplicationBoxes(
     options?: QueryOptions
 ): QueryOptions {
     return {
-        queryKey: ['searchForApplicationBoxes', data],
+        queryKey: [client.request.config.BASE, 'searchForApplicationBoxes', data],
         queryFn: () => client.search.searchForApplicationBoxes(data),
         ...options
     }
@@ -380,7 +386,7 @@ export function searchForApplications(
     options?: QueryOptions
 ): QueryOptions {
     return {
-        queryKey: ['searchForApplications', data],
+        queryKey: [client.request.config.BASE, 'searchForApplications', data],
         queryFn: () => client.search.searchForApplications(data),
         ...options
     }
@@ -400,7 +406,7 @@ export function searchForAssets(
     options?: QueryOptions
 ): QueryOptions {
     return {
-        queryKey: ['searchForAssets', data],
+        queryKey: [client.request.config.BASE, 'searchForAssets', data],
         queryFn: () => client.search.searchForAssets(data),
         ...options,
     }
@@ -420,7 +426,7 @@ export function searchForTransactions(
     options?: QueryOptions
 ): QueryOptions {
     return {
-        queryKey: ['searchForTransactions', data],
+        queryKey: [client.request.config.BASE, 'searchForTransactions', data],
         queryFn: () => client.search.searchForTransactions(data),
         ...options
     }

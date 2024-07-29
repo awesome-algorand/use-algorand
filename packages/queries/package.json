@@ -17,6 +17,14 @@
     "./algosdk/indexer": {
       "types": "./dist/algosdk/indexer.d.ts",
       "default": "./dist/algosdk/indexer.js"
+    },
+    "./algo-fetch/algod": {
+        "types": "./dist/algo-fetch/algod.d.ts",
+        "default": "./dist/algo-fetch/algod.js"
+    },
+    "./algo-fetch/indexer": {
+        "types": "./dist/algo-fetch/indexer.d.ts",
+        "default": "./dist/algo-fetch/indexer.js"
     }
   },
   "scripts": {

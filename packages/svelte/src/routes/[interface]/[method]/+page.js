@@ -1,5 +1,8 @@
 import { error } from '@sveltejs/kit';
 import {createAlgodOptions, createIndexerOptions} from "@awesome-algorand/use-algorand-test";
+import * as algofetchQueries from "@awesome-algorand/use-algorand-queries/algo-fetch/algod";
+import * as algosdkQueries from "@awesome-algorand/use-algorand-queries/algosdk/algod";
+
 import algosdk from "algosdk";
 import {
     PUBLIC_ALGOD_PORT,
@@ -34,6 +37,7 @@ const indexerOpitons = createIndexerOptions(
     1,
     {})
 const algodOptions = createAlgodOptions(
+    algosdkQueries,
     algodClient,
     PUBLIC_TEST_ADDRESS,
     PUBLIC_TEST_APPLICATION,

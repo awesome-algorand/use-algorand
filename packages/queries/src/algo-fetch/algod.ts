@@ -34,11 +34,12 @@ export function accountApplicationInformation(
     options?: QueryOptions,
 ): QueryOptions {
     return {
-        queryKey: ['accountApplicationInformation', data],
+        queryKey: [client.request.config.BASE, 'accountApplicationInformation', data],
         queryFn: () => client.public.accountApplicationInformation(data),
         ...options
     }
 }
+
 /**
  * Get Account Asset Information Query Options
  *
@@ -54,11 +55,12 @@ export function accountAssetInformation(
     options?: QueryOptions,
 ): QueryOptions {
     return {
-        queryKey: ['accountAssetInformation', data],
+        queryKey: [client.request.config.BASE, 'accountAssetInformation', data],
         queryFn: () => client.public.accountAssetInformation(data),
         ...options
     }
 }
+
 /**
  * Get Account Information Query Options
  *
@@ -74,11 +76,12 @@ export function accountInformation(
     options?: QueryOptions,
 ): QueryOptions {
     return {
-        queryKey: ['accountInformation', data],
+        queryKey: [client.request.config.BASE, 'accountInformation', data],
         queryFn: () => client.public.accountInformation(data),
         ...options
     }
 }
+
 /**
  * Get Block Query Options
  *
@@ -88,13 +91,13 @@ export function accountInformation(
  * @return {QueryOptions} QueryOption for use with @tanstack
  * @see https://awesome-algorand.github.io/algo-fetch/packages/awesome-algorand/algod-fetch/classes/publicservice/#getblock
  */
-export function block(
+export function getBlock(
     client: AlgodClient,
     data: GetBlockData,
     options?: QueryOptions,
 ): QueryOptions {
     return {
-        queryKey: ['block', data],
+        queryKey: [client.request.config.BASE, 'getBlock', data],
         queryFn: () => client.public.getBlock(data),
         // @ts-expect-error, adding staleTime for now
         staleTime: Infinity,
@@ -102,6 +105,7 @@ export function block(
         ...options
     }
 }
+
 /**
  * Get Genesis Query Options
  *
@@ -110,18 +114,19 @@ export function block(
  * @return {QueryOptions} QueryOption for use with @tanstack
  * @see https://awesome-algorand.github.io/algo-fetch/packages/awesome-algorand/algod-fetch/classes/publicservice/#getgenesis
  */
-export function genesis(
+export function getGenesis(
     client: AlgodClient,
     options?: QueryOptions,
 ): QueryOptions {
     return {
-        queryKey: ['genesis'],
+        queryKey: [client.request.config.BASE, 'getGenesis'],
         queryFn: () => client.public.getGenesis(),
         // @ts-expect-error, adding staleTime for now
         staleTime: Infinity,
         ...options
     }
 }
+
 /**
  * Get Application Box By Name Query Options
  *
@@ -137,11 +142,12 @@ export function getApplicationBoxByName(
     options?: QueryOptions,
 ): QueryOptions {
     return {
-        queryKey: ['getApplicationBoxByName', data],
+        queryKey: [client.request.config.BASE, 'getApplicationBoxByName', data],
         queryFn: () => client.public.getApplicationBoxByName(data),
         ...options
     }
 }
+
 /**
  * Get Application Boxes Query Options
  *
@@ -157,11 +163,12 @@ export function getApplicationBoxes(
     options?: QueryOptions,
 ): QueryOptions {
     return {
-        queryKey: ['getApplicationBoxes', data],
+        queryKey: [client.request.config.BASE, 'getApplicationBoxes', data],
         queryFn: () => client.public.getApplicationBoxes(data),
         ...options
     }
 }
+
 /**
  * Get Application By ID Query Options
  *
@@ -171,17 +178,18 @@ export function getApplicationBoxes(
  * @return {QueryOptions} QueryOption for use with @tanstack
  * @see https://awesome-algorand.github.io/algo-fetch/packages/awesome-algorand/algod-fetch/classes/publicservice/#getapplicationbyid
  */
-export function getApplicationByID(
+export function getApplicationById(
     client: AlgodClient,
     data: GetApplicationByIdData,
     options?: QueryOptions,
 ): QueryOptions {
     return {
-        queryKey: ['getApplicationByID', data],
+        queryKey: [client.request.config.BASE, 'getApplicationById', data],
         queryFn: () => client.public.getApplicationById(data),
         ...options
     }
 }
+
 /**
  * Get Asset By ID Query Options
  *
@@ -191,17 +199,18 @@ export function getApplicationByID(
  * @return {QueryOptions} QueryOption for use with @tanstack
  * @see https://awesome-algorand.github.io/algo-fetch/packages/awesome-algorand/algod-fetch/classes/publicservice/#getassetbyid
  */
-export function getAssetByID(
+export function getAssetById(
     client: AlgodClient,
     data: GetAssetByIdData,
     options?: QueryOptions,
 ): QueryOptions {
     return {
-        queryKey: ['getAssetByID', data],
+        queryKey: [client.request.config.BASE, 'getAssetById', data],
         queryFn: () => client.public.getAssetById(data),
         ...options
     }
 }
+
 /**
  * Get Block Hash Query Options
  *
@@ -217,7 +226,7 @@ export function getBlockHash(
     options?: QueryOptions,
 ): QueryOptions {
     return {
-        queryKey: ['getBlockHash', data],
+        queryKey: [client.request.config.BASE, 'getBlockHash', data],
         queryFn: () => client.public.getBlockHash(data),
         // @ts-expect-error, adding staleTime for now
         staleTime: Infinity,
@@ -225,6 +234,7 @@ export function getBlockHash(
         ...options
     }
 }
+
 /**
  * Get Block Offset Timestamp Query Options
  *
@@ -233,16 +243,17 @@ export function getBlockHash(
  * @return {QueryOptions} QueryOption for use with @tanstack
  * @see https://awesome-algorand.github.io/algo-fetch/packages/awesome-algorand/algod-fetch/classes/publicservice/#getblocktimestampoffset
  */
-export function getBlockOffsetTimestamp(
+export function getBlockTimeStampOffset(
     client: AlgodClient,
     options?: QueryOptions,
 ): QueryOptions {
     return {
-        queryKey: ['getBlockOffsetTimestamp'],
+        queryKey: [client.request.config.BASE, 'getBlockTimeStampOffset'],
         queryFn: () => client.public.getBlockTimeStampOffset(),
         ...options
     }
 }
+
 /**
  * Get Ledger State Delta Query Options
  *
@@ -258,11 +269,12 @@ export function getLedgerStateDelta(
     options?: QueryOptions,
 ): QueryOptions {
     return {
-        queryKey: ['getLedgerStateDelta', data],
+        queryKey: [client.request.config.BASE, 'getLedgerStateDelta', data],
         queryFn: () => client.public.getLedgerStateDelta(data),
         ...options
     }
 }
+
 /**
  * Get Ledger State Delta For Transaction Group Query Options
  *
@@ -278,11 +290,12 @@ export function getLedgerStateDeltaForTransactionGroup(
     options?: QueryOptions,
 ): QueryOptions {
     return {
-        queryKey: ['getLedgerStateDeltaForTransactionGroup', data],
+        queryKey: [client.request.config.BASE, 'getLedgerStateDeltaForTransactionGroup', data],
         queryFn: () => client.public.getLedgerStateDeltaForTransactionGroup(data),
         ...options
     }
 }
+
 /**
  * Get Sync Round Query Options
  *
@@ -296,11 +309,12 @@ export function getSyncRound(
     options: QueryOptions,
 ): QueryOptions {
     return {
-        queryKey: ['getSyncRound'],
+        queryKey: [client.request.config.BASE, 'getSyncRound'],
         queryFn: () => client.public.getSyncRound(),
         ...options
     }
 }
+
 /**
  * Get Transaction Group Ledger State Deltas For Round Query Options
  *
@@ -316,11 +330,12 @@ export function getTransactionGroupLedgerStateDeltasForRound(
     options?: QueryOptions,
 ): QueryOptions {
     return {
-        queryKey: ['getTransactionGroupLedgerStateDeltasForRound', data],
+        queryKey: [client.request.config.BASE, 'getTransactionGroupLedgerStateDeltasForRound', data],
         queryFn: () => client.public.getTransactionGroupLedgerStateDeltasForRound(data),
         ...options
     }
 }
+
 /**
  * Get Transaction Params Query Options
  *
@@ -329,16 +344,17 @@ export function getTransactionGroupLedgerStateDeltasForRound(
  * @return {QueryOptions} QueryOption for use with @tanstack
  * @see https://awesome-algorand.github.io/algo-fetch/packages/awesome-algorand/algod-fetch/classes/publicservice/#transactionparams
  */
-export function getTransactionParams(
+export function transactionParams(
     client: AlgodClient,
     options?: QueryOptions,
- ): QueryOptions {
+): QueryOptions {
     return {
-        queryKey: ['getTransactionParams'],
+        queryKey: [client.request.config.BASE, 'transactionParams'],
         queryFn: () => client.public.transactionParams(),
         ...options
     }
 }
+
 /**
  * Get Transaction Proof Query Options
  *
@@ -354,13 +370,14 @@ export function getTransactionProof(
     options?: QueryOptions,
 ): QueryOptions {
     return {
-        queryKey: ['getTransactionProof', data],
+        queryKey: [client.request.config.BASE, 'getTransactionProof', data],
         queryFn: () => client.public.getTransactionProof(data),
         // @ts-expect-error, adding staleTime for now
         staleTime: Infinity,
         ...options
     }
 }
+
 /**
  * Get Health Check Query Options
  *
@@ -374,15 +391,14 @@ export function healthCheck(
     options?: QueryOptions,
 ): QueryOptions {
     return {
-        queryKey: ['healthCheck'],
+        queryKey: [client.request.config.BASE, 'healthCheck'],
         queryFn: () => client.public.healthCheck(),
         ...options
     }
 }
+
 /**
  * Get Pending Transactions By Address Query Options
- *
- * @TODO: This should be pluralized to match the function name
  *
  * @param {AlgodClient} client AlgodClient
  * @param {GetPendingTransactionsByAddressData} data The address to look up.
@@ -390,17 +406,18 @@ export function healthCheck(
  * @return {QueryOptions} QueryOption for use with @tanstack
  * @see https://awesome-algorand.github.io/algo-fetch/packages/awesome-algorand/algod-fetch/classes/publicservice/#getpendingtransactionsbyaddress
  */
-export function pendingTransactionByAddress(
+export function getPendingTransactionsByAddress(
     client: AlgodClient,
     data: GetPendingTransactionsByAddressData,
     options?: QueryOptions
 ): QueryOptions {
     return {
-        queryKey: ['pendingTransactionByAddress', data],
+        queryKey: [client.request.config.BASE, 'getPendingTransactionsByAddress', data],
         queryFn: () => client.public.getPendingTransactionsByAddress(data),
         ...options
     }
 }
+
 /**
  * Get Pending Transaction Information Query Options
  *
@@ -416,11 +433,12 @@ export function pendingTransactionInformation(
     options?: QueryOptions,
 ): QueryOptions {
     return {
-        queryKey: ['pendingTransactionInformation', data],
+        queryKey: [client.request.config.BASE, 'pendingTransactionInformation', data],
         queryFn: () => client.public.pendingTransactionInformation(data),
         ...options
     }
 }
+
 /**
  * Get Pending Transactions Information Query Options
  *
@@ -429,16 +447,17 @@ export function pendingTransactionInformation(
  * @return {QueryOptions} QueryOption for use with @tanstack
  * @see https://awesome-algorand.github.io/algo-fetch/packages/awesome-algorand/algod-fetch/classes/publicservice/#getpendingtransactions
  */
-export function pendingTransactionsInformation(
+export function getPendingTransactions(
     client: AlgodClient,
     options?: QueryOptions,
 ): QueryOptions {
     return {
-        queryKey: ['pendingTransactionsInformation'],
+        queryKey: [client.request.config.BASE, 'getPendingTransactions'],
         queryFn: () => client.public.getPendingTransactions(),
         ...options
     }
 }
+
 /**
  * Get Ready Query Options
  *
@@ -447,16 +466,17 @@ export function pendingTransactionsInformation(
  * @return {QueryOptions} QueryOption for use with @tanstack
  * @see https://awesome-algorand.github.io/algo-fetch/packages/awesome-algorand/algod-fetch/classes/publicservice/#getready
  */
-export function ready(
+export function getReady(
     client: AlgodClient,
     options?: QueryOptions,
 ): QueryOptions {
     return {
-        queryKey: ['ready'],
+        queryKey: [client.request.config.BASE, 'getReady'],
         queryFn: () => client.public.getReady(),
         ...options
     }
 }
+
 /**
  * Get Status Query Options
  *
@@ -465,16 +485,17 @@ export function ready(
  * @return {QueryOptions} QueryOption for use with @tanstack
  * @see https://awesome-algorand.github.io/algo-fetch/packages/awesome-algorand/algod-fetch/classes/publicservice/#getstatus
  */
-export function status(
+export function getStatus(
     client: AlgodClient,
     options?: QueryOptions,
 ): QueryOptions {
     return {
-        queryKey: ['status'],
+        queryKey: [client.request.config.BASE, 'getStatus'],
         queryFn: () => client.public.getStatus(),
         ...options
     }
 }
+
 /**
  * Get Status After Block Query Options
  *
@@ -484,17 +505,18 @@ export function status(
  * @return {QueryOptions} QueryOption for use with @tanstack
  * @see https://awesome-algorand.github.io/algo-fetch/packages/awesome-algorand/algod-fetch/classes/publicservice/#waitforblock
  */
-export function statusAfterBlock(
+export function waitForBlock(
     client: AlgodClient,
     data: WaitForBlockData,
     options?: QueryOptions,
 ): QueryOptions {
     return {
-        queryKey: ['statusAfterBlock', data],
+        queryKey: [client.request.config.BASE, 'waitForBlock', data],
         queryFn: () => client.public.waitForBlock(data),
         ...options
     }
 }
+
 /**
  * Get Supply Query Options
  *
@@ -503,16 +525,17 @@ export function statusAfterBlock(
  * @return {QueryOptions} QueryOption for use with @tanstack
  * @see https://awesome-algorand.github.io/algo-fetch/packages/awesome-algorand/algod-fetch/classes/publicservice/#getsupply
  */
-export function supply(
+export function getSupply(
     client: AlgodClient,
     options?: QueryOptions,
 ): QueryOptions {
     return {
-        queryKey: ['supply'],
+        queryKey: [client.request.config.BASE, 'getSupply'],
         queryFn: () => client.public.getSupply(),
         ...options
     }
 }
+
 /**
  * Get Versions Check Query Options
  *
@@ -526,7 +549,7 @@ export function getVersion(
     options?: QueryOptions
 ): QueryOptions {
     return {
-        queryKey: ['getVersion'],
+        queryKey: [client.request.config.BASE, 'getVersion'],
         queryFn: () => client.common.getVersion(),
         ...options
     }
