@@ -24,7 +24,8 @@
     "lint": "eslint .",
     "docs": "typedoc --tsconfig ./tsconfig.json",
     "sort": "sort-package-json *.json",
-    "test": "c8 node --test ./tests"
+    "test": "c8 node --test ./tests",
+    "postinstall": "npm run build"
   },
   "devDependencies": {
     "@awesome-algorand/algod-fetch": "^3.25.0",
