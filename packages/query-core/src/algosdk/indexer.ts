@@ -1,6 +1,25 @@
 import type {QueryOptions} from "@tanstack/query-core";
 import type {Indexer} from 'algosdk'
 import {applyQuery} from "./common";
+import type {
+    LookupAccountAppLocalStatesData,
+    LookupAccountAssetsData,
+    LookupAccountByIdData,
+    LookupAccountCreatedApplicationsData,
+    LookupAccountCreatedAssetsData,
+    LookupAccountTransactionsData,
+    LookupApplicationBoxByIdAndNameData,
+    LookupApplicationByIdData,
+    LookupApplicationLogsByIdData,
+    LookupAssetBalancesData,
+    LookupAssetByIdData,
+    LookupAssetTransactionsData,
+    LookupBlockData,
+    LookupTransactionData,
+    SearchForAccountsData,
+    SearchForApplicationBoxesData,
+    SearchForApplicationsData, SearchForAssetsData, SearchForTransactionsData
+} from "@awesome-algorand/indexer-fetch";
 
 
 /**
@@ -9,20 +28,20 @@ import {applyQuery} from "./common";
  * Returns application local state about the given account.
  *
  * @param {Indexer} client The Indexer client to use
- * @param {string} address The address of the account to look up.
+ * @param {LookupAccountAppLocalStatesData} data The address of the account to look up.
  * @param {QueryOptions} [options] QueryOption overrides
- * @return {QueryOptions} QueryOption for use with @tanstack
  * @see https://algorand.github.io/js-algorand-sdk/classes/Indexer.html#lookupAccountAppLocalStates
  */
 export function lookupAccountAppLocalStates(
     client: Indexer,
-    address: string,
-    options?: QueryOptions): QueryOptions {
+    data: LookupAccountAppLocalStatesData,
+    options: QueryOptions = {},
+) {
     return {
         //@ts-expect-error, access private baseURL
-        queryKey: [client.c.bc.baseURL.origin, 'lookupAccountAppLocalStates', address],
-        queryFn: () => client.lookupAccountAppLocalStates(address).do(),
-        ...options
+        queryKey: [client.c.bc.baseURL.origin, 'lookupAccountAppLocalStates', data],
+        queryFn: () => client.lookupAccountAppLocalStates(data.accountId).do(),
+        ...options as object,
     }
 }
 
@@ -30,20 +49,20 @@ export function lookupAccountAppLocalStates(
  * Lookup Account Assets
  *
  * @param {Indexer} client The Indexer client to use
- * @param {string} address The address of the account to look up.
+ * @param {LookupAccountAssetsData} data The address of the account to look up.
  * @param {QueryOptions} [options] QueryOption overrides
- * @return {QueryOptions} QueryOption for use with @tanstack
  * @see https://algorand.github.io/js-algorand-sdk/classes/Indexer.html#lookupAccountAssets
  */
 export function lookupAccountAssets(
     client: Indexer,
-    address: string,
-    options?: QueryOptions): QueryOptions {
+    data: LookupAccountAssetsData,
+    options: QueryOptions = {},
+) {
     return {
         //@ts-expect-error, access private baseURL
-        queryKey: [client.c.bc.baseURL.origin, 'lookupAccountAssets', address],
-        queryFn: () => client.lookupAccountAssets(address).do(),
-        ...options
+        queryKey: [client.c.bc.baseURL.origin, 'lookupAccountAssets', data],
+        queryFn: () => client.lookupAccountAssets(data.accountId).do(),
+        ...options as object,
     }
 }
 
@@ -51,21 +70,20 @@ export function lookupAccountAssets(
  * Lookup Account By ID
  *
  * @param {Indexer} client The Indexer client to use
- * @param {string} address The address of the account to look up.
+ * @param {LookupAccountByIdData} data The address of the account to look up.
  * @param {QueryOptions} [options] QueryOption overrides
- * @return {QueryOptions} QueryOption for use with @tanstack
  * @see https://algorand.github.io/js-algorand-sdk/classes/Indexer.html#lookupAccountByID
  */
-export function lookupAccountByID(
+export function lookupAccountById(
     client: Indexer,
-    address: string,
-    options?: QueryOptions,
-): QueryOptions {
+    data: LookupAccountByIdData,
+    options: QueryOptions = {},
+) {
     return {
         //@ts-expect-error, access private baseURL
-        queryKey: [client.c.bc.baseURL.origin, 'lookupAccountByID', address],
-        queryFn: () => client.lookupAccountByID(address).do(),
-        ...options
+        queryKey: [client.c.bc.baseURL.origin, 'lookupAccountById', data],
+        queryFn: () => client.lookupAccountByID(data.accountId).do(),
+        ...options as object,
     }
 }
 
@@ -73,21 +91,20 @@ export function lookupAccountByID(
  * Lookup Account Created Apps
  *
  * @param {Indexer} client The Indexer client to use
- * @param {string} address The address of the account to look up.
+ * @param {LookupAccountCreatedApplicationsData} data The address of the account to look up.
  * @param {QueryOptions} [options] QueryOption overrides
- * @return {QueryOptions} QueryOption for use with @tanstack
  * @see https://algorand.github.io/js-algorand-sdk/classes/Indexer.html#lookupAccountCreatedApplications
  */
 export function lookupAccountCreatedApplications(
     client: Indexer,
-    address: string,
-    options?: QueryOptions
-): QueryOptions {
+    data: LookupAccountCreatedApplicationsData,
+    options: QueryOptions = {},
+) {
     return {
         //@ts-expect-error, access private baseURL
-        queryKey: [client.c.bc.baseURL.origin, 'lookupAccountCreatedApplications', address],
-        queryFn: () => client.lookupAccountCreatedApplications(address).do(),
-        ...options
+        queryKey: [client.c.bc.baseURL.origin, 'lookupAccountCreatedApplications', data],
+        queryFn: () => client.lookupAccountCreatedApplications(data.accountId).do(),
+        ...options as object,
     }
 }
 
@@ -95,21 +112,20 @@ export function lookupAccountCreatedApplications(
  * Lookup Account Created Assets
  *
  * @param {Indexer} client The Indexer client to use
- * @param {string} address The address of the account to look up.
+ * @param {LookupAccountCreatedAssetsData} data The address of the account to look up.
  * @param {QueryOptions} [options] QueryOption overrides
- * @return {QueryOptions} QueryOption for use with @tanstack
  * @see https://algorand.github.io/js-algorand-sdk/classes/Indexer.html#lookupAccountCreatedAssets
  */
 export function lookupAccountCreatedAssets(
     client: Indexer,
-    address: string,
-    options?: QueryOptions
-): QueryOptions {
+    data: LookupAccountCreatedAssetsData,
+    options: QueryOptions = {},
+) {
     return {
         //@ts-expect-error, access private baseURL
-        queryKey: [client.c.bc.baseURL.origin, 'lookupAccountCreatedAssets', address],
-        queryFn: () => client.lookupAccountCreatedAssets(address).do(),
-        ...options
+        queryKey: [client.c.bc.baseURL.origin, 'lookupAccountCreatedAssets', data],
+        queryFn: () => client.lookupAccountCreatedAssets(data.accountId).do(),
+        ...options as object,
     }
 }
 
@@ -117,21 +133,20 @@ export function lookupAccountCreatedAssets(
  * Lookup Account Transactions
  *
  * @param {Indexer} client The Indexer client to use
- * @param {string} address The address of the account to look up.
+ * @param {LookupAccountTransactionsData} data The address of the account to look up.
  * @param {QueryOptions} [options] QueryOption overrides
- * @return {QueryOptions} QueryOption for use with @tanstack
  * @see https://algorand.github.io/js-algorand-sdk/classes/Indexer.html#lookupAccountTransactions
  */
 export function lookupAccountTransactions(
     client: Indexer,
-    address: string,
-    options?: QueryOptions
-): QueryOptions {
+    data: LookupAccountTransactionsData,
+    options: QueryOptions = {},
+) {
     return {
         //@ts-expect-error, access private baseURL
-        queryKey: [client.c.bc.baseURL.origin, 'lookupAccountTransactions', address],
-        queryFn: () => client.lookupAccountTransactions(address).do(),
-        ...options
+        queryKey: [client.c.bc.baseURL.origin, 'lookupAccountTransactions', data],
+        queryFn: () => client.lookupAccountTransactions(data.accountId).do(),
+        ...options as object,
     }
 }
 
@@ -139,23 +154,21 @@ export function lookupAccountTransactions(
  * Lookup Application Box By ID and Name
  *
  * @param {Indexer} client The Indexer client to use
- * @param {number} index The ID of the application with boxes.
- * @param {Uint8Array} name The name of the box
+ * @param {LookupApplicationBoxByIdAndNameData} data Box name and application id.
  * @param {QueryOptions} [options] QueryOption overrides
- * @return {QueryOptions} QueryOption for use with @tanstack
  * @see https://algorand.github.io/js-algorand-sdk/classes/Indexer.html#lookupApplicationBoxByIDandName
  */
-export function lookupApplicationBoxByIDandName(
+export function lookupApplicationBoxByIdAndName(
     client: Indexer,
-    index: number,
-    name: Uint8Array,
-    options?: QueryOptions
-): QueryOptions {
+    data: LookupApplicationBoxByIdAndNameData,
+    options: QueryOptions = {},
+) {
+    const encoder = new TextEncoder()
     return {
         //@ts-expect-error, access private baseURL
-        queryKey: [client.c.bc.baseURL.origin, 'lookupApplicationBoxByIDandName', index, name],
-        queryFn: () => client.lookupApplicationBoxByIDandName(index, name).do(),
-        ...options
+        queryKey: [client.c.bc.baseURL.origin, 'lookupApplicationBoxByIdAndName', data],
+        queryFn: () => client.lookupApplicationBoxByIDandName(data.applicationId, encoder.encode(data.name)).do(),
+        ...options as object,
     }
 }
 
@@ -163,200 +176,191 @@ export function lookupApplicationBoxByIDandName(
  * Lookup Application Logs
  *
  * @param {Indexer} client The Indexer client to use
- * @param {number} index The ID of the application which generated the logs.
+ * @param {LookupApplicationLogsByIdData} data The ID of the application which generated the logs.
  * @param {QueryOptions} [options] QueryOption overrides
- * @return {QueryOptions} QueryOption for use with @tanstack
  * @see https://algorand.github.io/js-algorand-sdk/classes/Indexer.html#lookupApplicationLogs
  */
-export function lookupApplicationLogs(
+export function lookupApplicationLogsById(
     client: Indexer,
-    index: number,
-    options?: QueryOptions
-): QueryOptions {
+    data: LookupApplicationLogsByIdData,
+    options: QueryOptions = {},
+) {
     return {
         //@ts-expect-error, access private baseURL
-        queryKey: [client.c.bc.baseURL.origin, 'lookupApplicationLogs', index],
-        queryFn: () => client.lookupApplicationLogs(index).do(),
-        ...options
+        queryKey: [client.c.bc.baseURL.origin, 'lookupApplicationLogsById', data],
+        queryFn: () => client.lookupApplicationLogs(data.applicationId).do(),
+        ...options as object,
     }
 }
 
 /**
  *
  * @param {Indexer} client The Indexer client to use
- * @param {number} index The ID of the application to look up.
- * @param {{includeAll: boolean}} [query]
+ * @param {LookupApplicationByIdData} data The ID of the application to look up.
  * @param {QueryOptions} [options] QueryOption overrides
- * @return {QueryOptions} QueryOption for use with @tanstack
  * @see https://algorand.github.io/js-algorand-sdk/classes/Indexer.html#lookupApplications
  */
-export function lookupApplications(
+export function lookupApplicationById(
     client: Indexer,
-    index: number,
-    query: { includeAll: boolean },
-    options?: QueryOptions
-): QueryOptions {
-    const jsonRequest = client.lookupApplications(index)
+    data: LookupApplicationByIdData,
+    options: QueryOptions = {},
+) {
+    const {applicationId, ...query} = data;
+    const jsonRequest = client.lookupApplications(applicationId)
     return {
         //@ts-expect-error, access private baseURL
-        queryKey: [client.c.bc.baseURL.origin, 'lookupApplications', index, query],
+        queryKey: [client.c.bc.baseURL.origin, 'lookupApplicationById', data],
         queryFn: () => applyQuery<typeof jsonRequest>(jsonRequest, query).do(),
-        ...options
+        ...options as object,
     }
 }
 
 /**
  *
  * @param {Indexer} client The Indexer client to use
- * @param {number} index The asset ID to look up.
+ * @param {LookupAssetBalancesData} data The asset ID to look up.
  * @param {QueryOptions} [options] QueryOption overrides
- * @return {QueryOptions} QueryOption for use with @tanstack
  * @see https://algorand.github.io/js-algorand-sdk/classes/Indexer.html#lookupApplications
  */
 export function lookupAssetBalances(
     client: Indexer,
-    index: number,
-    options?: QueryOptions
-): QueryOptions {
+    data: LookupAssetBalancesData,
+    options: QueryOptions = {},
+) {
     return {
         //@ts-expect-error, access private baseURL
-        queryKey: [client.c.bc.baseURL.origin, 'lookupAssetBalances', index],
-        queryFn: () => client.lookupAssetBalances(index).do(),
-        ...options
+        queryKey: [client.c.bc.baseURL.origin, 'lookupAssetBalances', data],
+        queryFn: () => client.lookupAssetBalances(data.assetId).do(),
+        ...options as object,
     }
 }
 
-export function lookupAssetByID(
+export function lookupAssetById(
     client: Indexer,
-    index: number,
-    options?: QueryOptions
-): QueryOptions {
+    data: LookupAssetByIdData,
+    options: QueryOptions = {},
+) {
     return {
         //@ts-expect-error, access private baseURL
-        queryKey: [client.c.bc.baseURL.origin, 'lookupAssetByID', index],
-        queryFn: () => client.lookupAssetByID(index).do(),
-        ...options
+        queryKey: [client.c.bc.baseURL.origin, 'lookupAssetById', data],
+        queryFn: () => client.lookupAssetByID(data.assetId).do(),
+        ...options as object,
     }
 }
 
 export function lookupAssetTransactions(
     client: Indexer,
-    index: number,
-    options?: QueryOptions
-): QueryOptions {
+    data: LookupAssetTransactionsData,
+    options: QueryOptions = {},
+) {
     return {
         //@ts-expect-error, access private baseURL
-        queryKey: [client.c.bc.baseURL.origin, 'lookupAssetTransactions', index],
-        queryFn: () => client.lookupAssetTransactions(index).do(),
-        ...options
+        queryKey: [client.c.bc.baseURL.origin, 'lookupAssetTransactions', data],
+        queryFn: () => client.lookupAssetTransactions(data.assetId).do(),
+        ...options as object,
     }
 }
 
 export function lookupBlock(
     client: Indexer,
-    round: number,
-    options?: QueryOptions
-): QueryOptions {
+    data: LookupBlockData,
+    options: QueryOptions = {},
+) {
     return {
         //@ts-expect-error, access private baseURL
-        queryKey: [client.c.bc.baseURL.origin, 'lookupBlock', round],
-        queryFn: () => client.lookupBlock(round).do(),
-        ...options
+        queryKey: [client.c.bc.baseURL.origin, 'lookupBlock', data],
+        queryFn: () => client.lookupBlock(data.roundNumber).do(),
+        ...options as object,
     }
 }
 
-export function lookupTransactionByID(
+export function lookupTransaction(
     client: Indexer,
-    txId: string,
-    options?: QueryOptions
-): QueryOptions {
+    data: LookupTransactionData,
+    options: QueryOptions = {},
+) {
     return {
         //@ts-expect-error, access private baseURL
-        queryKey: [client.c.bc.baseURL.origin, 'lookupTransactionByID', txId],
-        queryFn: () => client.lookupTransactionByID(txId).do(),
-        ...options
+        queryKey: [client.c.bc.baseURL.origin, 'lookupTransaction', data],
+        queryFn: () => client.lookupTransactionByID(data.txid).do(),
+        ...options as object,
     }
 }
 
 export function makeHealthCheck(
     client: Indexer,
-    options?: QueryOptions
-): QueryOptions {
+    options: QueryOptions = {},
+) {
     return {
         //@ts-expect-error, access private baseURL
         queryKey: [client.c.bc.baseURL.origin, 'makeHealthCheck'],
         queryFn: () => client.makeHealthCheck().do(),
-        ...options
+        ...options as object,
     }
 }
 
-export function searchAccounts(
+export function searchForAccounts(
     client: Indexer,
-    // eslint-disable-next-line @typescript-eslint/no-explicit-any
-    query: any,
-    options?: QueryOptions
-): QueryOptions {
+    data: SearchForAccountsData,
+    options: QueryOptions = {},
+) {
     return {
         //@ts-expect-error, access private baseURL
-        queryKey: [client.c.bc.baseURL.origin, 'searchAccounts', query],
-        queryFn: () => applyQuery(client.searchAccounts(), query).do(),
-        ...options
+        queryKey: [client.c.bc.baseURL.origin, 'searchForAccounts', data],
+        queryFn: () => applyQuery(client.searchAccounts(), data).do(),
+        ...options as object,
     }
 }
 
 export function searchForApplicationBoxes(
     client: Indexer,
-    index: number,
-    // eslint-disable-next-line @typescript-eslint/no-explicit-any
-    query: any,
-    options?: QueryOptions
-): QueryOptions {
+    data: SearchForApplicationBoxesData,
+    options: QueryOptions = {},
+) {
+    const {applicationId, ...query} = data;
     return {
         //@ts-expect-error, access private baseURL
-        queryKey: [client.c.bc.baseURL.origin, 'searchForApplicationBoxes', index, query],
-        queryFn: () => applyQuery(client.searchForApplicationBoxes(index), query).do(),
-        ...options
+        queryKey: [client.c.bc.baseURL.origin, 'searchForApplicationBoxes', data],
+        queryFn: () => applyQuery(client.searchForApplicationBoxes(applicationId), query).do(),
+        ...options as object,
     }
 }
 
 export function searchForApplications(
     client: Indexer,
-    // eslint-disable-next-line @typescript-eslint/no-explicit-any
-    query: any,
-    options?: QueryOptions
-): QueryOptions {
+    data: SearchForApplicationsData,
+    options: QueryOptions = {},
+) {
     return {
         //@ts-expect-error, access private baseURL
-        queryKey: [client.c.bc.baseURL.origin, 'searchForApplications', query],
-        queryFn: () => applyQuery(client.searchForApplications(), query).do(),
-        ...options
+        queryKey: [client.c.bc.baseURL.origin, 'searchForApplications', data],
+        queryFn: () => applyQuery(client.searchForApplications(), data).do(),
+        ...options as object,
     }
 }
 
 export function searchForAssets(
     client: Indexer,
-    // eslint-disable-next-line @typescript-eslint/no-explicit-any
-    query: any,
-    options?: QueryOptions
-): QueryOptions {
+    data: SearchForAssetsData,
+    options: QueryOptions = {},
+) {
     return {
         //@ts-expect-error, access private baseURL
-        queryKey: [client.c.bc.baseURL.origin, 'searchForAssets', query],
-        queryFn: () => applyQuery(client.searchForAssets(), query).do(),
-        ...options
+        queryKey: [client.c.bc.baseURL.origin, 'searchForAssets', data],
+        queryFn: () => applyQuery(client.searchForAssets(), data).do(),
+        ...options as object,
     }
 }
 
 export function searchForTransactions(
     client: Indexer,
-    // eslint-disable-next-line @typescript-eslint/no-explicit-any
-    query: any,
-    options?: QueryOptions
-): QueryOptions {
+    data: SearchForTransactionsData,
+    options: QueryOptions = {},
+) {
     return {
         //@ts-expect-error, access private baseURL
-        queryKey: [client.c.bc.baseURL.origin, 'searchForTransactions', query],
-        queryFn: () => applyQuery(client.searchForTransactions(), query).do(),
-        ...options
+        queryKey: [client.c.bc.baseURL.origin, 'searchForTransactions', data],
+        queryFn: () => applyQuery(client.searchForTransactions(), data).do(),
+        ...options as object,
     }
 }
