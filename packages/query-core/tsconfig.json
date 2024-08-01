@@ -1,0 +1,27 @@
+{
+  "compilerOptions": {
+    "outDir": "dist",
+    "module": "esnext",
+    "target": "esnext",
+    "declaration": true,
+    "strict": true,
+    "esModuleInterop": false,
+    "ignoreDeprecations": "5.0",
+    "allowJs": true,
+    "moduleResolution": "node",
+    "skipLibCheck": true,
+    "allowSyntheticDefaultImports": false,
+  },
+  "exclude": [
+    "lib/**/*"
+  ],
+  "include": [
+    "src/**/*.ts"
+  ],
+  "typedocOptions": {
+    "entryPoints": [
+      "src/index.ts",
+    ],
+    "out": "./docs"
+  }
+}
