@@ -15,8 +15,11 @@
         PUBLIC_TEST_ASSET,
         PUBLIC_TEST_TRANSACTION
     } from "$env/static/public";
-    import {createQueries, createQuery} from "@tanstack/svelte-query";
+    import {createQuery} from "@tanstack/svelte-query";
     import {AlgodClient} from "@awesome-algorand/algod-fetch";
+    import {IndexerClient} from "@awesome-algorand/indexer-fetch";
+    import * as indexersdkQueries from "@awesome-algorand/query-core/algosdk/indexer";
+    import * as indexerfetchQueries from "@awesome-algorand/query-core/algo-fetch/indexer";
     const algodClient = new algosdk.Algodv2(
         PUBLIC_ALGOD_TOKEN || "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
         PUBLIC_ALGOD_SERVER || "http://localhost",
@@ -31,21 +34,21 @@
         BASE: PUBLIC_ALGOD_SERVER || "http://localhost",
     })
 
+    const indexerFetch = new IndexerClient({
+        BASE: PUBLIC_INDEXER_SERVER || "http://localhost",
+    })
+    let clientType = "official"
 
 
-    const indexerOptions = createIndexerOptions(
-        indexerClient,
+    $: indexerOptions = createIndexerOptions(
+        clientType === 'official' ? indexersdkQueries : indexerfetchQueries,
+        clientType === 'official' ? indexerClient: indexerFetch,
         PUBLIC_TEST_ADDRESS,
         parseInt(PUBLIC_TEST_APPLICATION),
         parseInt(PUBLIC_TEST_ASSET),
         PUBLIC_TEST_TRANSACTION,
         1,
         {})
-
-    const indexerKeys = Object.keys(indexerOptions)
-    const indexerQueries = createQueries({queries: indexerKeys.map(key => indexerOptions[key])})
-    let clientType = "official"
-    let algodOptions
     $: algodOptions = createAlgodOptions(
         clientType === 'official' ? algosdkQueries : algofetchQueries,
         clientType === 'official' ? algodClient: algoFetch,
@@ -55,12 +58,16 @@
         PUBLIC_TEST_TRANSACTION,
         1,
         {})
-    let query
+    $: console.log($page.params)
     $: query = createQuery($page.params.interface === 'Algodv2' ? algodOptions[$page.params.method] : indexerOptions[$page.params.method])
+
+    $: title = $page.params.interface === 'Algodv2' ?
+        clientType === 'official'? "Official Algodv2" : "@awesome-algorand/algod-fetch"
+        : clientType === 'official'? "Official Indexer" : "@awesome-algorand/indexer-fetch"
 </script>
 <main class="container">
     <hgroup>
-        <h1>{$page.params.interface}</h1>
+        <h1>{title}</h1>
         <h2>
             {$page.params.method}
         </h2>

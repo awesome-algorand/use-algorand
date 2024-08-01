@@ -2,21 +2,26 @@
 
 Svelte `store` wrapper for the Algorand SDK `HTTPClient` using `@tanstack/svelte-query` for caching and
 `@awesome-algorand/use-algorand-queries` for the Algorand SDK QueryOptions.
+It also supports the experimental `@awesome-algorand/algo-fetch` libraries
 
-## Get Started (algosdk)
+## Get Started [WIP]
 
 ### Install
 
 ```bash
-npm install algosdk @awesome-algorand/use-algorand-svelte @tanstack/svelte-query --save 
+npm install @awesome-algorand/svelte-query @tanstack/svelte-query --save 
 ```
 
-### Usage
+### Usage (algosdk) [WIP]
+
+```bash
+npm install algosdk --save
+```
 
 ```sveltehtml
 <script>
-import { useBlock } from "@awesome-algorand/use-algorand-svelte/algosdk/algod";
-const block = useBlock(1234)
+import { useBlock } from "@awesome-algorand/svelte-query/algosdk/algod";
+const block = useBlock({round:1234})
 </script>
 
 <div>
@@ -29,5 +34,3 @@ const block = useBlock(1234)
     {/if}
 </div>
 ```
-
-See the [examples](./examples) for more details.

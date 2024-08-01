@@ -1,14 +1,14 @@
 <script>
     import * as algofetchQueries from "@awesome-algorand/query-core/algo-fetch/algod";
     import * as algosdkQueries from "@awesome-algorand/query-core/algosdk/algod";
-
-    import MarkdownIt from "markdown-it";
+    import * as indexerfetchQueries from "@awesome-algorand/query-core/algo-fetch/indexer";
+    import * as indexersdkQueries from "@awesome-algorand/query-core/algosdk/indexer";
     import {createQueries} from "@tanstack/svelte-query";
-    import Readme from '../../README.md?raw'
     import QueryTableRow from "./QueryTableRow.svelte";
     import algosdk from "algosdk";
     import {createAlgodOptions, createIndexerOptions} from "@awesome-algorand/query-core/test";
     import {AlgodClient} from "@awesome-algorand/algod-fetch"
+    import {IndexerClient} from "@awesome-algorand/indexer-fetch";
     // TODO: Better test fixtures
     import {
         PUBLIC_TEST_ADDRESS,
@@ -19,9 +19,6 @@
         PUBLIC_ALGOD_PORT,
         PUBLIC_ALGOD_TOKEN, PUBLIC_INDEXER_SERVER, PUBLIC_INDEXER_PORT, PUBLIC_INDEXER_TOKEN
     } from "$env/static/public";
-    //
-    const md = new MarkdownIt();
-    // console.log(PUBLIC_ALGOD_SERVER, PUBLIC_ALGOD_PORT)
     const algodClient = new algosdk.Algodv2(
         PUBLIC_ALGOD_TOKEN || "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
         PUBLIC_ALGOD_SERVER || "http://localhost",
@@ -35,8 +32,16 @@
     const algoFetch = new AlgodClient({
         BASE: PUBLIC_ALGOD_SERVER || "http://localhost",
     })
-    const indexerOptions = createIndexerOptions(
-        indexerClient,
+
+    const indexerFetch = new IndexerClient({
+        BASE: PUBLIC_INDEXER_SERVER || "http://localhost",
+    })
+
+    let clientType = "official"
+
+    $: indexerOptions = createIndexerOptions(
+        clientType === 'official' ? indexersdkQueries : indexerfetchQueries,
+        clientType === 'official' ? indexerClient: indexerFetch,
         PUBLIC_TEST_ADDRESS,
         parseInt(PUBLIC_TEST_APPLICATION),
         parseInt(PUBLIC_TEST_ASSET),
@@ -44,13 +49,12 @@
         1,
         {})
     //
-    const indexerKeys = Object.keys(indexerOptions)
-    const indexerQueries = createQueries({
+    $: indexerKeys = Object.keys(indexerOptions)
+    $: indexerQueries = createQueries({
         queries: indexerKeys.map(key => indexerOptions[key]),
     })
-    let clientType = "official"
-    let algodOptions
-     $: algodOptions = createAlgodOptions(
+
+    $: algodOptions = createAlgodOptions(
          clientType === 'official' ? algosdkQueries : algofetchQueries,
          clientType === 'official' ? algodClient: algoFetch,
          PUBLIC_TEST_ADDRESS,
@@ -60,13 +64,11 @@
          1,
          {})
     $: algodKeys = Object.keys(algodOptions)
-    let algodQueries
     $: algodQueries = createQueries({queries: algodKeys.map(key => algodOptions[key])})
 
 </script>
 <main class="container">
-    {@html md.render(Readme)}
-    <h1>{clientType === 'official'? "Algodv2" : "@awesome-algorand/algod-fetch"}</h1>
+    <h1>{clientType === 'official'? "Official Algodv2" : "@awesome-algorand/algod-fetch"}</h1>
     <fieldset>
     <label>
         <input name="switch" type="checkbox" role="switch" on:change={(e)=>clientType = e.target.checked ? "experimental" : "official"}/>
@@ -87,7 +89,7 @@
             </tbody>
         </table>
     </figure>
-    <h1>Indexer</h1>
+    <h1>{clientType === 'official'? "Official Indexer" : "@awesome-algorand/indexer-fetch"}</h1>
     <figure>
         <table>
             <tr>
