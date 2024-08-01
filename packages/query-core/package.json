@@ -1,0 +1,73 @@
+{
+  "name": "@awesome-algorand/query-core",
+  "version": "1.0.0",
+  "description": "Reusable Tanstack Queries for Algorand",
+  "license": "MIT",
+  "author": "Michael J Feher <mike@telluric.guru>",
+  "type": "module",
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "import": "./dist/index.js"
+    },
+    "./algosdk/algod": {
+      "types": "./dist/algosdk/algod.d.ts",
+      "default": "./dist/algosdk/algod.js"
+    },
+    "./algosdk/indexer": {
+      "types": "./dist/algosdk/indexer.d.ts",
+      "default": "./dist/algosdk/indexer.js"
+    },
+    "./algo-fetch/algod": {
+      "types": "./dist/algo-fetch/algod.d.ts",
+      "default": "./dist/algo-fetch/algod.js"
+    },
+    "./algo-fetch/indexer": {
+      "types": "./dist/algo-fetch/indexer.d.ts",
+      "default": "./dist/algo-fetch/indexer.js"
+    },
+    "./test": {
+      "types": "./dist/test/index.d.ts",
+      "default": "./dist/test/index.js"
+    }
+  },
+  "scripts": {
+    "build": "tsc",
+    "docs": "typedoc --tsconfig ./tsconfig.json",
+    "postinstall": "npm run build",
+    "lint": "eslint .",
+    "sort": "sort-package-json *.json",
+    "test": "c8 node --test ./tests"
+  },
+  "devDependencies": {
+    "@awesome-algorand/algod-fetch": "^3.25.0",
+    "@awesome-algorand/indexer-fetch": "^3.5.0",
+    "@tanstack/query-core": "^5.51.15",
+    "@types/json-bigint": "^1.0.4",
+    "@types/node": "^20.5.9",
+    "c8": "^8.0.1",
+    "dotenv": "^16.3.1",
+    "prettier": "^3.3.3",
+    "typescript": "^5.2.2"
+  },
+  "peerDependencies": {
+    "@awesome-algorand/algod-fetch": "^3.25.0",
+    "@awesome-algorand/indexer-fetch": "^3.5.0",
+    "@awesome-algorand/kmd-fetch": "^3.25.0",
+    "algosdk": "^v2.8.0"
+  },
+  "peerDependenciesMeta": {
+    "@awesome-algorand/algod-fetch": {
+      "optional": true
+    },
+    "@awesome-algorand/indexer-fetch": {
+      "optional": true
+    },
+    "@awesome-algorand/kmd-fetch": {
+      "optional": true
+    },
+    "algosdk": {
+      "optional": true
+    }
+  }
+}
