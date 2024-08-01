@@ -10,6 +10,9 @@
     "preview": "vite preview"
   },
   "dependencies": {
+    "@awesome-algorand/algod-fetch":"^3.25.0",
+    "@awesome-algorand/indexer-fetch": "^3.5.0",
+    "@awesome-algorand/kmd-fetch": "^3.25.0",
     "@awesome-algorand/query-core": "^1.0.0",
     "@tanstack/react-query": "^5.51.15",
     "@tanstack/react-query-devtools": "^5.51.15",
@@ -18,6 +21,9 @@
     "react-dom": "^18.3.1"
   },
   "devDependencies": {
+    "@awesome-algorand/algod-fetch":"^3.25.0",
+    "@awesome-algorand/indexer-fetch": "^3.5.0",
+    "@awesome-algorand/kmd-fetch": "^3.25.0",
     "@awesome-algorand/query-core": "^1.0.0",
     "@types/react": "^18.3.3",
     "@types/react-dom": "^18.3.0",

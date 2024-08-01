@@ -3,20 +3,13 @@ import {createIndexerOptions} from "@awesome-algorand/query-core/test";
 import {useQuery} from "@tanstack/react-query";
 import {useState} from "react";
 import {indexerClient, useAlgodTestOptions} from "./useAlgodTestOptions.js";
+import {useIndexerTestOptions} from "./useIndexerTestOptions.ts";
 
 export default function MethodPage() {
     const params = useParams()
     const [clientType, setClientType] = useState<"official" | "experimental">("official")
     const algodOptions = useAlgodTestOptions(clientType)
-
-    const indexerOptions = createIndexerOptions(
-        indexerClient,
-        import.meta.env.VITE_TEST_ADDRESS,
-        import.meta.env.VITE_TEST_APPLICATION,
-        import.meta.env.VITE_TEST_ASSET,
-        import.meta.env.VITE_TEST_TRANSACTION,
-        1,
-        {})
+    const indexerOptions = useIndexerTestOptions(clientType)
 
     if(typeof params.method === 'undefined' || typeof params.interface === 'undefined')
         throw new Error("Method and interface are required")

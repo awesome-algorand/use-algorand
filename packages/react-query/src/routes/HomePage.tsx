@@ -1,28 +1,19 @@
 import {useQueries} from "@tanstack/react-query";
-import {createIndexerOptions} from "@awesome-algorand/query-core/test";
 import QueryTableRow from "./QueryTableRow.jsx";
 import {useState} from "react";
-import {indexerClient, useAlgodTestOptions} from "./useAlgodTestOptions.js";
-import {useAccountInformation, useBlock} from "../lib/algo-fetch/algod.ts";
+import {useAlgodTestOptions} from "./useAlgodTestOptions.js";
+import {useIndexerTestOptions} from "./useIndexerTestOptions.ts";
 
 export default function HomePage() {
     const [clientType, setClientType] = useState<"official" | "experimental">("official")
-    const query = useBlock({round: 1})
-    const other = useAccountInformation({address: "BMG2OPCDNEVFG5LW4S6GT33PPEWXVJD7XEDLTED4BFWN5M4HXLZNCK3EWY"})
-    console.log(other.data?.["apps-local-state"], query.data)
+
     // Algod
     const algodOptions = useAlgodTestOptions(clientType)
     const algodKeys = Object.keys(algodOptions)
     const algodQueries = useQueries({queries: algodKeys.map(key => algodOptions[key])})
 
-    const indexerOptions = createIndexerOptions(
-        indexerClient,
-        import.meta.env.VITE_TEST_ADDRESS,
-        import.meta.env.VITE_TEST_APPLICATION,
-        import.meta.env.VITE_TEST_ASSET,
-        import.meta.env.VITE_TEST_TRANSACTION,
-        1,
-        {})
+    // Indexer
+    const indexerOptions = useIndexerTestOptions(clientType)
     const indexerKeys = Object.keys(indexerOptions)
     const indexerQueries = useQueries({queries: indexerKeys.map(key => indexerOptions[key])})
 
@@ -31,7 +22,8 @@ export default function HomePage() {
             <h1>{clientType === 'official' ? "Official Algodv2" : "@awesome-algorand/algod-fetch"}</h1>
             <fieldset>
                 <label>
-                    <input name="switch" type="checkbox" role="switch" onChange={(e)=>setClientType(e.target.checked ? "experimental" : "official")}/>
+                    <input name="switch" type="checkbox" role="switch"
+                           onChange={(e) => setClientType(e.target.checked ? "experimental" : "official")}/>
                     Enable experimental fetch library
                 </label>
             </fieldset>
@@ -50,7 +42,7 @@ export default function HomePage() {
                     </tbody>
                 </table>
             </figure>
-            <h1>Official Indexer</h1>
+            <h1>{clientType === 'official' ? "Official Indexer" : "@awesome-algorand/indexer-fetch"}</h1>
             <figure>
                 <table>
                     <thead>
