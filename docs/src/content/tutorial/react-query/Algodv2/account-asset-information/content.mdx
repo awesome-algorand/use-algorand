@@ -1,0 +1,36 @@
+---
+type: lesson
+title: useAccountAssetInformation
+focus: /src/components/AccountAssetInformationViewer.tsx
+template: vite-react
+editor:
+  fileTree: false
+---
+
+## Account Asset Information
+
+Let's look at the preview on the bottom right, we'll notice that it is not displaying anything.
+This is because we haven't yet implemented the `useAccountAssetInformation` hook in our React application.
+
+To address this, we'll call the `useAccountAssetInformation` hook to handle the fetch call in the editor on the top right.
+
+
+```tsx add={5}
+import { useAccountAssetInformation } from '@awesome-algorand/react-query';
+
+export function AccountAssetInformationViewer() {
+    const data = {address: "BMG2OPCDNEVFG5LW4S6GT33PPEWXVJD7XEDLTED4BFWN5M4HXLZNCK3EWY", assetId: 10458941}
+    const query = {isLoading: true, isError: false, error: undefined, data: undefined};
+
+    if(query.isLoading) return <div>Loading...</div>
+    if(query.isError) return <div>Error: {query.error.message}</div>
+
+    return (
+        <div>
+            <h2>Round: {query.data.round || "Unknown"}</h2>
+            <h2>Asset: {data.assetId}</h2>
+            <h2>Amount: {query.data['asset-holding'].amount || 0}</h2>
+        </div>
+    )
+}
+```

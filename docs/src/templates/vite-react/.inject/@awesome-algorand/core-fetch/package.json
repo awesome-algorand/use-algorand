@@ -1,0 +1,34 @@
+{
+  "name": "@awesome-algorand/core-fetch",
+  "version": "1.0.2",
+  "description": "Core fetch utils",
+  "keywords": [
+    "hey-api",
+    "fetch",
+    "rpc"
+  ],
+  "type": "module",
+  "module": "lib/index.js",
+  "types": "lib/index.d.ts",
+  "exports": {
+    ".": {
+      "types": "./lib/index.d.ts",
+      "default": "./lib/index.js"
+    }
+  },
+  "files": [
+    "lib",
+    "src"
+  ],
+  "scripts": {
+    "dev": "vitest --ui --coverage",
+    "test": "vitest",
+    "lint": "eslint src",
+    "lint:fix": "eslint src --fix",
+    "docs": "typedoc --out docs src",
+    "coverage": "vitest run --coverage",
+    "build": "tsc && tsc-alias -p tsconfig.json -f"
+  },
+  "author": "Awesome Algorand",
+  "license": "Unlicense"
+}

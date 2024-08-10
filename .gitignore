@@ -1,10 +1,5 @@
 .npmrc
 
-# Ignore project files
-types
-lib/cjs/*
-!lib/cjs/package.json
-docs
 .idea
 
 # Logs

@@ -1,0 +1,13 @@
+---
+import {TabItem, LinkCard} from '@astrojs/starlight/components'
+
+const { icon, label, link } = Astro.props;
+---
+
+<TabItem label={label} icon={icon}>
+    <slot name="before-code" />
+    <div style={{borderRadius: "15px", backgroundColor: "var(--sl-color-gray-6)", padding: "25px"}}>
+        <slot/>
+    </div>
+    <slot name="after-code" />
+</TabItem>

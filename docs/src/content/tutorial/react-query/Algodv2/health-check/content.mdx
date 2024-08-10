@@ -1,0 +1,33 @@
+---
+type: lesson
+title: useHealthCheck
+focus: /src/components/HealthCheckViewer.tsx
+template: vite-react
+editor:
+  fileTree: false
+---
+
+## Health Check
+
+Let's look at the preview on the bottom right, we'll notice that it is not displaying anything.
+This is because we haven't yet implemented the `useHealthCheck` hook in our React application.
+
+To address this, we'll call the `useHealthCheck` hook to handle the fetch call in the editor on the top right.
+
+
+```tsx add={4}
+import {useHealthCheck} from '@awesome-algorand/react-query'
+
+export function HealthCheckViewer(){
+    const query = {isLoading: true, isError: false, error: undefined, data: undefined}
+
+    if(query.isLoading) return <div>Loading...</div>
+    if(query.isError) return <div>Error: {query.error.message}</div>
+
+    return (
+        <div>
+            <h2>Ok: {JSON.stringify(query.data)}</h2>
+        </div>
+    )
+}
+```

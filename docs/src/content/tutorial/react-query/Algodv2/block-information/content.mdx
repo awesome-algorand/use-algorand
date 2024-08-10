@@ -1,0 +1,37 @@
+---
+type: lesson
+title: useBlockInformation
+focus: /src/components/BlockInformationViewer.tsx
+template: vite-react
+editor:
+  fileTree: false
+---
+
+## Block Information
+
+Let's look at the preview on the bottom right, we'll notice that it is not displaying anything.
+This is because we haven't yet implemented the `useBlockInformation` hook in our React application.
+
+To address this, we'll call the `useBlockInformation` hook to handle the fetch call in the editor on the top right.
+
+
+```tsx add={5}
+import {useBlockInformation} from '@awesome-algorand/react-query'
+
+export function BlockInformationViewer(){
+    const data = {round: 1}
+    const query = {isLoading: true, isError: false, error: undefined, data: undefined}
+
+    if(query.isLoading) return <div>Loading...</div>
+    if(query.isError) return <div>Error: {query.error.message}</div>
+
+    return (
+        <div>
+            <h2>Round: {query.data.block.rnd}</h2>
+            <h2>Network: {query.data.block.gen}</h2>
+            <h2>Txns: {query.data.block.txns?.length || 0}</h2>
+        </div>
+    )
+}
+
+```

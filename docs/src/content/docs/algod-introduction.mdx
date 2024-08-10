@@ -1,0 +1,57 @@
+---
+title: Algod Introduction
+---
+
+import TutorialLinks from '@/components/TutorialLinks.astro'
+
+> API endpoints for algod operations.
+
+### Structure
+
+`Algodv2` is provided by the `use-wallet` package, which is used to interact with the Algorand blockchain.
+All `query` packages are built on top of the `core` package, which provides the `QueryOptions`.
+This ensures that the query options are consistent across all packages.
+
+| Package                                                                                                            | Description    |
+|--------------------------------------------------------------------------------------------------------------------|----------------|
+| [@awesome-algorand/query-core](https://github.com/awesome-algorand/use-algorand/tree/main/packages/query-core)     | QueryOptions   |
+| [@awesome-algorand/react-query](https://github.com/awesome-algorand/use-algorand/tree/main/packages/react-query)   | Used in React  |
+| [@awesome-algorand/svelte-query](https://github.com/awesome-algorand/use-algorand/tree/main/packages/svelte-query) | Used in Svelte |
+
+
+
+## Table of Contents
+
+You will find the following queries in the documentation.
+Each endpoint has examples for multiple frameworks.
+
+### Account
+
+| Method  | Reference                                                                                     | Description                                                                          | Tutorial                                                                               |
+|---------|-----------------------------------------------------------------------------------------------|--------------------------------------------------------------------------------------|----------------------------------------------------------------------------------------|
+| **GET** | [Account Information](../reference/queries/algod/account-information)                         | Get account information.                                                             | <TutorialLinks target="_blank" react="react-query/algodv2/account-information"/>             |
+| **GET** | [Account Asset Information](../reference/queries/algod/account-asset-information)             | Get account information about a given asset.                                         | <TutorialLinks target="_blank" react="react-query/algodv2/account-asset-information"/>       |
+| **GET** | [Account Application Information](../reference/queries/algod/account-application-information) | Get account information about a given app.                                           | <TutorialLinks target="_blank" react="react-query/algodv2/account-application-information"/> |
+| **GET** | [Account Pending Transactions](../reference/queries/algod/account-pending-transactions)    | Get a list of unconfirmed transactions currently in the transaction pool by address. | <TutorialLinks target="_blank" react="react-query/algodv2/account-pending-transactions"/>                                                                                    |
+
+### Transaction
+
+| Method  | Reference                                                                                      | Description                  | Tutorial                                                                          |
+|---------|------------------------------------------------------------------------------------------------|------------------------------|-----------------------------------------------------------------------------------|
+| **GET** | [Pending Transaction Information](../reference/queries/algod/transaction-pending-transactions) | Get transaction information. | <TutorialLinks target="_blank" react="react-query/algodv2/pending-transactions"/> |
+
+
+### Block
+
+| Method  | Reference                                                         | Description                                          | Tutorial                                                                       |
+|---------|-------------------------------------------------------------------|------------------------------------------------------|--------------------------------------------------------------------------------|
+| **GET** | [Block Information](../reference/queries/algod/block-information) | Get the block for the given round.                   | <TutorialLinks target="_blank" react="react-query/algodv2/block-information"/> |
+| **GET** | [Block Hash](../reference/queries/algod/block-hash)               | Get the block hash for the block on the given round. | <TutorialLinks target="_blank" react="react-query/algodv2/block-hash"/>        |
+
+
+### Application
+
+| Method  | Reference                                                                     | Description                                | Tutorial                                                                             |
+|---------|-------------------------------------------------------------------------------|--------------------------------------------|--------------------------------------------------------------------------------------|
+| **GET** | [Application Information](../reference/queries/algod/application-information) | Get application information.               | <TutorialLinks target="_blank" react="react-query/algodv2/application-information"/> |
+| **GET** | [Application Boxes](../reference/queries/algod/application-boxes)             | Get all box names for a given application. | <TutorialLinks target="_blank" react="react-query/algodv2/application-boxes"/>       |

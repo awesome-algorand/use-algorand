@@ -1,0 +1,10 @@
+---
+import {Icon} from '@astrojs/starlight/components'
+
+const { name } = Astro.props;
+---
+
+<div style={{display: "flex", gap: "5px"}}>
+    <Icon name={name}/>
+    <slot/>
+</div>
