@@ -1,0 +1,59 @@
+{
+  "name": "@awesome-algorand/react-query",
+  "version": "0.0.0",
+  "type": "module",
+  "exports": {
+    ".": {
+      "types": "./lib/algosdk/index.d.ts",
+      "import": "./lib/algosdk/index.js",
+      "default": "./lib/algosdk/index.js"
+    },
+    "./algosdk": {
+      "types": "./lib/algosdk/index.d.ts",
+      "import": "./lib/algosdk/index.js",
+      "default": "./lib/algosdk/index.js"
+    }
+  },
+  "scripts": {
+    "dev": "vite",
+    "build": "tsc -p tsconfig.build.json && vite build",
+    "lint": "eslint . --ext ts,tsx --report-unused-disable-directives --max-warnings 0",
+    "preview": "vite preview"
+  },
+  "peerDependencies": {
+    "@awesome-algorand/algod-fetch": "^3.25.0",
+    "@awesome-algorand/indexer-fetch": "^3.5.0",
+    "@awesome-algorand/kmd-fetch": "^3.25.0",
+    "@awesome-algorand/query-core": "^1.0.0",
+    "@tanstack/react-query": "^5.51.15",
+    "@txnlab/use-wallet-react": "^3.1.0",
+    "react": "^18.3.1",
+    "react-dom": "^18.3.1"
+  },
+  "devDependencies": {
+    "@algorandfoundation/algokit-subscriber": "^2.0.3",
+    "@awesome-algorand/algod-fetch": "^3.25.0",
+    "@awesome-algorand/indexer-fetch": "^3.5.0",
+    "@awesome-algorand/kmd-fetch": "^3.25.0",
+    "@awesome-algorand/query-core": "^1.0.0",
+    "@tanstack/react-query-devtools": "^5.51.15",
+    "@txnlab/use-wallet-react": "^3.1.0",
+    "@types/react": "^18.3.3",
+    "@types/react-dom": "^18.3.0",
+    "@typescript-eslint/eslint-plugin": "^7.15.0",
+    "@typescript-eslint/parser": "^7.15.0",
+    "@vitejs/plugin-react": "^4.3.1",
+    "eslint": "^8.57.0",
+    "eslint-plugin-react-hooks": "^4.6.2",
+    "eslint-plugin-react-refresh": "^0.4.7",
+    "glob": "^11.0.0",
+    "react": "^18.3.1",
+    "react-dom": "^18.3.1",
+    "react-router-dom": "^6.25.1",
+    "typescript": "^5.5.4",
+    "vite": "^5.3.4",
+    "vite-plugin-dts": "^4.0.1",
+    "vite-plugin-markdown": "^2.2.0",
+    "vitest": "^2.0.5"
+  }
+}

@@ -1,0 +1,35 @@
+---
+type: lesson
+title: useSupply
+focus: /src/components/SupplyViewer.tsx
+template: vite-react
+editor:
+  fileTree: false
+---
+
+## Ledger Supply
+
+Let's look at the preview on the bottom right, we'll notice that it is not displaying anything.
+This is because we haven't yet implemented the `useSupply` hook in our React application.
+
+To address this, we'll call the `useSupply` hook to handle the fetch call in the editor on the top right.
+
+
+```tsx add={4}
+import {useSupply} from '@awesome-algorand/react-query'
+
+export function SupplyViewer(){
+    const query = {isLoading: true, isError: false, error: undefined, data: undefined}
+
+    if(query.isLoading) return <div>Loading...</div>
+    if(query.isError) return <div>Error: {query.error.message}</div>
+
+    return (
+        <div>
+            <h2>Online: {query.data["online-money"]}</h2>
+            <h2>Total: {query.data["total-money"]}</h2>
+        </div>
+    )
+}
+
+```

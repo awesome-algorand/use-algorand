@@ -1,0 +1,136 @@
+---
+title: "Versions"
+description: Gets the versions.
+tags: [react, svelte, solid, vue, angular, rpc]
+---
+
+import IconTitle from '@/components/IconTitle.astro';
+import CodeTabItem from '@/components/CodeTabItem.astro';
+import {Tabs, LinkCard, Aside} from '@astrojs/starlight/components';
+
+> **GET** /versions
+
+#### Gets the versions.
+
+Retrieves the supported API versions, binary build versions, and genesis information.
+
+## Packages
+
+<Aside type="tip">We recommend using the library specific packages in order to have the best experience</Aside>
+### <IconTitle name="node">Node.js</IconTitle>
+<Tabs>
+    <CodeTabItem label="algosdk">
+        #### Install
+        ```bash
+        npm install algosdk --save
+        ```
+        #### Usage
+        ```js
+        import { Algodv2 } from "algosdk";
+
+        const client = new Algodv2( "", "https://testnet-api.algonode.cloud", 443 );
+        const result = await client.versionsCheck().do();
+        ```
+        <LinkCard
+            title="Algosdk Documentation"
+            description="Learn more at the official documentation for algosdk"
+            href="https://algorand.github.io/js-algorand-sdk/classes/Algodv2.html#versionsCheck"
+            target="_blank"
+            slot="after-code"
+        />
+    </CodeTabItem>
+    <CodeTabItem label="@algorandfoundation/algokit">
+        Coming Soon!
+        <LinkCard
+            title="Algokit Documentation"
+            description="Learn more at the official documentation for algokit"
+            href="https://developer.algorand.org/docs/get-started/algokit/"
+            target="_blank"
+            slot="after-code"
+        />
+    </CodeTabItem>
+    <CodeTabItem label="@awesome-algorand/algod-fetch">
+        <Aside type="danger" slot="before-code">This is an experimental client, it is not ready for production</Aside>
+        ```js
+        import { AlgodClient } from '@awesome-algorand/algod-fetch';
+
+        const client = new AlgodClient();
+        const result = await client.public.getVersion();
+        ```
+        <LinkCard
+            title="Algo-fetch Documentation"
+            description="Learn more at the experimental documentation for algo-fetch"
+            href="https://awesome-algorand.github.io/algo-fetch/packages/awesome-algorand/algod-fetch/classes/publicservice/#getversion"
+            target="_blank"
+            slot="after-code"
+        />
+    </CodeTabItem>
+</Tabs>
+### <IconTitle name="seti:react">React</IconTitle>
+<Tabs>
+    <CodeTabItem label="@awesome-alogrand/react-query">
+        #### Install
+        ```bash
+        npm install @awesome-algorand/react-query @txnlab/use-wallet-react @tanstack/react-query algosdk --save
+        ```
+        #### Usage
+        ```jsx
+        import { useVersion } from '@awesome-algorand/react-query';
+
+        export function VersionsViewer() {
+            const query = useVersion();
+        }
+        ```
+        <LinkCard
+            title="Tutorial"
+            description="Learn how to use the useVersion hook in a React application."
+            href="/react-query/algodv2/versions"
+            target="_blank"
+            slot="after-code"
+        />
+    </CodeTabItem>
+    <CodeTabItem label="@tanstack/react-query">
+        <Aside type="caution" slot="before-code">
+            Using the query-core library directly is not recommended!
+        </Aside>
+        #### Install
+        ```bash
+        npm install @awesome-algorand/query-core @txnlab/use-wallet-react @tanstack/react-query algosdk --save
+        ```
+        #### Usage
+        ```jsx
+        import { useQuery } from 'react-query';
+        import { getVersion } from '@awesome-algorand/query-core';
+        import { useWallet } from "@txnlab/use-wallet-react";
+
+        export function VersionsViewer() {
+            const walletManager = useWallet();
+            const query = useQuery(getVersion());
+        }
+        ```
+    </CodeTabItem>
+</Tabs>
+### <IconTitle name="seti:svelte">Svelte [WIP]</IconTitle>
+<Tabs>
+    <CodeTabItem label="@awesome-algorand/svelte-query">
+        Coming Soon!
+    </CodeTabItem>
+</Tabs>
+### <IconTitle name="information">Solid [WIP]</IconTitle>
+<Tabs>
+    <CodeTabItem label="@awesome-algorand/solid-query">
+        Coming Soon!
+    </CodeTabItem>
+</Tabs>
+### <IconTitle name="seti:vue">Vue [WIP]</IconTitle>
+<Tabs>
+    <CodeTabItem label="@awesome-algorand/vue-query">
+        Coming Soon!
+    </CodeTabItem>
+</Tabs>
+### <IconTitle name="information">Angular [WIP]</IconTitle>
+<Tabs>
+    <CodeTabItem label="@awesome-algorand/angular-query">
+        Coming Soon!
+    </CodeTabItem>
+</Tabs>

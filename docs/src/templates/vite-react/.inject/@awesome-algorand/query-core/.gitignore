@@ -1,5 +1,8 @@
-.npmrc
-
+# Ignore project files
+types
+lib/cjs/*
+!lib/cjs/package.json
+docs
 .idea
 
 # Logs
@@ -93,6 +96,8 @@ out
 
 # Nuxt.js build / generate output
 .nuxt
+dist/*
+!dist/package.json
 
 # Gatsby files
 .cache/

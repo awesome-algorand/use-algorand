@@ -1,0 +1,157 @@
+---
+title: "Account Application Information"
+description: Get account information about a given app.
+tags: [react, svelte, solid, vue, angular, rpc]
+---
+
+import IconTitle from '@/components/IconTitle.astro';
+import CodeTabItem from '@/components/CodeTabItem.astro';
+import {Tabs, LinkCard, Aside} from '@astrojs/starlight/components';
+
+> **GET** /v2/accounts/**\{address\}**/applications/**\{applicationId\}**?format=**\{format\}**
+
+#### Get account information about a given app.
+
+Given a specific account public key and application ID, this call returns the account’s application local state and global state (AppLocalState and AppParams, if either exists).
+Global state will only be returned if the provided address is the application’s creator.
+
+### Properties
+
+| Name               | Type                  | Description                                                                                               |
+|--------------------|-----------------------|-----------------------------------------------------------------------------------------------------------|
+| **address***       | `string`              | An account public key                                                                                     |
+| **applicationId*** | `number`              | An application identifier                                                                                 |
+| **format**         | `"json" \| "msgpack"` | Configures whether the response object is JSON or MessagePack encoded. If not provided, defaults to JSON. |
+
+\* indicates required property
+
+## Packages
+
+<Aside type="tip">We recommend using the library specific packages in order to have the best experience</Aside>
+### <IconTitle name="node">Node.js</IconTitle>
+<Tabs>
+    <CodeTabItem label="algosdk">
+        #### Install
+        ```bash
+        npm install algosdk --save
+        ```
+        #### Usage
+        ```js
+        import { Algodv2 } from "algosdk";
+
+        const data = {address: "BMG2OPCDNEVFG5LW4S6GT33PPEWXVJD7XEDLTED4BFWN5M4HXLZNCK3EWY", applicationId: 62368684}
+        const client = new Algodv2( "", "https://testnet-api.algonode.cloud", 443 );
+        const result = await client.accountApplicationInformation(data.address, data.applicationId).do();
+        ```
+        <LinkCard
+            title="Algosdk Documentation"
+            description="Learn more at the official documentation for algosdk"
+            href="https://algorand.github.io/js-algorand-sdk/classes/Algodv2.html#accountApplicationInformation"
+            target="_blank"
+            slot="after-code"
+        />
+    </CodeTabItem>
+    <CodeTabItem label="@algorandfoundation/algokit">
+        Coming Soon!
+        <LinkCard
+            title="Algokit Documentation"
+            description="Learn more at the official documentation for algokit"
+            href="https://developer.algorand.org/docs/get-started/algokit/"
+            target="_blank"
+            slot="after-code"
+        />
+    </CodeTabItem>
+    <CodeTabItem label="@awesome-algorand/algod-fetch">
+        <Aside type="danger" slot="before-code">This is an experimental client, it is not ready for production</Aside>
+        #### Install
+        ```bash
+        npm install @awesome-algorand/algo-fetch --save
+        ```
+        #### Usage
+        ```js
+        import { AlgodClient } from '@awesome-algorand/algod-fetch';
+
+        const data = {address: "BMG2OPCDNEVFG5LW4S6GT33PPEWXVJD7XEDLTED4BFWN5M4HXLZNCK3EWY", applicationId: 62368684}
+        const client = new AlgodClient();
+        const result = await client.public.accountApplicationInformation(data);
+        ```
+        <LinkCard
+            title="Algo-fetch Documentation"
+            description="Learn more at the experimental documentation for algo-fetch"
+            href="https://awesome-algorand.github.io/algo-fetch/packages/awesome-algorand/algod-fetch/classes/publicservice/#accountapplicationinformation"
+            target="_blank"
+            slot="after-code"
+        />
+    </CodeTabItem>
+</Tabs>
+### <IconTitle name="seti:react">React</IconTitle>
+<Tabs>
+    <CodeTabItem label="@awesome-algorand/react-query">
+        #### Install
+        ```bash
+        npm install @awesome-algorand/react-query @txnlab/use-wallet-react @tanstack/react-query algosdk --save
+        ```
+        #### Usage
+        ```jsx
+        import { useAccountApplicationInformation } from '@awesome-algorand/react-query';
+
+        export function AccountApplicationInformationViewer() {
+            const data = {address: "BMG2OPCDNEVFG5LW4S6GT33PPEWXVJD7XEDLTED4BFWN5M4HXLZNCK3EWY", applicationId: 62368684}
+            const query = useAccountApplicationInformation(data);
+        }
+        ```
+        <LinkCard
+            title="Tutorial"
+            description="Learn how to use the useAccountApplicationInformation hook in a React application."
+            href="/react-query/algodv2/account-application-information"
+            target="_blank"
+            slot="after-code"
+        />
+    </CodeTabItem>
+    <CodeTabItem label="@tanstack/react-query">
+        <Aside type="caution" slot="before-code">
+            Using the query-core library directly is not recommended!
+        </Aside>
+        #### Install
+        ```bash
+        npm install @awesome-algorand/query-core @txnlab/use-wallet-react @tanstack/react-query algosdk --save
+        ```
+        #### Usage
+        ```jsx
+        import { useQuery } from '@tanstack/react-query';
+        import { accountApplicationInformation } from '@awesome-algorand/query-core';
+        import { useWallet } from "@txnlab/use-wallet-react";
+
+        export function AccountApplicationInformationViewer() {
+            const walletManager = useWallet();
+            const data = {address: "BMG2OPCDNEVFG5LW4S6GT33PPEWXVJD7XEDLTED4BFWN5M4HXLZNCK3EWY", applicationId: 62368684}
+            const query = useQuery(accountApplicationInformation(data));
+        }
+        ```
+    </CodeTabItem>
+</Tabs>
+### <IconTitle name="seti:svelte">Svelte [WIP]</IconTitle>
+<Tabs>
+    <CodeTabItem label="@awesome-algorand/svelte-query">
+        Coming Soon!
+    </CodeTabItem>
+</Tabs>
+### <IconTitle name="information">Solid [WIP]</IconTitle>
+<Tabs>
+    <CodeTabItem label="@awesome-algorand/solid-query">
+        Coming Soon!
+    </CodeTabItem>
+</Tabs>
+### <IconTitle name="seti:vue">Vue [WIP]</IconTitle>
+<Tabs>
+    <CodeTabItem label="@awesome-algorand/vue-query">
+        Coming Soon!
+    </CodeTabItem>
+</Tabs>
+### <IconTitle name="information">Angular [WIP]</IconTitle>
+<Tabs>
+    <CodeTabItem label="@awesome-algorand/angular-query">
+        Coming Soon!
+    </CodeTabItem>
+</Tabs>
+

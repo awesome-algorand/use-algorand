@@ -1,0 +1,10 @@
+---
+import {Icon} from '@astrojs/starlight/components'
+
+const { target, size, svelte, react } = Astro.props;
+---
+
+<div style={{display: "flex", gap: "5px"}}>
+    {react && <a target={target} href={react}><Icon name="seti:react" size={size}/></a>}
+    {svelte && <a target={target} href={svelte}><Icon name="seti:svelte" size={size}/></a>}
+</div>
