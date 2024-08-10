@@ -1,6 +1,6 @@
-import type {QueryOptions} from "@tanstack/query-core";
+import type {QueryKey, QueryOptions} from "@tanstack/query-core";
 import type {
-    AccountApplicationInformationData,
+    AccountApplicationInformationData, AccountApplicationInformationResponse,
     AccountAssetInformationData,
     AccountInformationData,
     AlgodClient,
@@ -18,24 +18,25 @@ import type {
     PendingTransactionInformationData,
     WaitForBlockData,
 } from "@awesome-algorand/algod-fetch";
+
+
 /**
  * Get Account Application Information Query Options
  *
  * @param {AlgodClient} client AlgodClient
  * @param {AccountApplicationInformationData} data The address and application ID to look up.
  * @param {QueryOptions} [options] QueryOption overrides
- * @return {QueryOptions} QueryOption for use with @tanstack
  * @see https://awesome-algorand.github.io/algo-fetch/packages/awesome-algorand/algod-fetch/classes/publicservice/#accountapplicationinformation
  */
-export function accountApplicationInformation(
+export function accountApplicationInformation<T>(
     client: AlgodClient,
     data: AccountApplicationInformationData,
-    options: QueryOptions = {},
+    options: T = {} as T,
 ) {
     return {
         queryKey: [client.request.config.BASE, 'accountApplicationInformation', data],
         queryFn: () => client.public.accountApplicationInformation(data),
-        ...options as object
+        ...options
     }
 }
 
@@ -48,10 +49,10 @@ export function accountApplicationInformation(
  * @return {QueryOptions} QueryOption for use with @tanstack
  * @see https://awesome-algorand.github.io/algo-fetch/packages/awesome-algorand/algod-fetch/classes/publicservice/#accountassetinformation
  */
-export function accountAssetInformation(
+export function accountAssetInformation<T>(
     client: AlgodClient,
     data: AccountAssetInformationData,
-    options: QueryOptions = {},
+    options: T = {} as T,
 ) {
     return {
         queryKey: [client.request.config.BASE, 'accountAssetInformation', data],
@@ -68,15 +69,15 @@ export function accountAssetInformation(
  * @param {QueryOptions} [options] QueryOption overrides
  * @see https://awesome-algorand.github.io/algo-fetch/packages/awesome-algorand/algod-fetch/classes/publicservice/#accountinformation
  */
-export function accountInformation(
+export function accountInformation<T>(
     client: AlgodClient,
     data: AccountInformationData,
-    options: QueryOptions = {},
+    options: T = {} as T,
 ) {
     return {
         queryKey: [client.request.config.BASE, 'accountInformation', data],
         queryFn: () => client.public.accountInformation(data),
-        ...options as object
+        ...options
     }
 }
 
@@ -88,17 +89,17 @@ export function accountInformation(
  * @param {QueryOptions} [options] QueryOption overrides
  * @see https://awesome-algorand.github.io/algo-fetch/packages/awesome-algorand/algod-fetch/classes/publicservice/#getblock
  */
-export function getBlock(
+export function getBlock<T>(
     client: AlgodClient,
     data: GetBlockData,
-    options: QueryOptions = {},
+    options: T  = {} as T,
 ) {
     return {
         queryKey: [client.request.config.BASE, 'getBlock', data],
         queryFn: () => client.public.getBlock(data),
         staleTime: Infinity,
         cacheTime: Infinity,
-        ...options as object
+        ...options
     }
 }
 

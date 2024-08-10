@@ -1,5 +1,5 @@
 import type {Algodv2} from "algosdk";
-import type {QueryKey, QueryOptions, QueryObserverOptions, OmitKeyof, QueryFunction} from "@tanstack/query-core";
+import type {QueryKey, QueryOptions, QueryFunction} from "@tanstack/query-core";
 import type {
     AccountApplicationInformationData, AccountApplicationInformationResponse,
     AccountAssetInformationData,
@@ -18,46 +18,20 @@ import type {
     PendingTransactionInformationData,
     WaitForBlockData,
 } from "@awesome-algorand/algod-fetch";
-import {applyQuery} from "./common.js";
-import {ApiError} from '@awesome-algorand/core-fetch'
 
-export interface UseBaseQueryOptions<
-    TQueryFnData = unknown,
-    TError = ApiError,
-    TData = TQueryFnData,
-    TQueryData = TQueryFnData,
-    TQueryKey extends QueryKey = QueryKey,
-> extends QueryObserverOptions<
-    TQueryFnData,
-    TError,
-    TData,
-    TQueryData,
-    TQueryKey
-> {}
-
-export interface UseQueryOptions<
-    TQueryFnData = unknown,
-    TError = ApiError,
-    TData = TQueryFnData,
-    TQueryKey extends QueryKey = QueryKey,
-> extends OmitKeyof<
-    UseBaseQueryOptions<TQueryFnData, TError, TData, TQueryFnData, TQueryKey>,
-    'suspense'
-> {}
 /**
  * Get Account Application Information Query Options
  *
  * @param {Algodv2} client The Algodv2 client to use.
- @param {AccountApplicationInformationData} data The address and application ID to look up.
+ * @param {AccountApplicationInformationData} data The address and application ID to look up.
  * @param {QueryOptions} [options] QueryOption overrides
- * @return {QueryOptions} QueryOption for use with @tanstack
  * @see https://algorand.github.io/js-algorand-sdk/classes/Algodv2.html#accountApplicationInformation
  */
-export function accountApplicationInformation(
+export function accountApplicationInformation<T>(
     client: Algodv2,
     data: AccountApplicationInformationData,
-    options?: QueryOptions
-): QueryOptions {
+    options: T = {} as T,
+) {
     return {
         //@ts-expect-error, access private baseURL
         queryKey: [client.c.bc.baseURL.origin, 'accountApplicationInformation', data],
@@ -72,14 +46,13 @@ export function accountApplicationInformation(
  * @param {Algodv2} client The Algodv2 client to use.
  * @param {AccountAssetInformationData} data The address and asset ID to look up.
  * @param {QueryOptions} [options] QueryOption overrides
- * @return {QueryOptions} QueryOption for use with @tanstack
  * @see https://algorand.github.io/js-algorand-sdk/classes/Algodv2.html#accountAssetInformation
  */
-export function accountAssetInformation(
+export function accountAssetInformation<T>(
     client: Algodv2,
     data: AccountAssetInformationData,
-    options?: QueryOptions,
-): QueryOptions {
+    options: T = {} as T,
+) {
     return {
         //@ts-expect-error, access private baseURL
         queryKey: [client.c.bc.baseURL.origin, 'accountAssetInformation', data],
@@ -94,21 +67,17 @@ export function accountAssetInformation(
  * @param {Algodv2} client The Algodv2 client to use.
  * @param {AccountInformationData} data The address to look up.
  * @param {QueryOptions} [options] QueryOption overrides
- * @return {QueryOptions} QueryOption for use with @tanstack
  * @see https://algorand.github.io/js-algorand-sdk/classes/Algodv2.html#accountInformation
  */
-export function accountInformation(
+export function accountInformation<T>(
     client: Algodv2,
     data: AccountInformationData,
-    options?: QueryOptions,
-): QueryOptions {
-    const jsonRequest = client.accountInformation(data.address)
-    // eslint-disable-next-line @typescript-eslint/no-unused-vars
-    const {address, format, ...query} = data
+    options: T = {} as T,
+) {
     return {
         //@ts-expect-error, access private baseURL
         queryKey: [client.c.bc.baseURL.origin, 'accountInformation', data],
-        queryFn: () => applyQuery<typeof jsonRequest>(jsonRequest, query).do(),
+        queryFn: () => client.accountInformation(data.address).do(),
         ...options
     }
 }
@@ -121,10 +90,10 @@ export function accountInformation(
  * @param {object} [options] QueryOption overrides
  * @see https://algorand.github.io/js-algorand-sdk/classes/Algodv2.html#block
  */
-export function getBlock(
+export function getBlock<T>(
     client: Algodv2,
     data: GetBlockData,
-    options?: object,
+    options: T  = {} as T,
 ) {
     return {
         //@ts-expect-error, access private baseURL
@@ -141,18 +110,16 @@ export function getBlock(
  *
  * @param {Algodv2} client The Algodv2 client to use.
  * @param {QueryOptions} [options] QueryOption overrides
- * @return {QueryOptions} QueryOption for use with @tanstack
  * @see https://algorand.github.io/js-algorand-sdk/classes/Algodv2.html#genesis
  */
-export function getGenesis(
+export function getGenesis<T>(
     client: Algodv2,
-    options?: QueryOptions,
-): QueryOptions {
+    options: T  = {} as T,
+) {
     return {
         //@ts-expect-error, access private baseURL
         queryKey: [client.c.bc.baseURL.origin, 'getGenesis'],
         queryFn: () => client.genesis().do(),
-        // @ts-expect-error, adding staleTime for now
         staleTime: Infinity,
         cacheTime: Infinity,
         ...options
@@ -165,14 +132,13 @@ export function getGenesis(
  * @param {Algodv2} client The Algodv2 client to use.
  * @param {GetApplicationBoxByNameData} data Application and box name to look up.* @param {QueryOptions} [options] QueryOption overrides
  * @param {QueryOptions} [options] QueryOption overrides
- * @return {QueryOptions} QueryOption for use with @tanstack
  * @see https://algorand.github.io/js-algorand-sdk/classes/Algodv2.html#getApplicationBoxByName
  */
-export function getApplicationBoxByName(
+export function getApplicationBoxByName<T>(
     client: Algodv2,
     data: GetApplicationBoxByNameData,
-    options?: QueryOptions,
-): QueryOptions {
+    options: T  = {} as T,
+) {
     const encoder = new TextEncoder()
     return {
         //@ts-expect-error, access private baseURL
@@ -188,14 +154,13 @@ export function getApplicationBoxByName(
  * @param {Algodv2} client The Algodv2 client to use.
  * @param {GetApplicationBoxesData} data The application ID to look up.
  * @param {QueryOptions} [options] QueryOption overrides
- * @return {QueryOptions} QueryOption for use with @tanstack
  * @see https://algorand.github.io/js-algorand-sdk/classes/Algodv2.html#getApplicationBoxes
  */
-export function getApplicationBoxes(
+export function getApplicationBoxes<T>(
     client: Algodv2,
     data: GetApplicationBoxesData,
-    options?: QueryOptions,
-): QueryOptions {
+    options: T  = {} as T,
+) {
     // TODO: .max()
     return {
         //@ts-expect-error, access private baseURL
@@ -211,14 +176,13 @@ export function getApplicationBoxes(
  * @param {Algodv2} client The Algodv2 client to use.
  * @param {GetApplicationByIdData} data The application ID to look up.
  * @param {QueryOptions} [options] QueryOption overrides
- * @return {QueryOptions} QueryOption for use with @tanstack
  * @see https://algorand.github.io/js-algorand-sdk/classes/Algodv2.html#getApplicationByID
  */
-export function getApplicationById(
+export function getApplicationById<T>(
     client: Algodv2,
     data: GetApplicationByIdData,
-    options?: QueryOptions,
-): QueryOptions {
+    options: T  = {} as T,
+) {
     return {
         //@ts-expect-error, access private baseURL
         queryKey: [client.c.bc.baseURL.origin, 'getApplicationById', data],
@@ -233,14 +197,13 @@ export function getApplicationById(
  * @param {Algodv2} client The Algodv2 client to use.
  * @param {GetAssetByIdData} data The asset ID to look up.
  * @param {QueryOptions} [options] QueryOption overrides
- * @return {QueryOptions} QueryOption for use with @tanstack
  * @see https://algorand.github.io/js-algorand-sdk/classes/Algodv2.html#getAssetByID
  */
-export function getAssetById(
+export function getAssetById<T>(
     client: Algodv2,
     data: GetAssetByIdData,
-    options?: QueryOptions,
-): QueryOptions {
+    options: T  = {} as T,
+) {
     return {
         //@ts-expect-error, access private baseURL
         queryKey: [client.c.bc.baseURL.origin, 'getAssetById', data],
@@ -255,19 +218,17 @@ export function getAssetById(
  * @param {Algodv2} client The Algodv2 client to use.
  * @param {GetBlockHashData} data The round number to be searched for
  * @param {QueryOptions} [options] QueryOption overrides
- * @return {QueryOptions} QueryOption for use with @tanstack
  * @see https://algorand.github.io/js-algorand-sdk/classes/Algodv2.html#getBlockHash
  */
-export function getBlockHash(
+export function getBlockHash<T>(
     client: Algodv2,
     data: GetBlockHashData,
-    options?: QueryOptions,
-): QueryOptions {
+    options: T  = {} as T,
+) {
     return {
         //@ts-expect-error, access private baseURL
         queryKey: [client.c.bc.baseURL.origin, 'getBlockHash', data],
         queryFn: () => client.getBlockHash(data.round).do(),
-        // @ts-expect-error, adding staleTime for now
         staleTime: Infinity,
         cacheTime: Infinity,
         ...options
@@ -279,13 +240,12 @@ export function getBlockHash(
  *
  * @param {Algodv2} client The Algodv2 client to use.
  * @param {QueryOptions} [options] QueryOption overrides
- * @return {QueryOptions} QueryOption for use with @tanstack
  * @see https://algorand.github.io/js-algorand-sdk/classes/Algodv2.html#getBlockOffsetTimestamp
  */
-export function getBlockTimeStampOffset(
+export function getBlockTimeStampOffset<T>(
     client: Algodv2,
-    options?: QueryOptions,
-): QueryOptions {
+    options: T  = {} as T,
+) {
     return {
         //@ts-expect-error, access private baseURL
         queryKey: [client.c.bc.baseURL.origin, 'getBlockTimeStampOffset'],
@@ -300,14 +260,13 @@ export function getBlockTimeStampOffset(
  * @param {Algodv2} client The Algodv2 client to use.
  * @param {GetLedgerStateDeltaData} data The round number to be searched for
  * @param {QueryOptions} [options] QueryOption overrides
- * @return {QueryOptions} QueryOption for use with @tanstack
  * @see https://algorand.github.io/js-algorand-sdk/classes/Algodv2.html#getLedgerStateDelta
  */
-export function getLedgerStateDelta(
+export function getLedgerStateDelta<T>(
     client: Algodv2,
     data: GetLedgerStateDeltaData,
-    options?: QueryOptions,
-): QueryOptions {
+    options: T  = {} as T,
+) {
     return {
         //@ts-expect-error, access private baseURL
         queryKey: [client.c.bc.baseURL.origin, 'getLedgerStateDelta', data],
@@ -322,14 +281,13 @@ export function getLedgerStateDelta(
  * @param {Algodv2} client The Algodv2 client to use.
  * @param {GetLedgerStateDeltaForTransactionGroupData} data The transaction group ID to be searched for
  * @param {QueryOptions} [options] QueryOption overrides
- * @return {QueryOptions} QueryOption for use with @tanstack
  * @see https://algorand.github.io/js-algorand-sdk/classes/Algodv2.html#getLedgerStateDeltaForTransactionGroup
  */
-export function getLedgerStateDeltaForTransactionGroup(
+export function getLedgerStateDeltaForTransactionGroup<T>(
     client: Algodv2,
     data: GetLedgerStateDeltaForTransactionGroupData,
-    options?: QueryOptions,
-): QueryOptions {
+    options: T  = {} as T,
+) {
     return {
         //@ts-expect-error, access private baseURL
         queryKey: [client.c.bc.baseURL.origin, 'getLedgerStateDeltaForTransactionGroup', data],
@@ -343,13 +301,12 @@ export function getLedgerStateDeltaForTransactionGroup(
  *
  * @param {Algodv2} client The Algodv2 client to use.
  * @param {QueryOptions} [options] QueryOption overrides
- * @return {QueryOptions} QueryOption for use with @tanstack
  * @see https://algorand.github.io/js-algorand-sdk/classes/Algodv2.html#getSyncRound
  */
-export function getSyncRound(
+export function getSyncRound<T>(
     client: Algodv2,
-    options?: QueryOptions,
-): QueryOptions {
+    options: T  = {} as T,
+) {
     return {
         //@ts-expect-error, access private baseURL
         queryKey: [client.c.bc.baseURL.origin, 'getSyncRound'],
@@ -364,14 +321,13 @@ export function getSyncRound(
  * @param {Algodv2} client The Algodv2 client to use.
  * @param {GetTransactionGroupLedgerStateDeltasForRoundData} data The round number to be searched for
  * @param {QueryOptions} [options] QueryOption overrides
- * @return {QueryOptions} QueryOption for use with @tanstack
  * @see https://algorand.github.io/js-algorand-sdk/classes/Algodv2.html#getTransactionGroupLedgerStateDeltasForRound
  */
-export function getTransactionGroupLedgerStateDeltasForRound(
+export function getTransactionGroupLedgerStateDeltasForRound<T>(
     client: Algodv2,
     data: GetTransactionGroupLedgerStateDeltasForRoundData,
-    options?: QueryOptions,
-): QueryOptions {
+    options: T  = {} as T,
+) {
     return {
         //@ts-expect-error, access private baseURL
         queryKey: [client.c.bc.baseURL.origin, 'getTransactionGroupLedgerStateDeltasForRound', data],
@@ -385,13 +341,12 @@ export function getTransactionGroupLedgerStateDeltasForRound(
  *
  * @param {Algodv2} client The Algodv2 client to use.
  * @param {QueryOptions} [options] QueryOption overrides
- * @return {QueryOptions} QueryOption for use with @tanstack
  * @see https://algorand.github.io/js-algorand-sdk/classes/Algodv2.html#getTransactionParams
  */
-export function transactionParams(
+export function transactionParams<T>(
     client: Algodv2,
-    options?: QueryOptions,
-): QueryOptions {
+    options: T  = {} as T,
+) {
     return {
         //@ts-expect-error, access private baseURL
         queryKey: [client.c.bc.baseURL.origin, 'transactionParams'],
@@ -406,19 +361,17 @@ export function transactionParams(
  * @param {Algodv2} client The Algodv2 client to use.
  * @param {GetTransactionProofData} data The transaction ID and round number to be searched for
  * @param {QueryOptions} [options] QueryOption overrides
- * @return {QueryOptions} QueryOption for use with @tanstack
  * @see https://algorand.github.io/js-algorand-sdk/classes/Algodv2.html#getTransactionProof
  */
-export function getTransactionProof(
+export function getTransactionProof<T>(
     client: Algodv2,
     data: GetTransactionProofData,
-    options?: QueryOptions,
-): QueryOptions {
+    options: T  = {} as T,
+) {
     return {
         //@ts-expect-error, access private baseURL
         queryKey: [client.c.bc.baseURL.origin, 'getTransactionProof', data],
         queryFn: () => client.getTransactionProof(data.round, data.txid).do(),
-        // @ts-expect-error, adding staleTime for now
         staleTime: Infinity,
         cacheTime: Infinity,
         ...options
@@ -430,13 +383,12 @@ export function getTransactionProof(
  *
  * @param {Algodv2} client The Algodv2 client to use.
  * @param {QueryOptions} [options] QueryOption overrides
- * @return {QueryOptions} QueryOption for use with @tanstack
  * @see https://algorand.github.io/js-algorand-sdk/classes/Algodv2.html#healthCheck
  */
-export function healthCheck(
+export function healthCheck<T>(
     client: Algodv2,
-    options?: QueryOptions,
-): QueryOptions {
+    options: T  = {} as T,
+) {
     return {
         //@ts-expect-error, access private baseURL
         queryKey: [client.c.bc.baseURL.origin, 'healthCheck'],
@@ -451,15 +403,13 @@ export function healthCheck(
  * @param {Algodv2} client The Algodv2 client to use.
  * @param {GetPendingTransactionsByAddressData} data The address to look up.
  * @param {QueryOptions} [options] QueryOption overrides
- * @return {QueryOptions} QueryOption for use with @tanstack
  * @see https://algorand.github.io/js-algorand-sdk/classes/Algodv2.html#pendingTransactionByAddress
  */
-export function getPendingTransactionsByAddress(
+export function getPendingTransactionsByAddress<T>(
     client: Algodv2,
     data: GetPendingTransactionsByAddressData,
-    options?: QueryOptions,
-): QueryOptions {
-    //TODO: Max params
+    options: T  = {} as T,
+) {
     return {
         //@ts-expect-error, access private baseURL
         queryKey: [client.c.bc.baseURL.origin, 'getPendingTransactionsByAddress', data],
@@ -474,14 +424,13 @@ export function getPendingTransactionsByAddress(
  * @param {Algodv2} client The Algodv2 client to use.
  * @param {PendingTransactionInformationData} data The transaction ID to look up.
  * @param {QueryOptions} [options] QueryOption overrides
- * @return {QueryOptions} QueryOption for use with @tanstack
  * @see https://algorand.github.io/js-algorand-sdk/classes/Algodv2.html#pendingTransactionInformation
  */
-export function pendingTransactionInformation(
+export function pendingTransactionInformation<T>(
     client: Algodv2,
     data: PendingTransactionInformationData,
-    options?: QueryOptions,
-): QueryOptions {
+    options: T  = {} as T,
+) {
     return {
         //@ts-expect-error, access private baseURL
         queryKey: [client.c.bc.baseURL.origin, 'pendingTransactionInformation', data],
@@ -495,13 +444,12 @@ export function pendingTransactionInformation(
  *
  * @param {Algodv2} client The Algodv2 client to use.
  * @param {QueryOptions} [options] QueryOption overrides
- * @return {QueryOptions} QueryOption for use with @tanstack
  * @see https://algorand.github.io/js-algorand-sdk/classes/Algodv2.html#pendingTransactionsInformation
  */
-export function getPendingTransactions(
+export function getPendingTransactions<T>(
     client: Algodv2,
-    options: QueryOptions,
-): QueryOptions {
+    options: T  = {} as T,
+) {
     return {
         //@ts-expect-error, access private baseURL
         queryKey: [client.c.bc.baseURL.origin, 'getPendingTransactions'],
@@ -515,13 +463,12 @@ export function getPendingTransactions(
  *
  * @param {Algodv2} client The Algodv2 client to use.
  * @param {QueryOptions} [options] QueryOption overrides
- * @return {QueryOptions} QueryOption for use with @tanstack
  * @see https://algorand.github.io/js-algorand-sdk/classes/Algodv2.html#ready
  */
-export function getReady(
+export function getReady<T>(
     client: Algodv2,
-    options?: QueryOptions,
-): QueryOptions {
+    options: T  = {} as T,
+) {
     return {
         //@ts-expect-error, access private baseURL
         queryKey: [client.c.bc.baseURL.origin, 'getReady'],
@@ -535,13 +482,12 @@ export function getReady(
  *
  * @param {Algodv2} client The Algodv2 client to use.
  * @param {QueryOptions} [options] QueryOption overrides
- * @return {QueryOptions} QueryOption for use with @tanstack
  * @see https://algorand.github.io/js-algorand-sdk/classes/Algodv2.html#status
  */
-export function getStatus(
+export function getStatus<T>(
     client: Algodv2,
-    options?: QueryOptions,
-): QueryOptions {
+    options: T  = {} as T,
+) {
     return {
         //@ts-expect-error, access private baseURL
         queryKey: [client.c.bc.baseURL.origin, 'getStatus'],
@@ -556,14 +502,13 @@ export function getStatus(
  * @param {Algodv2} client The Algodv2 client to use.
  * @param {WaitForBlockData} data The round number to be searched for
  * @param {QueryOptions} [options] QueryOption overrides
- * @return {QueryOptions} QueryOption for use with @tanstack
  * @see https://algorand.github.io/js-algorand-sdk/classes/Algodv2.html#statusAfterBlock
  */
-export function waitForBlock(
+export function waitForBlock<T>(
     client: Algodv2,
     data: WaitForBlockData,
-    options?: QueryOptions,
-): QueryOptions {
+    options: T  = {} as T,
+) {
     return {
         //@ts-expect-error, access private baseURL
         queryKey: [client.c.bc.baseURL.origin, 'waitForBlock', data],
@@ -577,13 +522,12 @@ export function waitForBlock(
  *
  * @param {Algodv2} client The Algodv2 client to use.
  * @param {QueryOptions} [options] QueryOption overrides
- * @return {QueryOptions} QueryOption for use with @tanstack
  * @see https://algorand.github.io/js-algorand-sdk/classes/Algodv2.html#supply
  */
-export function getSupply(
+export function getSupply<T>(
     client: Algodv2,
-    options?: QueryOptions,
-): QueryOptions {
+    options: T  = {} as T,
+) {
     return {
         //@ts-expect-error, access private baseURL
         queryKey: [client.c.bc.baseURL.origin, 'getSupply'],
@@ -597,13 +541,12 @@ export function getSupply(
  *
  * @param {Algodv2} client The Algodv2 client to use.
  * @param {QueryOptions} [options] QueryOption overrides
- * @return {QueryOptions} QueryOption for use with @tanstack
  * @see https://algorand.github.io/js-algorand-sdk/classes/Algodv2.html#versionsCheck
  */
-export function getVersion(
+export function getVersion<T>(
     client: Algodv2,
-    options?: QueryOptions,
-): QueryOptions {
+    options: T  = {} as T,
+) {
     return {
         //@ts-expect-error, access private baseURL
         queryKey: [client.c.bc.baseURL.origin, 'getVersion'],
