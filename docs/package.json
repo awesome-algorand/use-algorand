@@ -20,6 +20,7 @@
   "devDependencies": {
     "@astrojs/check": "^0.7.0",
     "@astrojs/react": "^3.6.0",
+    "@awesome-algorand/query-core": "file:../packages/query-core",
     "@awesome-algorand/react-query": "file:../packages/react-query",
     "@iconify-json/ph": "^1.1.13",
     "@iconify-json/svg-spinners": "^1.1.2",
