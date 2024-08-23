@@ -1,5 +1,4 @@
 import type {Algodv2} from "algosdk";
-import type {QueryKey, QueryOptions, QueryFunction} from "@tanstack/query-core";
 import type {
     AccountApplicationInformationData, AccountApplicationInformationResponse,
     AccountAssetInformationData,
@@ -19,6 +18,10 @@ import type {
     WaitForBlockData,
 } from "@awesome-algorand/algod-fetch";
 
+type Params = {
+    signal: AbortSignal
+}
+
 /**
  * Get Account Application Information Query Options
  *
@@ -35,7 +38,7 @@ export function accountApplicationInformation<T>(
     return {
         //@ts-expect-error, access private baseURL
         queryKey: [client.c.bc.baseURL.origin, 'accountApplicationInformation', data],
-        queryFn: () => client.accountApplicationInformation(data.address, data.applicationId).do(),
+        queryFn: ({signal}: Params) => client.accountApplicationInformation(data.address, data.applicationId).do(undefined, {signal}),
         ...options
     }
 }
@@ -56,7 +59,7 @@ export function accountAssetInformation<T>(
     return {
         //@ts-expect-error, access private baseURL
         queryKey: [client.c.bc.baseURL.origin, 'accountAssetInformation', data],
-        queryFn: () => client.accountAssetInformation(data.address, data.assetId).do(),
+        queryFn: ({signal}: Params) => client.accountAssetInformation(data.address, data.assetId).do(undefined, {signal}),
         ...options
     }
 }
@@ -77,7 +80,7 @@ export function accountInformation<T>(
     return {
         //@ts-expect-error, access private baseURL
         queryKey: [client.c.bc.baseURL.origin, 'accountInformation', data],
-        queryFn: () => client.accountInformation(data.address).do(),
+        queryFn: ({signal}: Params) => client.accountInformation(data.address).do(undefined, {signal}),
         ...options
     }
 }
@@ -98,7 +101,7 @@ export function getBlock<T>(
     return {
         //@ts-expect-error, access private baseURL
         queryKey: [client.c.bc.baseURL.origin, 'getBlock', data],
-        queryFn: () => client.block(data.round).do(),
+        queryFn: ({signal}: Params) => client.block(data.round).do(undefined, {signal}),
         staleTime: Infinity,
         cacheTime: Infinity,
         ...options
@@ -119,7 +122,7 @@ export function getGenesis<T>(
     return {
         //@ts-expect-error, access private baseURL
         queryKey: [client.c.bc.baseURL.origin, 'getGenesis'],
-        queryFn: () => client.genesis().do(),
+        queryFn: ({signal}: Params) => client.genesis().do(undefined, {signal}),
         staleTime: Infinity,
         cacheTime: Infinity,
         ...options
@@ -143,7 +146,7 @@ export function getApplicationBoxByName<T>(
     return {
         //@ts-expect-error, access private baseURL
         queryKey: [client.c.bc.baseURL.origin, 'getApplicationBoxByName', data],
-        queryFn: () => client.getApplicationBoxByName(data.applicationId, encoder.encode(data.name)).do(),
+        queryFn: ({signal}: Params) => client.getApplicationBoxByName(data.applicationId, encoder.encode(data.name)).do(undefined, {signal}),
         ...options
     }
 }
@@ -165,7 +168,7 @@ export function getApplicationBoxes<T>(
     return {
         //@ts-expect-error, access private baseURL
         queryKey: [client.c.bc.baseURL.origin, 'getApplicationBoxes', data],
-        queryFn: () => client.getApplicationBoxes(data.applicationId).do(),
+        queryFn: ({signal}: Params) => client.getApplicationBoxes(data.applicationId).do(undefined, {signal}),
         ...options
     }
 }
@@ -186,7 +189,7 @@ export function getApplicationById<T>(
     return {
         //@ts-expect-error, access private baseURL
         queryKey: [client.c.bc.baseURL.origin, 'getApplicationById', data],
-        queryFn: () => client.getApplicationByID(data.applicationId).do(),
+        queryFn: ({signal}: Params) => client.getApplicationByID(data.applicationId).do(undefined, {signal}),
         ...options
     }
 }
@@ -207,7 +210,7 @@ export function getAssetById<T>(
     return {
         //@ts-expect-error, access private baseURL
         queryKey: [client.c.bc.baseURL.origin, 'getAssetById', data],
-        queryFn: () => client.getAssetByID(data.assetId).do(),
+        queryFn: ({signal}: Params) => client.getAssetByID(data.assetId).do(undefined, {signal}),
         ...options
     }
 }
@@ -228,7 +231,7 @@ export function getBlockHash<T>(
     return {
         //@ts-expect-error, access private baseURL
         queryKey: [client.c.bc.baseURL.origin, 'getBlockHash', data],
-        queryFn: () => client.getBlockHash(data.round).do(),
+        queryFn: ({signal}: Params) => client.getBlockHash(data.round).do(undefined, {signal}),
         staleTime: Infinity,
         cacheTime: Infinity,
         ...options
@@ -249,7 +252,7 @@ export function getBlockTimeStampOffset<T>(
     return {
         //@ts-expect-error, access private baseURL
         queryKey: [client.c.bc.baseURL.origin, 'getBlockTimeStampOffset'],
-        queryFn: () => client.getBlockOffsetTimestamp().do(),
+        queryFn: ({signal}: Params) => client.getBlockOffsetTimestamp().do(undefined, {signal}),
         ...options
     }
 }
@@ -270,7 +273,7 @@ export function getLedgerStateDelta<T>(
     return {
         //@ts-expect-error, access private baseURL
         queryKey: [client.c.bc.baseURL.origin, 'getLedgerStateDelta', data],
-        queryFn: () => client.getLedgerStateDelta(data.round).do(),
+        queryFn: ({signal}: Params) => client.getLedgerStateDelta(data.round).do(undefined, {signal}),
         ...options
     }
 }
@@ -291,7 +294,7 @@ export function getLedgerStateDeltaForTransactionGroup<T>(
     return {
         //@ts-expect-error, access private baseURL
         queryKey: [client.c.bc.baseURL.origin, 'getLedgerStateDeltaForTransactionGroup', data],
-        queryFn: () => client.getLedgerStateDeltaForTransactionGroup(data.id).do(),
+        queryFn: ({signal}: Params) => client.getLedgerStateDeltaForTransactionGroup(data.id).do(undefined, {signal}),
         ...options
     }
 }
@@ -310,7 +313,7 @@ export function getSyncRound<T>(
     return {
         //@ts-expect-error, access private baseURL
         queryKey: [client.c.bc.baseURL.origin, 'getSyncRound'],
-        queryFn: () => client.getSyncRound().do(),
+        queryFn: ({signal}: Params) => client.getSyncRound().do(undefined, {signal}),
         ...options
     }
 }
@@ -331,7 +334,7 @@ export function getTransactionGroupLedgerStateDeltasForRound<T>(
     return {
         //@ts-expect-error, access private baseURL
         queryKey: [client.c.bc.baseURL.origin, 'getTransactionGroupLedgerStateDeltasForRound', data],
-        queryFn: () => client.getTransactionGroupLedgerStateDeltasForRound(data.round).do(),
+        queryFn: ({signal}: Params) => client.getTransactionGroupLedgerStateDeltasForRound(data.round).do(undefined, {signal}),
         ...options
     }
 }
@@ -350,7 +353,7 @@ export function transactionParams<T>(
     return {
         //@ts-expect-error, access private baseURL
         queryKey: [client.c.bc.baseURL.origin, 'transactionParams'],
-        queryFn: () => client.getTransactionParams().do(),
+        queryFn: ({signal}: Params) => client.getTransactionParams().do(undefined, {signal}),
         ...options
     }
 }
@@ -371,7 +374,7 @@ export function getTransactionProof<T>(
     return {
         //@ts-expect-error, access private baseURL
         queryKey: [client.c.bc.baseURL.origin, 'getTransactionProof', data],
-        queryFn: () => client.getTransactionProof(data.round, data.txid).do(),
+        queryFn: ({signal}: Params) => client.getTransactionProof(data.round, data.txid).do(undefined, {signal}),
         staleTime: Infinity,
         cacheTime: Infinity,
         ...options
@@ -392,7 +395,7 @@ export function healthCheck<T>(
     return {
         //@ts-expect-error, access private baseURL
         queryKey: [client.c.bc.baseURL.origin, 'healthCheck'],
-        queryFn: () => client.healthCheck().do().then(()=>null),
+        queryFn: ({signal}: Params) => client.healthCheck().do(undefined, {signal}).then(()=>null),
         ...options
     }
 }
@@ -413,7 +416,7 @@ export function getPendingTransactionsByAddress<T>(
     return {
         //@ts-expect-error, access private baseURL
         queryKey: [client.c.bc.baseURL.origin, 'getPendingTransactionsByAddress', data],
-        queryFn: () => client.pendingTransactionByAddress(data.address).do(),
+        queryFn: ({signal}: Params) => client.pendingTransactionByAddress(data.address).do(undefined, {signal}),
         ...options
     }
 }
@@ -434,7 +437,7 @@ export function pendingTransactionInformation<T>(
     return {
         //@ts-expect-error, access private baseURL
         queryKey: [client.c.bc.baseURL.origin, 'pendingTransactionInformation', data],
-        queryFn: () => client.pendingTransactionInformation(data.txid).do(),
+        queryFn: ({signal}: Params) => client.pendingTransactionInformation(data.txid).do(undefined, {signal}),
         ...options
     }
 }
@@ -453,7 +456,7 @@ export function getPendingTransactions<T>(
     return {
         //@ts-expect-error, access private baseURL
         queryKey: [client.c.bc.baseURL.origin, 'getPendingTransactions'],
-        queryFn: () => client.pendingTransactionsInformation().do(),
+        queryFn: ({signal}: Params) => client.pendingTransactionsInformation().do(undefined, {signal}),
         ...options
     }
 }
@@ -472,7 +475,7 @@ export function getReady<T>(
     return {
         //@ts-expect-error, access private baseURL
         queryKey: [client.c.bc.baseURL.origin, 'getReady'],
-        queryFn: () => client.ready().do(),
+        queryFn: ({signal}: Params) => client.ready().do(undefined, {signal}),
         ...options
     }
 }
@@ -491,7 +494,7 @@ export function getStatus<T>(
     return {
         //@ts-expect-error, access private baseURL
         queryKey: [client.c.bc.baseURL.origin, 'getStatus'],
-        queryFn: () => client.status().do(),
+        queryFn: ({signal}: Params) => client.status().do(undefined, {signal}),
         ...options
     }
 }
@@ -512,7 +515,7 @@ export function waitForBlock<T>(
     return {
         //@ts-expect-error, access private baseURL
         queryKey: [client.c.bc.baseURL.origin, 'waitForBlock', data],
-        queryFn: () => client.statusAfterBlock(data.round).do(),
+        queryFn: ({signal}: Params) => client.statusAfterBlock(data.round).do(undefined, {signal}),
         ...options
     }
 }
@@ -531,7 +534,7 @@ export function getSupply<T>(
     return {
         //@ts-expect-error, access private baseURL
         queryKey: [client.c.bc.baseURL.origin, 'getSupply'],
-        queryFn: () => client.supply().do(),
+        queryFn: ({signal}: Params) => client.supply().do(undefined, {signal}),
         ...options
     }
 }
@@ -550,7 +553,7 @@ export function getVersion<T>(
     return {
         //@ts-expect-error, access private baseURL
         queryKey: [client.c.bc.baseURL.origin, 'getVersion'],
-        queryFn: () => client.versionsCheck().do(),
+        queryFn: ({signal}: Params) => client.versionsCheck().do(undefined, {signal}),
         ...options
     }
 }
