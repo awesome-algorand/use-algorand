@@ -3,7 +3,8 @@
   "private": true,
   "description": "",
   "workspaces": [
-    "packages/*"
+    "packages/*",
+    "examples/*"
   ],
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
@@ -12,5 +13,16 @@
   "license": "MIT",
   "devDependencies": {
     "vite": "^5.3.5"
+  },
+  "overrides": {
+    "@algorandfoundation/algokit-subscriber": {
+      "algosdk": "3.0.0-beta.1"
+    },
+    "@txnlab/use-wallet": {
+      "algosdk": "3.0.0-beta.1"
+    },
+    "@txnlab/use-wallet-react": {
+      "algosdk": "3.0.0-beta.1"
+    }
   }
 }

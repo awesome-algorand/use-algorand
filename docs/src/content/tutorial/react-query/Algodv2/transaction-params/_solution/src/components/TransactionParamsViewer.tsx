@@ -8,7 +8,7 @@ export function TransactionParamsViewer() {
 
     return (
         <div>
-            <h2>Fee: {query.data.fee}</h2>
+            <h2>Fee: {query.data.fee.toString()}</h2>
         </div>
     )
 }

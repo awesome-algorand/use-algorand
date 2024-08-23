@@ -54,7 +54,7 @@
     "@awesome-algorand/algod-fetch": "^3.25.0",
     "@awesome-algorand/indexer-fetch": "^3.5.0",
     "@awesome-algorand/kmd-fetch": "^3.25.0",
-    "algosdk": "^v2.8.0"
+    "algosdk": "3.0.0-beta.1"
   },
   "peerDependenciesMeta": {
     "@awesome-algorand/algod-fetch": {

@@ -10,7 +10,7 @@ export function BlockHashViewer(){
     return (
         <div>
             <h2>Round: {data.round}</h2>
-            <h2>Hash: {query.data.blockHash}</h2>
+            <h2>Hash: {query.data.blockhash}</h2>
         </div>
     )
 }

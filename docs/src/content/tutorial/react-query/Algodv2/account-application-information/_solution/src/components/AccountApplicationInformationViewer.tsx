@@ -9,7 +9,7 @@ export function AccountApplicationInformationViewer() {
 
     return (
         <div>
-            <h2>Round: {query.data.round || "Unknown"}</h2>
+            <h2>Round: {query.data.round.toString() || "Unknown"}</h2>
             <pre>{JSON.stringify(query.data["app-local-state"], null, 2)}</pre>
         </div>
     )
