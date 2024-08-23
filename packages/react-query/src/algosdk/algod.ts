@@ -1,32 +1,34 @@
+// Arguments
 import {
-    Account,
     AccountApplicationInformationData,
-    AccountApplicationInformationResponse,
     AccountAssetInformationData,
-    AccountAssetInformationResponse,
     AccountInformationData,
-    Asset,
-    Application,
     GetApplicationBoxesData,
-    GetApplicationBoxesResponse,
     GetApplicationByIdData,
     GetAssetByIdData,
     GetBlockData,
     GetBlockHashData,
-    GetBlockHashResponse,
-    HealthCheckResponse,
     PendingTransactionInformationData,
-    PendingTransactionInformationResponse,
     GetPendingTransactionsByAddressData,
-    GetPendingTransactionsByAddressResponse,
-    GetStatusResponse,
-    GetSupplyResponse,
-    TransactionParamsResponse,
-    Version,
     WaitForBlockData,
-    WaitForBlockResponse,
-    GetPendingTransactionsResponse
 } from "@awesome-algorand/algod-fetch";
+
+import type {
+    Account,
+    AccountApplicationResponse,
+    AccountAssetResponse,
+    Asset,
+    Application,
+    BoxesResponse,
+    BlockHashResponse,
+    PendingTransactionResponse,
+    NodeStatusResponse,
+    SupplyResponse,
+    TransactionParametersResponse,
+    Version,
+    PendingTransactionsResponse
+
+} from 'algosdk/client/algod'
 import {BlockData} from '@algorandfoundation/algokit-subscriber/types/block'
 import {useQuery, UseQueryOptions} from "@tanstack/react-query";
 import {
@@ -48,9 +50,9 @@ import {useWallet} from "@txnlab/use-wallet-react";
 
 
 export type AccountApplicationInformationQuery = UseQueryOptions<
-    AccountApplicationInformationResponse,
+    AccountApplicationResponse,
     Error,
-    AccountApplicationInformationResponse,
+    AccountApplicationResponse,
     (string | AccountApplicationInformationData)[]
 >
 
@@ -66,9 +68,9 @@ export function useAccountApplicationInformation(data: AccountApplicationInforma
 }
 
 export type AccountAssetInformationQuery = UseQueryOptions<
-    AccountAssetInformationResponse,
+    AccountAssetResponse,
     Error,
-    AccountAssetInformationResponse,
+    AccountAssetResponse,
     (string | AccountAssetInformationData)[]
 >
 /**
@@ -120,9 +122,9 @@ export function useApplicationInformation(data: GetApplicationByIdData, options:
 }
 
 export type ApplicationBoxesQuery = UseQueryOptions<
-    GetApplicationBoxesResponse,
+    BoxesResponse,
     Error,
-    GetApplicationBoxesResponse,
+    BoxesResponse,
     (string | GetApplicationBoxesData)[]
 >
 export function useApplicationBoxes(data: GetApplicationBoxesData,options: ApplicationBoxesQuery = {} as ApplicationBoxesQuery) {
@@ -158,9 +160,9 @@ export function useBlockInformation(data: GetBlockData, options: BlockInformatio
 }
 
 export type BlockHashQuery = UseQueryOptions<
-    GetBlockHashResponse,
+    BlockHashResponse,
     Error,
-    GetBlockHashResponse,
+    BlockHashResponse,
     (string | GetBlockHashData)[]
 >
 export function useBlockHash(data: GetBlockHashData, options: BlockHashQuery = {} as BlockHashQuery) {
@@ -205,9 +207,9 @@ export function useGenesis(options:GenesisQuery = {} as GenesisQuery) {
 }
 
 export type HealthCheckQuery = UseQueryOptions<
-    HealthCheckResponse,
+    null,
     Error,
-    HealthCheckResponse,
+    null,
     (string)[]
 >
 export function useHealthCheck(options: HealthCheckQuery = {} as HealthCheckQuery) {
@@ -216,9 +218,9 @@ export function useHealthCheck(options: HealthCheckQuery = {} as HealthCheckQuer
 }
 
 export type PendingTransactionInformationQuery = UseQueryOptions<
-    PendingTransactionInformationResponse,
+    PendingTransactionResponse,
     Error,
-    PendingTransactionInformationResponse,
+    PendingTransactionResponse,
     (string | PendingTransactionInformationData)[]
 >
 export function usePendingTransaction(data: PendingTransactionInformationData, options: PendingTransactionInformationQuery = {} as PendingTransactionInformationQuery) {
@@ -227,9 +229,9 @@ export function usePendingTransaction(data: PendingTransactionInformationData, o
 }
 
 export type PendingTransactionsQuery = UseQueryOptions<
-    GetPendingTransactionsResponse,
+    PendingTransactionsResponse,
     Error,
-    GetPendingTransactionsResponse,
+    PendingTransactionsResponse,
     (string)[]
 >
 export function usePendingTransactions(options: PendingTransactionsQuery = {} as PendingTransactionsQuery) {
@@ -238,9 +240,9 @@ export function usePendingTransactions(options: PendingTransactionsQuery = {} as
 }
 
 export type GetPendingTransactionsByAddressQuery = UseQueryOptions<
-    GetPendingTransactionsByAddressResponse,
+    PendingTransactionsResponse,
     Error,
-    GetPendingTransactionsByAddressResponse,
+    PendingTransactionsResponse,
     (string | GetPendingTransactionsByAddressData)[]
 >
 export function useAccountPendingTransactions(data: GetPendingTransactionsByAddressData, options: GetPendingTransactionsByAddressQuery = {} as GetPendingTransactionsByAddressQuery) {
@@ -249,9 +251,9 @@ export function useAccountPendingTransactions(data: GetPendingTransactionsByAddr
 }
 
 export type StatusQuery = UseQueryOptions<
-    GetStatusResponse,
+    NodeStatusResponse,
     Error,
-    GetStatusResponse,
+    NodeStatusResponse,
     (string)[]
 >
 export function useStatus(options: StatusQuery = {} as StatusQuery) {
@@ -259,9 +261,9 @@ export function useStatus(options: StatusQuery = {} as StatusQuery) {
     return useQuery(getStatus(walletManager.algodClient, options))
 }
 export type SupplyQuery = UseQueryOptions<
-    GetSupplyResponse,
+    SupplyResponse,
     Error,
-    GetSupplyResponse,
+    SupplyResponse,
     (string)[]
 >
 export function useSupply(options: SupplyQuery = {} as SupplyQuery) {
@@ -270,9 +272,9 @@ export function useSupply(options: SupplyQuery = {} as SupplyQuery) {
 }
 
 export type TransactionParamsQuery = UseQueryOptions<
-    TransactionParamsResponse,
+    TransactionParametersResponse,
     Error,
-    TransactionParamsResponse,
+    TransactionParametersResponse,
     (string)[]
 >
 export function useTransactionParams(options: TransactionParamsQuery = {} as TransactionParamsQuery) {
@@ -292,9 +294,9 @@ export function useVersion(options: VersionQuery = {} as VersionQuery) {
 }
 
 export type WaitForBlockQuery = UseQueryOptions<
-    WaitForBlockResponse,
+    NodeStatusResponse,
     Error,
-    WaitForBlockResponse,
+    NodeStatusResponse,
     (string | WaitForBlockData)[]
 >
 export function useWaitForBlock(data: WaitForBlockData, options: WaitForBlockQuery = {} as WaitForBlockQuery) {

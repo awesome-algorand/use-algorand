@@ -35,7 +35,7 @@ export function accountApplicationInformation<T>(
     return {
         //@ts-expect-error, access private baseURL
         queryKey: [client.c.bc.baseURL.origin, 'accountApplicationInformation', data],
-        queryFn: (() => (client.accountApplicationInformation(data.address, data.applicationId).do() as unknown as AccountApplicationInformationResponse)) as QueryFunction<AccountApplicationInformationResponse, QueryKey, never> | undefined,
+        queryFn: () => client.accountApplicationInformation(data.address, data.applicationId).do(),
         ...options
     }
 }
@@ -270,7 +270,7 @@ export function getLedgerStateDelta<T>(
     return {
         //@ts-expect-error, access private baseURL
         queryKey: [client.c.bc.baseURL.origin, 'getLedgerStateDelta', data],
-        queryFn: () => client.getLedgerStateDelta(BigInt(data.round)).do(),
+        queryFn: () => client.getLedgerStateDelta(data.round).do(),
         ...options
     }
 }
@@ -331,7 +331,7 @@ export function getTransactionGroupLedgerStateDeltasForRound<T>(
     return {
         //@ts-expect-error, access private baseURL
         queryKey: [client.c.bc.baseURL.origin, 'getTransactionGroupLedgerStateDeltasForRound', data],
-        queryFn: () => client.getTransactionGroupLedgerStateDeltasForRound(BigInt(data.round)).do(),
+        queryFn: () => client.getTransactionGroupLedgerStateDeltasForRound(data.round).do(),
         ...options
     }
 }
@@ -392,7 +392,7 @@ export function healthCheck<T>(
     return {
         //@ts-expect-error, access private baseURL
         queryKey: [client.c.bc.baseURL.origin, 'healthCheck'],
-        queryFn: () => client.healthCheck().do(),
+        queryFn: () => client.healthCheck().do().then(()=>null),
         ...options
     }
 }

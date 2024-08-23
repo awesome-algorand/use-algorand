@@ -11,16 +11,17 @@
   "license": "Unlicense",
   "devDependencies": {
     "prettier": "^3.3.3",
-    "typescript": "^5.5.4"
+    "typescript": "^5.5.4",
+    "algosdk": "3.0.0-beta.1"
   },
   "dependencies": {
     "@algorandfoundation/algokit-subscriber": "^2.0.3",
     "@algorandfoundation/algokit-utils": "^6.1.2",
     "@awesome-algorand/react-query": "^0.0.0",
-    "@txnlab/use-wallet-react": "^3.1.0",
-    "algosdk": "^2.8.0"
+    "@txnlab/use-wallet-react": "^3.1.0"
   },
   "peerDependencies": {
-    "react": "^18.3.1"
+    "react": "^18.3.1",
+    "algosdk": "3.0.0-beta.1"
   }
 }
