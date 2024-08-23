@@ -9,8 +9,8 @@ export function ApplicationInformationViewer() {
 
     return (
         <div>
-            <h2>Application: {query.data.id || "Unknown"}</h2>
-            <h2>Creator: {query.data.params.creator || "Unknown"}</h2>
+            <h2>Application: {query.data.id.toString() || "Unknown"}</h2>
+            <h2>Creator: {query.data.params.creator.toString() || "Unknown"}</h2>
         </div>
     )
 }

@@ -9,7 +9,7 @@ export function AssetInformationViewer() {
 
     return (
         <div>
-            <h2>Asset: {query.data.index || "Unknown"}</h2>
+            <h2>Asset: {query.data.index.toString() || "Unknown"}</h2>
             <h2>Creator: {query.data.params.creator || "Unknown"}</h2>
         </div>
     )

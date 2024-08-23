@@ -9,8 +9,8 @@ export function AccountInformationViewer() {
 
     return (
         <div>
-            <h2>Round: {query.data.round || "Unknown"}</h2>
-            <h2>Amount: {query.data.amount || 0}</h2>
+            <h2>Round: {query.data.round.toString() || "Unknown"}</h2>
+            <h2>Amount: {query.data.amount.toString() || 0}</h2>
         </div>
     )
 }
