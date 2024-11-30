@@ -10,10 +10,11 @@
     "preview": "vite preview"
   },
   "dependencies": {
-    "@awesome-algorand/react-query": "file:./.inject/packages/react-query",
-    "@awesome-algorand/query-core": "file:./.inject/packages/query-core",
+    "@awesome-algorand/react-query": "*",
+    "@awesome-algorand/query-core": "*",
     "@tanstack/react-query": "^5.51.23",
     "@txnlab/use-wallet-react": "^4.0.0-beta.2",
+    "algosdk": "^3.0.0",
     "react": "^18.3.1",
     "react-dom": "^18.3.1"
   },
@@ -32,13 +33,13 @@
   },
   "overrides": {
     "@algorandfoundation/algokit-subscriber": {
-      "algosdk": "^3.0.0"
+      "algosdk": "$algosdk"
     },
     "@perawallet/connect": {
-      "algosdk": "^3.0.0"
+      "algosdk": "$algosdk"
     },
     "@blockstack/defly-connect": {
-      "algosdk": "^3.0.0"
+      "algosdk": "$algosdk"
     }
   }
 }

@@ -10,7 +10,7 @@ const walletManager = new WalletManager({
   wallets: [
       WalletId.MNEMONIC
   ],
-    network: NetworkId.TESTNET,
+    defaultNetwork: NetworkId.TESTNET,
 })
 
 const queryClient = new QueryClient()

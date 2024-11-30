@@ -24,6 +24,7 @@
     "@awesome-algorand/query-core": "*",
     "@awesome-algorand/react-query": "*",
     "@tanstack/react-query": "^5.51.23",
+    "@tutorialkit/astro": "^1.3.1",
     "@tutorialkit/theme": "^1.3.1",
     "@tutorialkit/types": "^1.3.1",
     "@txnlab/use-wallet-react": "^4.0.0-beta.2",
