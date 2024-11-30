@@ -1,6 +1,7 @@
 {
   "name": "use-algorand",
   "private": true,
+  "type": "module",
   "description": "",
   "workspaces": [
     "packages/*",
@@ -11,20 +12,6 @@
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "",
-  "license": "MIT",
-  "devDependencies": {
-    "vite": "^5.3.5"
-  },
-  "overrides": {
-    "@algorandfoundation/algokit-subscriber": {
-      "algosdk": "^3.0.0"
-    },
-    "@perawallet/connect": {
-      "algosdk": "^3.0.0"
-    },
-    "@blockstack/defly-connect": {
-      "algosdk": "^3.0.0"
-    }
-  }
+  "license": "MIT"
 
 }

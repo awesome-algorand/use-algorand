@@ -21,15 +21,14 @@ import type {
     Application,
     BoxesResponse,
     BlockHashResponse,
+    BlockResponse,
     PendingTransactionResponse,
     NodeStatusResponse,
     SupplyResponse,
     TransactionParametersResponse,
     Version,
     PendingTransactionsResponse
-
 } from 'algosdk/client/algod'
-import {BlockData} from '@algorandfoundation/algokit-subscriber/types/block'
 import {useQuery, UseQueryOptions} from "@tanstack/react-query";
 import {
     accountApplicationInformation,
@@ -144,9 +143,9 @@ export function useAssetInformation(data: GetAssetByIdData, options: AssetInform
 }
 
 export type BlockInformationQuery = UseQueryOptions<
-    BlockData,
+    BlockResponse,
     Error,
-    BlockData,
+    BlockResponse,
     (string | GetBlockData)[]
 >
 /**

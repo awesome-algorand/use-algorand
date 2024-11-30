@@ -1,7 +1,6 @@
 import {useEffect, useState} from "react";
 import { useWallet } from "@txnlab/use-wallet-react";
-import type {BlockTransaction, BlockData} from "@algorandfoundation/algokit-subscriber/types/block";
-import {useBlock} from "@awesome-algorand/react-query/lib/algosdk";
+import {useBlockInformation} from "@awesome-algorand/react-query/lib/algosdk";
 
 /**
  * Transaction Selector Hook
@@ -13,7 +12,7 @@ import {useBlock} from "@awesome-algorand/react-query/lib/algosdk";
  * @TODO Migrate to algokit-subscriber
  */
 export function useTransactionSelector(
-    selector: (txns: BlockTransaction[]) => boolean = () => true,
+    selector: (txns: any[]) => boolean = () => true,
 ) {
     /**
      * The algorand client
@@ -22,23 +21,23 @@ export function useTransactionSelector(
     /**
      * The last round that the selector returned true
      */
-    const [lastRound, setLastRound] = useState(0);
+    const [lastRound, setLastRound] = useState(BigInt(0));
     /**
      * The current round we are checking
      */
-    const [round, setRound] = useState(0);
+    const [round, setRound] = useState(BigInt(0));
     /**
      * The block for the current round
      */
-    const block = useBlock({round});
+    const block = useBlockInformation({round: Number(round)});
 
     // Check if the selector returns true for the current block
     useEffect(() => {
         if(typeof block.data === "undefined") return
-        let txns = (block.data as BlockData).block.txns
+        let txns = (block.data as any).block.txns
         if (Array.isArray(txns) && txns.length > 0) {
             if (selector(txns)) {
-                setLastRound(round);
+                setLastRound(BigInt(round));
             }
         }
     }, [round, block.data, selector]);
@@ -49,7 +48,7 @@ export function useTransactionSelector(
         manager.algodClient
             .statusAfterBlock(round)
             .do()
-            .then((b) => setRound(round === 0 ? b["last-round"] : round + 1));
+            .then((b) => setRound(round === BigInt(0) ? b.lastRound : round + BigInt(1)));
     }, [manager.algodClient, round]);
 
     // Return the last round that the selector returned true

@@ -70,5 +70,16 @@
     "algosdk": {
       "optional": true
     }
+  },
+  "overrides": {
+    "@algorandfoundation/algokit-subscriber": {
+      "algosdk": "$algosdk"
+    },
+    "@perawallet/connect": {
+      "algosdk": "$algosdk"
+    },
+    "@blockstack/defly-connect": {
+      "algosdk": "$algosdk"
+    }
   }
 }
