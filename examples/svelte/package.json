@@ -28,7 +28,7 @@
 		"@awesome-algorand/algod-fetch": "^3.25.0",
 		"@awesome-algorand/indexer-fetch": "^3.5.0",
 		"@awesome-algorand/kmd-fetch": "^3.25.0",
-		"@awesome-algorand/query-core": "^1.0.0",
+		"@awesome-algorand/query-core": "^0.0.1",
 		"@tanstack/svelte-query": "^5.51.16",
 		"svelte": "^4.0.0"
 	},
@@ -36,7 +36,7 @@
 		"@awesome-algorand/algod-fetch": "^3.25.0",
 		"@awesome-algorand/indexer-fetch": "^3.5.0",
 		"@awesome-algorand/kmd-fetch": "^3.25.0",
-		"@awesome-algorand/query-core": "^1.0.0",
+		"@awesome-algorand/query-core": "^0.0.1",
 		"@sveltejs/adapter-auto": "^3.0.0",
 		"@sveltejs/kit": "^2.0.0",
 		"@sveltejs/package": "^2.0.0",

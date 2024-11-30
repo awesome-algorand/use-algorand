@@ -13,7 +13,7 @@
     "@awesome-algorand/algod-fetch":"^3.25.0",
     "@awesome-algorand/indexer-fetch": "^3.5.0",
     "@awesome-algorand/kmd-fetch": "^3.25.0",
-    "@awesome-algorand/query-core": "^1.0.0",
+    "@awesome-algorand/query-core": "^0.0.1",
     "@tanstack/react-query": "^5.51.15",
     "@tanstack/react-query-devtools": "^5.51.15",
     "@txnlab/use-wallet-react": "^4.0.0-beta.2",

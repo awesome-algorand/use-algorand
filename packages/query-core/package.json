@@ -1,6 +1,6 @@
 {
   "name": "@awesome-algorand/query-core",
-  "version": "1.0.0",
+  "version": "0.0.1",
   "description": "Reusable Tanstack Queries for Algorand",
   "license": "MIT",
   "author": "Michael J Feher <mike@telluric.guru>",
