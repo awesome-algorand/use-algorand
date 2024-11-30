@@ -11,7 +11,7 @@ const queryClient = new QueryClient()
 // Create a manager instance
 const walletManager = new WalletManager({
     wallets: [],
-    network: NetworkId.TESTNET
+    defaultNetwork: NetworkId.TESTNET
 })
 // @ts-expect-error, document is defined in the browser
 ReactDOM.createRoot(document.getElementById('root')).render(

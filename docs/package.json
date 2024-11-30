@@ -11,30 +11,36 @@
     "start": "astro dev"
   },
   "dependencies": {
-    "@astrojs/starlight": "^0.25.4",
-    "@tutorialkit/components-react": "0.1.2",
+    "@astrojs/starlight": "^0.29.2",
+    "@tutorialkit/react": "^1.3.1",
     "astro-expressive-code": "^0.35.6",
     "react": "^18.3.1",
     "react-dom": "^18.3.1"
   },
   "devDependencies": {
-    "@astrojs/check": "^0.7.0",
-    "@astrojs/react": "^3.6.0",
-    "@awesome-algorand/query-core": "file:../packages/query-core",
-    "@awesome-algorand/react-query": "file:../packages/react-query",
-    "@iconify-json/ph": "^1.1.13",
-    "@iconify-json/svg-spinners": "^1.1.2",
+    "@astrojs/check": "^0.9.4",
+    "@astrojs/react": "^3.6.3",
+    "@awesome-algorand/query-core": "*",
+    "@awesome-algorand/react-query": "*",
     "@tanstack/react-query": "^5.51.23",
-    "@tutorialkit/astro": "0.1.2",
-    "@tutorialkit/types": "0.1.2",
-    "@txnlab/use-wallet-react": "^3.1.3",
+    "@tutorialkit/theme": "^1.3.1",
+    "@tutorialkit/types": "^1.3.1",
+    "@txnlab/use-wallet-react": "^4.0.0-beta.2",
     "@types/node": "^20.14.6",
     "@types/react": "^18.3.3",
-    "@unocss/reset": "^0.59.4",
-    "astro": "^4.12.0",
-    "fast-glob": "^3.3.2",
+    "astro": "^4.16.16",
     "prettier-plugin-astro": "^0.14.1",
-    "typescript": "^5.4.5",
-    "unocss": "^0.59.4"
+    "typescript": "^5.4.5"
+  },
+  "overrides": {
+    "@algorandfoundation/algokit-subscriber": {
+      "algosdk": "^3.0.0"
+    },
+    "@perawallet/connect": {
+      "algosdk": "^3.0.0"
+    },
+    "@blockstack/defly-connect": {
+      "algosdk": "^3.0.0"
+    }
   }
 }

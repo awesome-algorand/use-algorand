@@ -4,7 +4,8 @@
   "description": "",
   "workspaces": [
     "packages/*",
-    "examples/*"
+    "examples/*",
+    "docs"
   ],
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
@@ -16,13 +17,14 @@
   },
   "overrides": {
     "@algorandfoundation/algokit-subscriber": {
-      "algosdk": "3.0.0-beta.1"
+      "algosdk": "^3.0.0"
     },
-    "@txnlab/use-wallet": {
-      "algosdk": "3.0.0-beta.1"
+    "@perawallet/connect": {
+      "algosdk": "^3.0.0"
     },
-    "@txnlab/use-wallet-react": {
-      "algosdk": "3.0.0-beta.1"
+    "@blockstack/defly-connect": {
+      "algosdk": "^3.0.0"
     }
   }
+
 }

@@ -1,5 +1,5 @@
 // Arguments
-import {
+import type {
     AccountApplicationInformationData,
     AccountAssetInformationData,
     AccountInformationData,

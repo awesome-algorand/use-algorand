@@ -40,21 +40,22 @@
     "test": "c8 node --test ./tests"
   },
   "devDependencies": {
-    "@awesome-algorand/algod-fetch": "^3.25.0",
+    "@awesome-algorand/algod-fetch": "^3.27.0",
     "@awesome-algorand/indexer-fetch": "^3.5.0",
     "@tanstack/query-core": "^5.51.15",
     "@types/json-bigint": "^1.0.4",
     "@types/node": "^20.5.9",
+    "algosdk": "^3.0.0",
     "c8": "^8.0.1",
     "dotenv": "^16.3.1",
     "prettier": "^3.3.3",
     "typescript": "^5.5.4"
   },
   "peerDependencies": {
-    "@awesome-algorand/algod-fetch": "^3.25.0",
+    "@awesome-algorand/algod-fetch": "^3.27.0",
     "@awesome-algorand/indexer-fetch": "^3.5.0",
     "@awesome-algorand/kmd-fetch": "^3.25.0",
-    "algosdk": "3.0.0-beta.1"
+    "algosdk": "^3.0.0"
   },
   "peerDependenciesMeta": {
     "@awesome-algorand/algod-fetch": {

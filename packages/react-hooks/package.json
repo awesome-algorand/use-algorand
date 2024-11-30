@@ -12,7 +12,7 @@
   "devDependencies": {
     "prettier": "^3.3.3",
     "typescript": "^5.5.4",
-    "algosdk": "3.0.0-beta.1"
+    "algosdk": "^3.0.0"
   },
   "dependencies": {
     "@algorandfoundation/algokit-subscriber": "^2.0.3",
@@ -22,6 +22,6 @@
   },
   "peerDependencies": {
     "react": "^18.3.1",
-    "algosdk": "3.0.0-beta.1"
+    "algosdk": "^3.0.0"
   }
 }
