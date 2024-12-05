@@ -3,6 +3,8 @@
   "version": "0.0.1",
   "type": "module",
   "private": true,
+  "author": "Awesome Algorand",
+  "license": "The Unlicense",
   "scripts": {
     "astro": "astro",
     "build": "astro check && astro build",

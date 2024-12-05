@@ -36,7 +36,7 @@
 		"@awesome-algorand/algod-fetch": "^3.25.0",
 		"@awesome-algorand/indexer-fetch": "^3.5.0",
 		"@awesome-algorand/kmd-fetch": "^3.25.0",
-		"@awesome-algorand/query-core": "^0.0.1",
+		"@awesome-algorand/query-core": "^0.0.2",
 		"@sveltejs/adapter-auto": "^3.0.0",
 		"@sveltejs/kit": "^2.0.0",
 		"@sveltejs/package": "^2.0.0",

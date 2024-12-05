@@ -1,6 +1,8 @@
 {
 	"name": "svelte-example",
 	"version": "0.0.0",
+	"author": "Awesome Algorand",
+	"license": "The Unlicense",
 	"scripts": {
 		"dev": "vite dev",
 		"build": "vite build && npm run package",

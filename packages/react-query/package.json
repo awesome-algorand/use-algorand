@@ -1,7 +1,10 @@
 {
   "name": "@awesome-algorand/react-query",
-  "version": "0.0.3",
+  "version": "0.0.5",
   "type": "module",
+  "files": ["./lib/**"],
+  "author": "Awesome Algorand",
+  "license": "The Unlicense",
   "exports": {
     ".": {
       "types": "./lib/algosdk/index.d.ts",
@@ -20,13 +23,15 @@
     "lint": "eslint . --ext ts,tsx --report-unused-disable-directives --max-warnings 0",
     "preview": "vite preview"
   },
+  "dependencies": {
+    "@tanstack/react-query": "^5.51.15",
+    "@txnlab/use-wallet-react": "^4.0.0-beta.2"
+  },
   "peerDependencies": {
     "@awesome-algorand/algod-fetch": "^3.27.0",
     "@awesome-algorand/indexer-fetch": "^3.5.0",
     "@awesome-algorand/kmd-fetch": "^3.25.0",
     "@awesome-algorand/query-core": "^0.0.1",
-    "@tanstack/react-query": "^5.51.15",
-    "@txnlab/use-wallet-react": "^4.0.0-beta.2",
     "react": "^18.3.1",
     "react-dom": "^18.3.1"
   },
@@ -34,9 +39,8 @@
     "@awesome-algorand/algod-fetch": "^3.27.0",
     "@awesome-algorand/indexer-fetch": "^3.5.0",
     "@awesome-algorand/kmd-fetch": "^3.25.0",
-    "@awesome-algorand/query-core": "^0.0.1",
+    "@awesome-algorand/query-core": "^0.0.2",
     "@tanstack/react-query-devtools": "^5.51.15",
-    "@txnlab/use-wallet-react": "^4.0.0-beta.2",
     "@types/react": "^18.3.3",
     "@types/react-dom": "^18.3.0",
     "@typescript-eslint/eslint-plugin": "^7.15.0",

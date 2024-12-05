@@ -1,14 +1,14 @@
 {
   "name": "@awesome-algorand/react-hooks",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "description": "",
   "main": "index.js",
   "type": "module",
   "scripts": {
     "build": "tsc"
   },
-  "author": "",
-  "license": "Unlicense",
+  "author": "Awesome Algorand",
+  "license": "The Unlicense",
   "devDependencies": {
     "prettier": "^3.3.3",
     "typescript": "^5.5.4",
